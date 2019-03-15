@@ -1,0 +1,24 @@
+#ifndef STRUCT_2D_H
+# define STRUCT_2D_H
+
+# include "stdlib.h"
+
+typedef struct		s_dot
+{
+	int				x;
+	int				y;
+}					t_dot;
+
+typedef struct		s_fdot
+{
+	double			x;
+	double			y;
+}					t_fdot;
+
+typedef struct 	s_index
+{
+	unsigned int	i;
+	unsigned int	j;
+}					t_index;
+
+#endif
