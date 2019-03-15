@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "error.h": "c",
+        "struct_2d.h": "c",
+        "sdl.h": "c"
+    }
+}
