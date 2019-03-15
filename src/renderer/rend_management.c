@@ -17,6 +17,7 @@ SDL_Renderer	*create_renderer(SDL_Window *win, int index, Uint32 flags)
 	rend = NULL;
 	if (!(rend = SDL_CreateRenderer(win, index, flags)))
 		return (null_error(SDL_GetError()));
+	SDL_SetRenderDrawBlendMode(rend, SDL_BLENDMODE_BLEND);
 	return (rend);
 }
 

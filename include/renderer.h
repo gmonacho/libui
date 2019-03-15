@@ -1,6 +1,8 @@
 #ifndef RENDERER_H
 # define RENDERER_H
 
+# include "SDL.h"
+# include "draw.h"
 # include "renderer_flag.h"
 
 SDL_Renderer    *create_renderer(SDL_Window *win, int index, Uint32 flags);
