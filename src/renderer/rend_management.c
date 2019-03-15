@@ -1,0 +1,66 @@
+#include "SDL.h"
+#include "error.h"
+#include "renderer.h"
+
+/**
+ * @brief  create_renderer
+ * @note   cree un moteur de rendu
+ * @param  *win: pointeur sur la fenetre
+ * @param  index: 0 pour choisir le mode de rendu ou -1 pour privilegier l'acceleration materielle
+ * @param  flags: mode de rendu voir readme
+ * @retval le rendu cree
+ */
+SDL_Renderer	*create_renderer(SDL_Window *win, int index, Uint32 flags)
+{
+	SDL_Renderer	*rend;
+
+	rend = NULL;
+	if (!(rend = SDL_CreateRenderer(win, index, flags)))
+		return (null_error(SDL_GetError()));
+	return (rend);
+}
+
+/**
+ * @brief  draw_rend
+ * @note   affiche le rendu
+ * @param  *rend: pointeur sur le rendu
+ * @retval None
+ */
+void			draw_rend(SDL_Renderer *rend)
+{
+	SDL_RenderPresent(rend);
+}
+
+/**
+ * @brief  clear_rend
+ * @note   remplie le rendu de la couleur du pinceau
+ * @param  *rend: pointeur sur le rendu
+ * @retval None
+ */
+void			clear_rend(SDL_Renderer *rend)
+{
+	SDL_RenderClear(rend);
+}
+
+/**
+ * @brief  destroy_rend
+ * @note   detruit le rendu
+ * @param  *rend: pointeur sur le rendu
+ * @retval None
+ */
+void			destroy_rend(SDL_Renderer *rend)
+{
+	SDL_DestroyRenderer(rend);
+}
+
+/**
+ * @brief  set_draw_color
+ * @note   change de couleur d'ecriture du rendu donne
+ * @param  *rend: pointeur sur le rendu
+ * @param  color: couleur
+ * @retval None
+ */
+void			set_draw_color(SDL_Renderer *rend, Uint32 color)
+{
+	SDL_SetRenderDrawColor(rend, color << 24, color << 16, color << 8, color);
+}
