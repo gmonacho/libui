@@ -1,6 +1,6 @@
 #include "SDL.h"
-#include "struct_2d.h"
-#include "window.h"
+#include "ui_struct_2d.h"
+#include "ui_window.h"
 
 /**
  * @brief  set_win_pos
@@ -10,7 +10,7 @@
  * @param  y: position y voulue
  * @retval None
  */
-void		set_win_pos(SDL_Window *win, int x, int y)
+void		ui_set_win_pos(SDL_Window *win, int x, int y)
 {
 	SDL_SetWindowPosition(win, x, y);
 }
@@ -21,7 +21,7 @@ void		set_win_pos(SDL_Window *win, int x, int y)
  * @param  *win: pointeur sur la fenetre
  * @retval La position de la fenetre (t_dot)
  */
-t_dot		get_win_pos(SDL_Window *win)
+t_dot		ui_get_win_pos(SDL_Window *win)
 {
 	t_dot	win_pos;
 
@@ -37,10 +37,10 @@ t_dot		get_win_pos(SDL_Window *win)
  * @param  dy: deplacement en y
  * @retval None
  */
-void		move_win(SDL_Window *win, int dx, int dy)
+void		ui_move_win(SDL_Window *win, int dx, int dy)
 {
 	t_dot	win_pos;
 
-	win_pos = get_win_pos(win);
-	set_win_pos(win, win_pos.x + dx, win_pos.y + dy);
+	win_pos = ui_get_win_pos(win);
+	ui_set_win_pos(win, win_pos.x + dx, win_pos.y + dy);
 }

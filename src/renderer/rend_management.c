@@ -1,6 +1,6 @@
 #include "SDL.h"
-#include "error.h"
-#include "renderer.h"
+#include "ui_error.h"
+#include "ui_renderer.h"
 
 /**
  * @brief  create_renderer
@@ -10,13 +10,13 @@
  * @param  flags: mode de rendu voir readme
  * @retval le rendu cree
  */
-SDL_Renderer	*create_renderer(SDL_Window *win, int index, Uint32 flags)
+SDL_Renderer	*ui_create_renderer(SDL_Window *win, int index, Uint32 flags)
 {
 	SDL_Renderer	*rend;
 
 	rend = NULL;
 	if (!(rend = SDL_CreateRenderer(win, index, flags)))
-		return (null_error(SDL_GetError()));
+		return (ui_null_error(SDL_GetError()));
 	SDL_SetRenderDrawBlendMode(rend, SDL_BLENDMODE_BLEND);
 	return (rend);
 }
@@ -27,7 +27,7 @@ SDL_Renderer	*create_renderer(SDL_Window *win, int index, Uint32 flags)
  * @param  *rend: pointeur sur le rendu
  * @retval None
  */
-void			draw_rend(SDL_Renderer *rend)
+void			ui_draw_rend(SDL_Renderer *rend)
 {
 	SDL_RenderPresent(rend);
 }
@@ -38,7 +38,7 @@ void			draw_rend(SDL_Renderer *rend)
  * @param  *rend: pointeur sur le rendu
  * @retval None
  */
-void			clear_rend(SDL_Renderer *rend)
+void			ui_clear_rend(SDL_Renderer *rend)
 {
 	SDL_RenderClear(rend);
 }
@@ -49,7 +49,7 @@ void			clear_rend(SDL_Renderer *rend)
  * @param  *rend: pointeur sur le rendu
  * @retval None
  */
-void			destroy_rend(SDL_Renderer *rend)
+void			ui_destroy_rend(SDL_Renderer *rend)
 {
 	SDL_DestroyRenderer(rend);
 }
@@ -61,7 +61,7 @@ void			destroy_rend(SDL_Renderer *rend)
  * @param  color: couleur
  * @retval None
  */
-void			set_draw_color(SDL_Renderer *rend, Uint32 color)
+void			ui_set_draw_color(SDL_Renderer *rend, Uint32 color)
 {
 	SDL_SetRenderDrawColor(rend, color << 24, color << 16, color << 8, color);
 }

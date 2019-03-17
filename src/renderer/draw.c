@@ -1,6 +1,6 @@
 #include "SDL.h"
-#include "error.h"
-#include "draw.h"
+#include "ui_error.h"
+#include "ui_draw.h"
 
 /**
  * @brief  draw_point
@@ -10,8 +10,8 @@
  * @param  y: position y du point
  * @retval None
  */
-void	draw_point(SDL_Renderer *rend, int	x, int y)
+void	ui_draw_point(SDL_Renderer *rend, int	x, int y)
 {
 	if (SDL_RenderDrawPoint(rend, x, y) < 0)
-		error(SDL_GetError());
+		ui_error(SDL_GetError());
 }

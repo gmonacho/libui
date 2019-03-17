@@ -3,6 +3,10 @@
 
 # include "SDL.h"
 
+/*
+ *  ========Window=Events=============
+ */
+
 # define UI_WINEV_SHOWN SDL_WINDOWEVENT_SHOWN
 # define UI_WINEV_MOVED SDL_WINDOWEVENT_MOVED
 # define UI_WINEV_RESIZED SDL_WINDOWEVENT_RESIZED
@@ -11,5 +15,17 @@
 # define UI_WINEV_ENTER SDL_WINDOWEVENT_ENTER
 # define UI_WINEV_LEAVE SDL_WINDOWEVENT_LEAVE
 # define UI_WINEV_CLOSE SDL_WINDOWEVENT_CLOSE
+
+/*
+ *  ========Update=Events============
+ */
+
+# define UI_KEY_UPDATE 00000001
+
+/*
+ *  ==========Key=&=Mouse============
+*/
+
+# define UI_AT_LEAST_ONE 323
 
 #endif

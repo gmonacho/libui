@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "error.h"
+#include "ui_error.h"
 
 /**
  * @brief  error
@@ -7,7 +7,7 @@
  * @param  *error_msg : Message d'erreur personnalise
  * @retval  0 : A fin de quitter le programme
  */
-int		error(const char *error_msg)
+int		ui_error(const char *error_msg)
 {
 	perror(error_msg);
 	return (0);
@@ -19,7 +19,7 @@ int		error(const char *error_msg)
  * @param  *error_msg : Message d'erreur personnalise
  * @retval NULL : A fin de quitter le programme
  */
-void	*null_error(const char *error_msg)
+void	*ui_null_error(const char *error_msg)
 {
 	perror(error_msg);
 	return (NULL);

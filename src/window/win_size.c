@@ -1,6 +1,6 @@
 #include "SDL.h"
-#include "struct_2d.h"
-#include "window.h"
+#include "ui_struct_2d.h"
+#include "ui_window.h"
 
 /**
  * @brief  get_win_size
@@ -8,7 +8,7 @@
  * @param  *win: pointeur sur la fenetre
  * @retval taille de la fenetre (t_dot)
  */
-t_dot		get_win_size(SDL_Window *win)
+t_dot		ui_get_win_size(SDL_Window *win)
 {
 	t_dot	win_size;
 
@@ -24,7 +24,7 @@ t_dot		get_win_size(SDL_Window *win)
  * @param  h: (height) hauteur de la fenetre
  * @retval None
  */
-void		set_win_size(SDL_Window *win, int w, int h)
+void		ui_set_win_size(SDL_Window *win, int w, int h)
 {
 	SDL_SetWindowSize(win, w, h);
 }
