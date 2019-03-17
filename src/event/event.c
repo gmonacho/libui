@@ -1,11 +1,11 @@
 #include "SDL.h"
 #include "ui_event.h"
 
-/**
- * @brief  ui_update_event
- * @note   mets a jour les evenements donnes en parametre a utiliser en debut de bouv;e
- * @retval None
- */
+/*
+** @brief  ui_update_event
+** @note   mets a jour les evenements donnes en parametre a utiliser en debut de bouv;e
+** @retval None
+*/
 void	ui_update_event(Uint32 event_flags)
 {
 	SDL_PumpEvents();

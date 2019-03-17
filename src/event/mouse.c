@@ -1,14 +1,14 @@
 #include "SDL.h"
 #include "ui_event.h"
 
-/**
- * @brief  ui_is_mouse_pressed
- * @note   recuperation de l'etat souris
- * @param  mouse_flags: les boutons testes
- * @param  *x: pointeur x pour recuperer la position x de la souris
- * @param  *y: pointeur y pour recuperer la position y de la souris
- * @retval 
- */
+/*
+** @brief  ui_is_mouse_pressed
+** @note   recuperation de l'etat souris
+** @param  mouse_flags: les boutons testes
+** @param  *x: pointeur x pour recuperer la position x de la souris
+** @param  *y: pointeur y pour recuperer la position y de la souris
+** @retval 
+*/
 int		ui_is_mouse_pressed(Uint32 mouse_flags, int *x, int *y)
 {
 	int		i;

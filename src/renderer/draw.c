@@ -3,15 +3,15 @@
 #include "ui_frame.h"
 #include "ui_draw.h"
 
-/**
- * @brief  draw_point
- * @note   dessine un point sur l'ecran
- * @param  *rend: pointeur sur le rendu
- * @param  x: position x du point
- * @param  y: position y du point
- * @param  *frame: frame (cadre) d'ecriture, si NULL la fenetre est utilise comme cadre
- * @retval None
- */
+/*
+** @brief  draw_point
+** @note   dessine un point sur l'ecran
+** @param  *rend: pointeur sur le rendu
+** @param  x: position x du point
+** @param  y: position y du point
+** @param  *frame: frame (cadre) d'ecriture, si NULL la fenetre est utilise comme cadre
+** @retval None
+*/
 void	ui_draw_point(SDL_Renderer *rend, int x, int y, t_frame *frame)
 {
 	if (!frame)

@@ -2,14 +2,14 @@
 #include "ui_error.h"
 #include "ui_renderer.h"
 
-/**
- * @brief  create_renderer
- * @note   cree un moteur de rendu
- * @param  *win: pointeur sur la fenetre
- * @param  index: 0 pour choisir le mode de rendu ou -1 pour privilegier l'acceleration materielle
- * @param  flags: mode de rendu voir readme
- * @retval le rendu cree
- */
+/*
+** @brief  create_renderer
+** @note   cree un moteur de rendu
+** @param  *win: pointeur sur la fenetre
+** @param  index: 0 pour choisir le mode de rendu ou -1 pour privilegier l'acceleration materielle
+** @param  flags: mode de rendu voir readme
+** @retval le rendu cree
+*/
 SDL_Renderer	*ui_create_renderer(SDL_Window *win, int index, Uint32 flags)
 {
 	SDL_Renderer	*rend;
@@ -21,46 +21,46 @@ SDL_Renderer	*ui_create_renderer(SDL_Window *win, int index, Uint32 flags)
 	return (rend);
 }
 
-/**
- * @brief  draw_rend
- * @note   affiche le rendu
- * @param  *rend: pointeur sur le rendu
- * @retval None
- */
+/*
+** @brief  draw_rend
+** @note   affiche le rendu
+** @param  *rend: pointeur sur le rendu
+** @retval None
+*/
 void			ui_draw_rend(SDL_Renderer *rend)
 {
 	SDL_RenderPresent(rend);
 }
 
-/**
- * @brief  clear_rend
- * @note   remplie le rendu de la couleur du pinceau
- * @param  *rend: pointeur sur le rendu
- * @retval None
- */
+/*
+** @brief  clear_rend
+** @note   remplie le rendu de la couleur du pinceau
+** @param  *rend: pointeur sur le rendu
+** @retval None
+*/
 void			ui_clear_rend(SDL_Renderer *rend)
 {
 	SDL_RenderClear(rend);
 }
 
-/**
- * @brief  destroy_rend
- * @note   detruit le rendu
- * @param  *rend: pointeur sur le rendu
- * @retval None
- */
+/*
+** @brief  destroy_rend
+** @note   detruit le rendu
+** @param  *rend: pointeur sur le rendu
+** @retval None
+*/
 void			ui_destroy_rend(SDL_Renderer *rend)
 {
 	SDL_DestroyRenderer(rend);
 }
 
-/**
- * @brief  set_draw_color
- * @note   change de couleur d'ecriture du rendu donne
- * @param  *rend: pointeur sur le rendu
- * @param  color: couleur
- * @retval None
- */
+/*
+** @brief  set_draw_color
+** @note   change de couleur d'ecriture du rendu donne
+** @param  *rend: pointeur sur le rendu
+** @param  color: couleur
+** @retval None
+*/
 void			ui_set_draw_color(SDL_Renderer *rend, Uint32 color)
 {
 	SDL_SetRenderDrawColor(rend, color << 24, color << 16, color << 8, color);

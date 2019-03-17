@@ -4,25 +4,25 @@
 # include "SDL.h"
 # include "ui_shape.h"
 
-/**
- * Les frames sont des elements incontournables,
- * la plupart des interfaces et fonction d'affichage en dependent
- * Il est conseille de stocker les frames dans des listes chainees
- * L'affichage se fera du premier au dernier
- * r : zone permettant de delimiter l'affichage ect
- * *name : nom du frame (id sous forme de chaine de caractere)
- * *texture : pointeur sur la texture a afficher sur le frame
- */
+/*
+** Les frames sont des elements incontournables,
+** la plupart des interfaces et fonction d'affichage en dependent
+** Il est conseille de stocker les frames dans des listes chainees
+** L'affichage se fera du premier au dernier
+** r : zone permettant de delimiter l'affichage ect
+** *name : nom du frame (id sous forme de chaine de caractere)
+** *texture : pointeur sur la texture a afficher sur le frame
+*/
 typedef struct	s_frame
 {
 	t_rect			r;
 	char			*name;
 	SDL_Texture		*texture;
-	struct s_frame	*next;	
-	/*    
-	 *  Et pleins d'autres selon le besoin,
-	 *  mais reste coherent @!&*@$ de ta race !
-	 */
+	struct s_frame	*next;
+	/*
+	**  Et pleins d'autres selon le besoin,
+	**  mais reste coherent @!&*@$ de ta race !
+	*/
 }					t_frame;
 
 

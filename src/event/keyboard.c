@@ -2,13 +2,13 @@
 #include "ui_error.h"
 #include "ui_event.h"
 
-/**
- * @brief  ui_is_key_pressed
- * @note   recuperation de l'etat clavier
- * @param  key_flags: les touches testes
- * @param  update: mise a jour ou non de l'etat du clavier, conseille en debut de boucle seulement
- * @retval 1 si les touches sont pressees 0 sinon
- */
+/*
+** @brief  ui_is_key_pressed
+** @note   recuperation de l'etat clavier
+** @param  key_flags: les touches testes
+** @param  update: mise a jour ou non de l'etat du clavier, conseille en debut de boucle seulement
+** @retval 1 si les touches sont pressees 0 sinon
+*/
 int					ui_is_key_pressed(Uint32 key_flags, int update)
 {
 	static Uint8	*keyboard_state = NULL;
