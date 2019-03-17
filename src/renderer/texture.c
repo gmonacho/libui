@@ -3,6 +3,13 @@
 #include "ui_error.h"
 #include "ui_texture.h"
 
+/*
+** @brief  ui_load_texture
+** @note   charge la texture donnee format bmp
+** @param  *bmp_file: chemin bmp
+** @param  *rend: pointeur sur le rendu
+** @retval 
+*/
 SDL_Texture		*ui_load_texture(const char *bmp_file, SDL_Renderer *rend)
 {
 	SDL_Surface *tmp;
@@ -13,10 +20,18 @@ SDL_Texture		*ui_load_texture(const char *bmp_file, SDL_Renderer *rend)
 	if (!(texture = SDL_CreateTextureFromSurface(rend, tmp)))
 		return (ui_null_error(SDL_GetError()));
 	SDL_FreeSurface(tmp);
-	printf("OK\n");
 	return (texture);
 }
 
+/*
+** @brief  ui_draw_texture
+** @note   affiche une texture
+** @param  *rend: pointeur sur le rendu
+** @param  *texture: pointeur sur la texture
+** @param  *text_rect: pointeur sur le rectangle source
+** @param  *dst_rect: pointeur sur le rectangle cible
+** @retval None
+*/
 void			ui_draw_texture(SDL_Renderer *rend,
 									SDL_Texture *texture,
 									t_rect *text_rect,

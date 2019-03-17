@@ -24,6 +24,7 @@ int		main()
 	loop = 1;
 	while (loop)
 	{
+		ui_set_draw_color(rend, 0xAAAAAAFF);
 		ui_update_event(UI_KEY_UPDATE);
 		if (ui_is_key_pressed(SDL_SCANCODE_Q, 0))
 			loop = 0;
