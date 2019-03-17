@@ -21,7 +21,7 @@ int		main()
 		ui_update_event(UI_KEY_UPDATE);
 		if (ui_is_key_pressed(UI_AT_LEAST_ONE, 0))
 			printf("key pressed\n");
-		if (ui_is_key_pressed(SDL_SCANCODE_ESCAPE, 0))
+		if (ui_is_key_pressed(SDL_SCANCODE_Q, 0))
 			loop = 0;
 		if (ui_is_mouse_pressed(UI_AT_LEAST_ONE, &x, &y))
 			printf("mouse pressed = %d, %d\n", x, y);

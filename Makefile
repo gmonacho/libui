@@ -4,10 +4,12 @@ SRC_PATH =		./src/
 PATH_1 =	/window/
 PATH_2 =	/renderer/
 PATH_3 =	/event/
+PATH_4 =	/frame/
 SRC =	$(wildcard $(SRC_PATH)*.c)\
 		$(wildcard $(SRC_PATH)$(PATH_1)*.c)\
 		$(wildcard $(SRC_PATH)$(PATH_2)*.c)\
-		$(wildcard $(SRC_PATH)$(PATH_3)*.c)
+		$(wildcard $(SRC_PATH)$(PATH_3)*.c)\
+		$(wildcard $(SRC_PATH)$(PATH_4)*.c)
 
 BIN_PATH =		./bin
 BIN = $(patsubst $(SRC_PATH)%.c,./bin/%.o,$(SRC))
@@ -16,6 +18,7 @@ INCLUDE_PATH = include
 FW_PATH = ./frameworks
 CC = gcc
 CFLAGS += -Wall -Wextra -Werror -g -fsanitize=address -O3 -I./$(INCLUDE_PATH)\
+														  -I./libft/includes/\
 														  -I$(FW_PATH)/SDL2_image.framework/Headers/\
 														  -I$(FW_PATH)/SDL2_ttf.framework/Headers/\
 														  -I$(FW_PATH)/SDL2.framework/Headers/
@@ -41,6 +44,7 @@ directory:
 		@mkdir $(BIN_PATH)/$(PATH_1) 2> /dev/null || true
 		@mkdir $(BIN_PATH)/$(PATH_2) 2> /dev/null || true
 		@mkdir $(BIN_PATH)/$(PATH_3) 2> /dev/null || true
+		@mkdir $(BIN_PATH)/$(PATH_4) 2> /dev/null || true
 
 clean:
 		rm -rf $(BIN_PATH)

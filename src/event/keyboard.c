@@ -22,15 +22,11 @@ int					ui_is_key_pressed(Uint32 key_flags, int update)
 		{
 			if (!(key_flags & UI_AT_LEAST_ONE))
 				return (keyboard_state[key_flags]) ? 1 : 0;
-			else
+			i = 0;
+			while (i < SDL_NUM_SCANCODES)
 			{
-				i = 0;
-				while (i < 322)
-				{
-					if (keyboard_state[i++])
-						return (1);
-				}
-				return (0);
+				if (keyboard_state[i++])
+					return (1);
 			}
 		}
 		else
