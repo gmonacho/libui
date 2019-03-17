@@ -5,7 +5,7 @@
 
 SDL_Texture		*ui_load_texture(const char *bmp_file, SDL_Renderer *rend)
 {
-	SDL_Surface *tmp; 
+	SDL_Surface *tmp;
 	SDL_Texture *texture;
 
 	if (!(tmp = SDL_LoadBMP(bmp_file)))
@@ -22,6 +22,6 @@ void			ui_draw_texture(SDL_Renderer *rend,
 									t_rect *text_rect,
 									t_rect *dst_rect)
 {
-	if (!SDL_RenderCopy(rend, texture, (SDL_Rect*)text_rect, (SDL_Rect*)dst_rect))
-		perror("SDL_RenderCopy failed");
+	if (SDL_RenderCopy(rend, texture, (SDL_Rect*)text_rect, (SDL_Rect*)dst_rect) < 0)
+		perror(SDL_GetError());
 }

@@ -3,6 +3,7 @@
 
 # include "SDL.h"
 # include "ui_shape.h"
+# include "ui_btn.h"
 
 /*
 ** Les frames sont des elements incontournables,
@@ -18,6 +19,8 @@ typedef struct	s_frame
 	t_rect			r;
 	char			*name;
 	SDL_Texture		*texture;
+	t_btn 		*btn;
+	int 			n_btn;
 	struct s_frame	*next;
 	/*
 	**  Et pleins d'autres selon le besoin,
