@@ -4,7 +4,7 @@ SRC_PATH =		./src/
 PATH_1 =	/window/
 PATH_2 =	/renderer/
 PATH_3 =	/event/
-PATH_4 =	/frame/
+PATH_4 =	/container/
 SRC =	$(wildcard $(SRC_PATH)*.c)\
 		$(wildcard $(SRC_PATH)$(PATH_1)*.c)\
 		$(wildcard $(SRC_PATH)$(PATH_2)*.c)\
