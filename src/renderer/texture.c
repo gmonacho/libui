@@ -12,7 +12,7 @@
 */
 SDL_Texture		*ui_load_texture(const char *bmp_file, SDL_Renderer *rend)
 {
-	SDL_Surface *tmp; 
+	SDL_Surface *tmp;
 	SDL_Texture *texture;
 
 	if (!(tmp = SDL_LoadBMP(bmp_file)))

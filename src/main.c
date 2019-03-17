@@ -15,8 +15,12 @@ int		main()
 		return (1);
 	if (!(rend = ui_create_renderer(win, -1, 0)))
 		return (1);
-	if (!(texture = ui_load_texture("./ressource/button.bmp", rend)))
-		return (1);
+	// char *str, char *police_path, SDL_Renderer *rend;
+	//if (!(texture = ui_create_text("Test", "./ressources/police/arial.tff", rend)))
+		//return (1);
+	if (!(texture = ui_create_text("Test", "./ressource/police/Rastazm.ttf", rend)))
+		SDL_GetError();
+	//if (!())
 	loop = 1;
 	while (loop)
 	{
