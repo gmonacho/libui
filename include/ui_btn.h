@@ -2,7 +2,7 @@
 
 #define UI_BUTTON
 
-# include "ui_struct_2d.h"
+# include "ui_shape.h"
 
 enum s_btn_type
 {

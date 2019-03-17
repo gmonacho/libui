@@ -1,5 +1,6 @@
 #include "SDL.h"
 #include "libft.h"
+#include "ui_btn.h"
 #include "ui_error.h"
 #include "ui_shape.h"
 #include "ui_frame.h"
@@ -23,6 +24,8 @@ t_frame			*ui_new_frame(t_rect rect, char *name, SDL_Texture *texture)
 		new_frame->r = rect;
 		new_frame->name = name;
 		new_frame->texture = texture;
+		new_frame->btn = NULL;
+		new_frame->n_btn = 0;
 		new_frame->next = NULL;
 		return (new_frame);
 	}
@@ -96,4 +99,26 @@ t_frame			*ui_get_frame(t_frame **frames, char *name)
 		tmp = tmp->next;
 	}
 	return (NULL);
+}
+
+int				ui_add_button_to_frame(t_frame *frame, t_btn btn)
+{
+	int		i;
+	t_btn	*new_btn;
+	t_btn	*tmp;
+
+	if (!(new_btn = (t_btn*)ft_memalloc(sizeof(t_btn) * frame->n_btn + 1)))
+		return (ui_error("Allocation Buttons Failed"));
+	i = 0;
+	while (i < frame->n_btn)
+	{
+		new_btn[i] = frame->btn[i];
+		i++;
+	}
+	new_btn[i] = btn;
+	tmp = frame->btn;
+	frame->btn = new_btn;
+	frame->n_btn++;
+	free(tmp);
+	return (1);
 }
