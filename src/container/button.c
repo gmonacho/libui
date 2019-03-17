@@ -14,6 +14,7 @@
 #include "SDL.h"
 #include "ui_shape.h"
 #include "ui_error.h"
+#include "ui_btn.h"
 #include "SDL_ttf.h"
 
 SDL_Texture   *ui_create_text(char *str, char *police_path, SDL_Renderer *rend)
@@ -34,7 +35,12 @@ SDL_Texture   *ui_create_text(char *str, char *police_path, SDL_Renderer *rend)
  return (texture);
 }
 
-void ui_create_btn()
+t_btn ui_create_btn(SDL_Texture *texture, int type, t_rect rect)
 {
+  t_btn btn;
 
+  btn.rect = rect;
+  btn.texture = texture;
+  btn.type = type;
+  return (btn);
 }
