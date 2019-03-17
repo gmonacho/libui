@@ -20,11 +20,13 @@ int		main()
 	loop = 1;
 	while (loop)
 	{
+		ui_set_draw_color(rend, 0xAAAAAAFF);
 		ui_update_event(UI_KEY_UPDATE);
 		if (ui_is_key_pressed(SDL_SCANCODE_Q, 0))
 			loop = 0;
 		r = (t_rect){0, 0, 100, 50};
 		ui_draw_texture(rend, texture, NULL, &r);
+		ui_draw_rend(rend);
 	}
 	SDL_Quit();
 	return (0);
