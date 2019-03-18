@@ -5,14 +5,14 @@
 
 int		ui_error(const char *error_msg)
 {
-	ft_putstr(error_msg);
+	ft_putstr_fd(error_msg, 2);
 	return (0);
 }
 
 
 void	*ui_null_error(const char *error_msg)
 {
-	ft_putstr(error_msg);
+	ft_putstr_fd(error_msg, 2);
 	return (NULL);
 }
 
