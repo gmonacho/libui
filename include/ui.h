@@ -12,4 +12,6 @@
 # include "ui_texture.h"
 # include "ui_btn.h"
 
+int		ui_init(Uint32 sdl_flags, Uint32 image_flags);
+
 #endif
