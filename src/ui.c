@@ -12,6 +12,7 @@ int		ui_init(Uint32 sdl_flags, Uint32 image_flags)
 		return (ui_error(SDL_GetError()));
 	if (TTF_Init() == -1)
 		return (ui_error(SDL_GetError()));
-	if	(IMG_Init(image_flags)&flags != flags)
+	if	((IMG_Init(image_flags)&flags) != flags)
 		return (ui_error(SDL_GetError()));
+	return (1);
 }
