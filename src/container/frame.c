@@ -13,46 +13,37 @@
 ** @param  *name: nom identificateur du frame
 ** @retval le noubeau maillon frame ou NULL si erreur
 */
-t_frame			*ui_new_frame(t_rect rect, char *name, SDL_Texture *texture)
+t_frame				ui_new_frame(t_rect rect, char *name, SDL_Texture *texture)
 {
-	t_frame		*new_frame;
+	t_frame			new_frame;
 
 	if (name)
 	{
-		if (!(new_frame = (t_frame*)ft_memalloc(sizeof(t_frame*))))
-			return (ui_null_error("ui_new_frame : error memory allocation"));
-		new_frame->r = rect;
-		new_frame->name = name;
-		new_frame->texture = texture;
-		new_frame->btn = NULL;
-		new_frame->n_btn = 0;
-		new_frame->next = NULL;
+		new_frame.r = rect;
+		new_frame.texture = texture;
+		new_frame.btn = NULL;
+		new_frame.n_btn = 0;
 		return (new_frame);
 	}
 	else
-		return (ui_null_error("ui_new_frame : invalid frame name (NULL?)"));
+		return ((t_frame){});
 }
 
-/*
-** @brief  ui_add_frame_back
-** @note   ajoute un element frame a la liste passe en parametre
-** @param  **frames: pointeur sur la liste de frame
-** @param  *new_frame: l'element frame a ajouter en fin de liste
-** @retval None
-*/
-void			ui_add_frame_back(t_frame **frames, t_frame *new_frame)
+t_frame				*ui_add_frame(t_frame *frames, t_frame new_frame, unsigned int n_frame)
 {
-	t_frame		*tmp;
+	t_frame			*new_tab;
+	unsigned int	i;
 
-	tmp = *frames;
-	if (!tmp)
-		tmp = new_frame;
-	else
+	if (!(new_tab = (t_frame*)ft_memalloc(sizeof(t_frame) * (n_frame + 1))))
+		return (ui_null_error("Allocation failed ui_add_frame"));
+	i = 0;
+	while (i < n_frame)
 	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new_frame;
+		new_tab[i] = frames[i];
+		i++;
 	}
+	new_tab[i] = new_frame;
+	return (new_tab);
 }
 
 /*
@@ -63,7 +54,7 @@ void			ui_add_frame_back(t_frame **frames, t_frame *new_frame)
 ** @param  n: position ou ajouter le frame
 ** @retval None
 */
-void			ui_add_frame_n(t_frame **frames, t_frame *new_frame, int n)
+/*void			ui_add_frame_n(t_frame **frames, t_frame *new_frame, int n)
 {
 	t_frame		*tmp;
 	int			i;
@@ -78,7 +69,7 @@ void			ui_add_frame_n(t_frame **frames, t_frame *new_frame, int n)
 			tmp = tmp->next;
 		tmp->next = new_frame;
 	}
-}
+}*/
 
 /*
 ** @brief  ui_get_frame
@@ -87,7 +78,7 @@ void			ui_add_frame_n(t_frame **frames, t_frame *new_frame, int n)
 ** @param  *name: nom du frame voulu
 ** @retval frame dont le nom correspond a celui donne en parametre
 */
-t_frame			*ui_get_frame(t_frame **frames, char *name)
+/*t_frame			*ui_get_frame(t_frame **frames, char *name)
 {
 	t_frame		*tmp;
 
@@ -99,13 +90,13 @@ t_frame			*ui_get_frame(t_frame **frames, char *name)
 		tmp = tmp->next;
 	}
 	return (NULL);
-}
+}*/
 
-int				ui_add_button_to_frame(t_frame *frame, t_btn btn)
+int					ui_add_button_to_frame(t_frame *frame, t_btn btn)
 {
-	int		i;
-	t_btn	*new_btn;
-	t_btn	*tmp;
+	unsigned int	i;
+	t_btn			*new_btn;
+	t_btn			*tmp;
 
 	if (!(new_btn = (t_btn*)ft_memalloc(sizeof(t_btn) * frame->n_btn + 1)))
 		return (ui_error("Allocation Buttons Failed"));
