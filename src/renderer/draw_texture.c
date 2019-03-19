@@ -23,3 +23,11 @@ void	ui_draw_texture_abs(SDL_Renderer *rend, SDL_Texture *texture, t_rect f_r, t
 	if (SDL_RenderCopy(rend, texture, NULL, &sdl_r) < 0)
 		perror(SDL_GetError());
 }
+
+/*void	ui_draw_texture_xresp(SDL_Renderer *rend, SDL_Texture *texture, t_rect f_r, t_frect r)
+{
+	SDL_Rect	sdl_r;
+
+	sdl_r = (SDL_Rect){r.x * f_r.w + f_r.x,
+						r.y,,}
+}*/
