@@ -15,7 +15,14 @@ typedef struct		s_fdot
 	double			y;
 }					t_fdot;
 
-typedef struct 	s_index
+typedef struct		s_len
+{
+	unsigned int	x;
+	unsigned int	y;
+}					t_len;
+
+
+typedef struct		s_index
 {
 	unsigned int	i;
 	unsigned int	j;
