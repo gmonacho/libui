@@ -9,6 +9,14 @@ typedef struct		s_rect
 	unsigned int	h;
 }					t_rect;
 
+typedef struct		s_frect
+{
+	double			x;
+	double			y;
+	double			w;
+	double			h;
+}					t_frect;
+
 typedef struct		s_circle
 {
 	int				x;
