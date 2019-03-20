@@ -28,9 +28,7 @@ typedef struct      s_draw
 	SDL_Texture		**texture;
 }                   t_draw;
 
-
-
 void    ui_draw_point(SDL_Renderer *rend, int x, int y, t_frame *frame);
-void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst);
+void	  ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst);
 
 #endif

@@ -47,6 +47,7 @@ typedef struct s_texture
 typedef struct  s_all_pos
 {
   t_rect pos;
+  SDL_Texture *texture;
 }               t_all_pos;
 
 typedef struct  s_arrow
@@ -78,35 +79,6 @@ typedef struct  s_modify_txt
   t_rect pos;
 
 }              t_modify_txt;
-// (DRAW = 4 | BRUSH = 8) =
-
-/*t_env
-{
-  [0] = t_draw.
-  [1] = win.
-}*/
-
-// env = init_env(void);
-// add_struct_env(void *struct, env, type);
-
-// add_fct_env()
-
-/*t_draw
-{
-  position
-  couleur
-  epaisseur
-  int can_draw;
-}
-
-t_win
-{
-  width
-  height
-  position
-  couleur
-  t_btn
-}*/
 
 typedef struct  s_btn
 {
@@ -128,7 +100,8 @@ typedef struct  s_btn
 SDL_Texture    *ui_create_text(char *str, char *police_path, SDL_Renderer *rend);
 char		       *ft_itoa(int value);
 t_btn          *ui_create_btn(int type, int action);
-void           ui_add_btn_pos(t_btn *btn, t_rect new_pos);
+void           ui_add_btn_pos(t_btn *btn, t_rect new_pos, SDL_Texture *texture);
 void           ui_load_arrow_texture(t_btn *btn, SDL_Renderer *rend);
+int            ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y);
 
 #endif

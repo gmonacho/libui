@@ -9,10 +9,10 @@
 
 typedef struct	s_frame
 {
-	t_rect			rect;
-	SDL_Texture		*texture;
-	t_btn 			*btn;
-	int				n_btn;
+	t_rect				r;
+	SDL_Texture	 	*texture;
+	t_btn 				*btn;
+	int						n_btn;
 	/*
 	**  Et pleins d'autres selon le besoin,
 	**  mais reste coherent @!&*@$ de ta race !
