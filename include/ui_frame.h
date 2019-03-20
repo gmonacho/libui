@@ -9,7 +9,7 @@
 
 typedef struct	s_frame
 {
-	t_rect				r;
+	t_rect				rect;
 	SDL_Texture	 	*texture;
 	t_btn 				*btn;
 	int						n_btn;
