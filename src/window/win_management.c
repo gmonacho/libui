@@ -50,6 +50,29 @@ int			ui_add_frame_to_win(t_win *win, t_frame *frame)
 	new_tab[i] = frame;
 	tmp = win->frames;
 	win->frames = new_tab;
+	win->n_frames++;
 	free(tmp);
 	return (1);
 }
+
+
+/*int				ui_add_frame_to_win_n(t_win *win, t_frame *frame, int n)
+{
+	t_frame	**new_tab;
+	t_frame **tmp;
+	int		i;
+
+	if (!(new_tab = (t_frame**)ft_memalloc(sizeof(t_frame*) * win->n_frames)))
+		return (ui_perror("new frame allocation failed in ui_update_window\n"));
+	i = 0;
+	while (i < win->n_frames)
+	{
+		new_tab[i] = win->frames[i];
+		i++;
+	}
+	new_tab[i] = frame;
+	tmp = win->frames;
+	win->frames = new_tab;
+	free(tmp);
+	return (1);
+}*/

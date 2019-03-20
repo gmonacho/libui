@@ -27,10 +27,7 @@ int		main()
 
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
         return (1);
-
-	printf("la\n");	
 	win = ui_open_window("test", (t_dot){200, 200}, (t_len){1000, 1000}, UI_WIN_RESIZABLE);
-	printf("la1\n");
 	loop = 1;
 	btn = ui_create_btn(ARROW, 0);
 	ui_set_draw_color(win->rend, 0x7f827a, 255);

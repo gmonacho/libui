@@ -12,17 +12,17 @@ void	ui_draw_point(SDL_Renderer *rend, int x, int y, t_frame *frame)
 	}
 	else
 	{
-		if (x >= frame->r.x && x <= frame->r.x + (int)frame->r.w
-			&& y >= frame->r.y && x <= frame->r.y + (int)frame->r.h)
+		if (x >= frame->rect.x && x <= frame->rect.x + (int)frame->rect.w
+			&& y >= frame->rect.y && x <= frame->rect.y + (int)frame->rect.h)
 		{
-			if (SDL_RenderDrawPoint(rend, x + frame->r.x, y + frame->r.y) < 0)
+			if (SDL_RenderDrawPoint(rend, x + frame->rect.x, y + frame->rect.y) < 0)
 				ui_error(SDL_GetError());
 		}
 	}
 }
 
-void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, Uint32 type_draw, t_frame_dep f_d)
+void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst)
 {
-	if (type_draw & UI_ABSOLUTE)
-		ui_draw_texture_abs(rend, texture, f_d.f_r, f_d.r);
+	if (SDL_RenderCopy(rend, texture, NULL, (SDL_Rect*)&dst) < 0)
+		perror(SDL_GetError());
 }
