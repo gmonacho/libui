@@ -21,6 +21,7 @@ int		main()
 {
 	t_win			*win;
 	SDL_Event			event;
+  SDL_Texture *texture;
 	int				loop;
 	t_btn 		*btn;
 	t_rect			r;
@@ -31,10 +32,13 @@ int		main()
 	win = ui_open_window("test", (t_dot){200, 200}, (t_len){1000, 1000}, UI_WIN_RESIZABLE);
 	loop = 1;
 	btn = ui_create_btn(ARROW, 0);
-	ui_set_draw_color(win->rend, 0x7f827a, 255);
+	ui_set_draw_color(win->rend, 0x7f827a);
 	ui_add_btn_pos(btn, (t_rect){100, 410, 30, 20}, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", win->rend));
 	ui_add_btn_pos(btn, (t_rect){150, 400, 30, 10}, ui_load_img("./ressource/image/top-arrow.png", UI_PNG, win->rend));
 	ui_add_btn_pos(btn, (t_rect){150, 420, 30, 10}, ui_load_img("./ressource/image/down-arrow.png", UI_PNG, win->rend));
+
+  texture = ui_create_bloc_texture(win->rend, (t_len){50, 50}, 0x7f827a, 0xfffffff);
+  ui_draw_texture(win->rend, texture, (t_rect){100, 100, 50, 50});
 	ui_load_arrow_texture(btn, win->rend);
 	ui_draw_rend(win->rend);
 	while (loop)
