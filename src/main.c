@@ -19,7 +19,7 @@ void prepareForRendering(SDL_Renderer *renderer)
 
 int		main()
 {
-	SDL_Window		*win;
+	t_win			*win;
 	SDL_Renderer	*rend;
 	SDL_Texture		*color_texture;
 	SDL_Event			event;
@@ -29,9 +29,9 @@ int		main()
 
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
         return (1);
-	if (!(win = ui_open_window("test", 1000, 1000, UI_WIN_RESIZABLE)))
+	if (!(win = ui_open_window("test", (t_dot){200, 200}, (t_len){1000, 1000}, UI_WIN_RESIZABLE)))
 		return (1);
-	if (!(rend = ui_create_renderer(win, -1, 0)))
+	if (!(rend = ui_create_renderer(win->ptr, -1, 0)))
 		return (1);
 	if (!(color_texture = SDL_CreateTexture(rend, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 500, 500)))
 				SDL_GetError();
@@ -55,7 +55,7 @@ int		main()
 		//ui_draw_texture(rend, texture, NULL, &r);
 		//ui_draw_rend(rend);
 	}
-	SDL_DestroyWindow(win);
+	SDL_DestroyWindow(win->ptr);
 	SDL_Quit();
 	return (0);
 }
