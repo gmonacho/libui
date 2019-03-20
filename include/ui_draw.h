@@ -8,12 +8,10 @@
 enum	s_type_texture_draw
 {
 	UI_ABSOLUTE = 1,
-	UI_X_RESP = 2,
-	UI_Y_RESP = 3,
-	UI_FULL_RESP = 4,
-	UI_X_PROP = 5,
-	UI_Y_PROP = 6
+	UI_RESPONSIVE = 2,
+	UI_PROPORTIONAL = 6
 };
+
 
 typedef struct		s_frame_dep
 {
