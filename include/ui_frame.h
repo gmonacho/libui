@@ -27,7 +27,6 @@ typedef struct	s_frame
 }					t_frame;
 
 t_frame		ui_new_frame(t_rect rect, char *name, SDL_Texture *texture);
-t_frame		*ui_add_frame(t_frame *frames, t_frame new_frame, unsigned int n_frame);
 //void		ui_add_frame_n(t_frame **frames, t_frame *new_frame, int n);
 //t_frame		ui_get_frame(t_frame **frames, char *name);
 int			ui_add_button_to_frame(t_frame *frame, t_btn btn);
