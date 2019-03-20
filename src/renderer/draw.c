@@ -21,8 +21,8 @@ void	ui_draw_point(SDL_Renderer *rend, int x, int y, t_frame *frame)
 	}
 }
 
-void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, Uint32 type_draw, t_frame_dep f_d)
+void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst)
 {
-	if (type_draw & UI_ABSOLUTE)
-		ui_draw_texture_abs(rend, texture, f_d.f_r, f_d.r);
+	if (SDL_RenderCopy(rend, texture, NULL, (SDL_Rect*)&dst) < 0)
+		perror(SDL_GetError());
 }

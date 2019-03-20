@@ -46,55 +46,10 @@ t_frame				*ui_add_frame(t_frame *frames, t_frame new_frame, unsigned int n_fram
 	return (new_tab);
 }
 
-/*
-** @brief  ui_add_frame_n
-** @note   ajoute un element frame a la liste a la position n
-** @param  **frames: pointeur sur la liste de frame
-** @param  *new_frame: l'element frame a ajouter en position n
-** @param  n: position ou ajouter le frame
-** @retval None
-*/
-/*void			ui_add_frame_n(t_frame **frames, t_frame *new_frame, int n)
-{
-	t_frame		*tmp;
-	int			i;
-
-	tmp = *frames;
-	if (!tmp)
-		tmp = new_frame;
-	else
-	{
-		i = 0;
-		while (i < n)
-			tmp = tmp->next;
-		tmp->next = new_frame;
-	}
-}*/
-
-/*
-** @brief  ui_get_frame
-** @note   retourne l'element frame demande si existant
-** @param  **frames: pointeur sur la liste de frame
-** @param  *name: nom du frame voulu
-** @retval frame dont le nom correspond a celui donne en parametre
-*/
-/*t_frame			*ui_get_frame(t_frame **frames, char *name)
-{
-	t_frame		*tmp;
-
-	tmp = *frames;
-	while (tmp)
-	{
-		if (tmp->name == name)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	return (NULL);
-}*/
 
 int					ui_add_button_to_frame(t_frame *frame, t_btn btn)
 {
-	unsigned int	i;
+	int				i;
 	t_btn			*new_btn;
 	t_btn			*tmp;
 

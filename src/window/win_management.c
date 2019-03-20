@@ -4,7 +4,7 @@
 #include "ui_renderer.h"
 #include "ui_frame.h"
 #include "ui_window.h"
-		
+
 t_win			*ui_open_window(const char *title, t_dot pos, t_len size, Uint32 flags)
 {
 	t_win		*win;
