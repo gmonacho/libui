@@ -2,7 +2,7 @@
 
 #define UI_BUTTON
 
-# include "ui_shape.h"
+#include "ui_shape.h"
 
 enum s_btn_type
 {
@@ -33,18 +33,102 @@ enum s_btn_action
   OPEN_WINDOW = 1,
   ADD_CONTENT = 2,
   PREV_CONTENT = 3,
-  DRAW = 4
+  DRAW = 4,
+  DRAG = 5
 };
+
+
+typedef struct s_texture
+{
+    t_rect pos;
+    SDL_Texture *texture;
+}             t_texture;
+
+typedef struct  s_all_pos
+{
+  t_rect pos;
+}               t_all_pos;
+
+typedef struct  s_arrow
+{
+  t_texture **texture;
+  int       value;
+  /*SDL_Texture *up_arrow_texture;
+  SDL_Texture *down_arrow_texture;
+  SDL_Texture *btn_value;
+  t_rect      up_arrow;
+  t_rect      down_arrow;
+  t_rect      linked_btn;*/
+}              t_arrow;
+
+typedef struct  s_option
+{
+  t_rect pos;
+  SDL_Texture *txt;
+}              t_option;
+
+typedef struct  s_checkbox
+{
+  t_rect pos;
+
+}              t_checkbox;
+
+typedef struct  s_modify_txt
+{
+  t_rect pos;
+
+}              t_modify_txt;
+// (DRAW = 4 | BRUSH = 8) =
+
+/*t_env
+{
+  [0] = t_draw.
+  [1] = win.
+}*/
+
+// env = init_env(void);
+// add_struct_env(void *struct, env, type);
+
+// add_fct_env()
+
+/*t_draw
+{
+  position
+  couleur
+  epaisseur
+  int can_draw;
+}
+
+t_win
+{
+  width
+  height
+  position
+  couleur
+  t_btn
+}*/
 
 typedef struct  s_btn
 {
   t_rect      rect;
   SDL_Texture *texture;
+  t_all_pos   **pos;
+  t_arrow     arrow;
+  int         value;
+  t_option    option;
+  t_checkbox  checkbox;
+  t_modify_txt modify_txt;
+  //t_slide      slide;
   int         type;
-  int         event;
+  int         state;
+  int         action;
+  int         count_pos;
 }               t_btn;
 
-SDL_Texture   *ui_create_text(char *str, char *police_path, SDL_Renderer *rend);
-t_btn          ui_create_btn(SDL_Texture *texture, int type, t_rect rect);
+SDL_Texture    *ui_create_text(char *str, char *police_path, SDL_Renderer *rend);
+char		       *ft_itoa(int value);
+t_btn          *ui_create_btn(int type, int action);
+void           ui_add_btn_pos(t_btn *btn, t_rect new_pos);
+void           ui_load_arrow_texture(t_btn *btn, SDL_Renderer *rend);
 
 #endif

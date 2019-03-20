@@ -8,7 +8,7 @@ SDL_Texture *ui_load_img(const char *path, Uint32 img_format, SDL_Renderer *rend
     SDL_Surface     *surface;
     SDL_Texture     *texture;
     SDL_RWops       *rwop;
-    
+
     surface = NULL;
     rwop = SDL_RWFromFile(path, "rb");
     if (img_format & UI_PNG)

@@ -1,37 +1,61 @@
 #include "ui.h"
 #include <stdio.h>
 
+
+void fillTexture(SDL_Renderer *renderer, SDL_Texture *texture, int r, int g, int b, int a)
+{
+    SDL_SetRenderTarget(renderer, texture);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+    SDL_SetRenderDrawColor(renderer, r, g, b, a);
+    SDL_RenderFillRect(renderer, NULL);
+}
+
+void prepareForRendering(SDL_Renderer *renderer)
+{
+    SDL_SetRenderTarget(renderer, NULL);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(renderer, 255, 128, 128, 20);
+}
+
 int		main()
 {
 	SDL_Window		*win;
 	SDL_Renderer	*rend;
-	SDL_Texture		*texture;
+	SDL_Texture		*color_texture;
+	SDL_Event			event;
 	int				loop;
+	t_btn 		*btn;
 	t_rect			r;
 
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
         return (1);
-	if (!(win = ui_open_window("test", 600, 600, UI_WIN_RESIZABLE)))
+	if (!(win = ui_open_window("test", 1000, 1000, UI_WIN_RESIZABLE)))
 		return (1);
 	if (!(rend = ui_create_renderer(win, -1, 0)))
 		return (1);
-	// char *str, char *police_path, SDL_Renderer *rend;
-	//if (!(texture = ui_create_text("Test", "./ressources/police/arial.tff", rend)))
-		//return (1);
-	if (!(texture = ui_create_text("Test", "./ressource/police/Rastazm.ttf", rend)))
-		SDL_GetError();
-	//if (!())
+	if (!(color_texture = SDL_CreateTexture(rend, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 500, 500)))
+				SDL_GetError();
 	loop = 1;
+	btn = ui_create_btn(ARROW, 0);
+	ui_set_draw_color(rend, 0x7f827a, 255);
+	ui_add_btn_pos(btn, (t_rect){30, 410, 100, 20});
+	ui_add_btn_pos(btn, (t_rect){150, 400, 30, 10});
+	ui_add_btn_pos(btn, (t_rect){150, 420, 30, 10});
+	ui_load_arrow_texture(btn, rend);
+	ui_draw_rend(rend);
 	while (loop)
 	{
-		ui_set_draw_color(rend, 0xAAAAAAFF);
 		ui_update_event(UI_KEY_UPDATE);
+		SDL_WaitEvent(&event);
+		is_btn_clicked(event, btn, rend);
 		if (ui_is_key_pressed(SDL_SCANCODE_Q, 0))
 			loop = 0;
 		r = (t_rect){0, 0, 100, 50};
-		ui_draw_texture(rend, texture, NULL, &r);
-		ui_draw_rend(rend);
+		//ui_load_arrow_texture(btn, rend);
+		//ui_draw_texture(rend, texture, NULL, &r);
+		//ui_draw_rend(rend);
 	}
+	SDL_DestroyWindow(win);
 	SDL_Quit();
 	return (0);
 }
