@@ -15,7 +15,7 @@
 		perror(SDL_GetError());
 }*/
 
-void	ui_draw_texture_abs(SDL_Renderer *rend, SDL_Texture *texture, t_rect f_r, t_frect r)
+void	ui_draw_texture_abs(SDL_Renderer *rend, SDL_Texture *texture, t_rect f_r, t_rect r)
 {
 	SDL_Rect	sdl_r;
 

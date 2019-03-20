@@ -61,7 +61,8 @@ void			ui_destroy_rend(SDL_Renderer *rend)
 ** @param  color: couleur
 ** @retval None
 */
-void			ui_set_draw_color(SDL_Renderer *rend, Uint32 color)
+void			ui_set_draw_color(SDL_Renderer *rend, int color, int opacity)
 {
-	SDL_SetRenderDrawColor(rend, color >> 24, color >> 16, color >> 8, color);
+	SDL_SetRenderDrawColor(rend, (color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF, opacity);
+	ui_clear_rend(rend);
 }

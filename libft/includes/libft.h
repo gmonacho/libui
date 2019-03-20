@@ -6,7 +6,7 @@
 /*   By: gmonacho <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 10:23:36 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/07 17:11:04 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 18:16:11 by thbrouss    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -105,6 +105,9 @@ int					get_next_line(const int fd, char **line);
 int					ft_index(const char *str, int c);
 int					ft_countnumbers(char *str);
 int					ft_round(double nb);
+char				*ft_strrev(char *str);
+char				*ft_itoa(int value);
+char				*ft_strdup(const char *s);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));

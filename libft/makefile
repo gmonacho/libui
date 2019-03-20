@@ -6,7 +6,7 @@
 #    By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/02 16:01:28 by gmonacho     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/15 21:22:52 by gmonacho    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/20 18:20:37 by thbrouss    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -25,7 +25,7 @@ CFLAGS += -Wall -Wextra  -Werror
 
 all: $(NAME)
 
-%.o: %.c 
+%.o: %.c
 		@$(CC) $(CFLAGS) -c $< -o $@
 		@printf "#"
 

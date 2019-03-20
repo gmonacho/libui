@@ -11,10 +11,10 @@ typedef struct		s_rect
 
 typedef struct		s_frect
 {
-	double			x;
-	double			y;
-	double			w;
-	double			h;
+	int			x;
+	int			y;
+	int			w;
+	int			h;
 }					t_frect;
 
 typedef struct		s_circle
