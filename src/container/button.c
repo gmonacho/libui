@@ -120,14 +120,14 @@ int  ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y)
       if (btn->type == ARROW && i == 1)
       {
         btn->value++;
-        ui_set_draw_color(rend, 0x7f827a, 255);
+        ui_set_draw_color(rend, 0x7f827a);
         ui_load_arrow_texture(btn, rend);
         is_set = 1;
       }
       if (btn->type == ARROW && i == 2 && btn->value > 0)
       {
         btn->value--;
-        ui_set_draw_color(rend, 0x7f827a, 255);
+        ui_set_draw_color(rend, 0x7f827a);
         ui_load_arrow_texture(btn, rend);
         is_set = 1;
       }
