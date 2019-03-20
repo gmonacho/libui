@@ -3,49 +3,27 @@
 #include "ui_btn.h"
 #include "ui_error.h"
 #include "ui_shape.h"
+#include "ui_struct_2d.h"
+#include "ui_draw.h"
 #include "ui_frame.h"
 
-/*
-** @brief  ui_new_frame (nouveau cadre)
-** @note   alloue un nouveau maillon frame
-** @param  rect: position et dimension du frame
-** @param  color: couleur par default du frame
-** @param  *name: nom identificateur du frame
-** @retval le noubeau maillon frame ou NULL si erreur
-*/
-t_frame				ui_new_frame(t_rect rect, char *name, SDL_Texture *texture)
+t_frame				*ui_new_frame(t_rect rect, char *name, SDL_Texture *texture)
 {
-	t_frame			new_frame;
+	t_frame			*new_frame;
 
+	if (!(new_frame = (t_frame*)ft_memalloc(sizeof(t_frame))))
+		return (ui_null_perror("new_frame allocation failed in ui_new_frame\n"));
 	if (name)
 	{
-		new_frame.r = rect;
-		new_frame.texture = texture;
-		new_frame.btn = NULL;
-		new_frame.n_btn = 0;
+		new_frame->rect = rect;
+		new_frame->texture = texture;
+		new_frame->btn = NULL;
+		new_frame->n_btn = 0;
 		return (new_frame);
 	}
 	else
-		return ((t_frame){});
+		return (NULL);
 }
-
-t_frame				*ui_add_frame(t_frame *frames, t_frame new_frame, unsigned int n_frame)
-{
-	t_frame			*new_tab;
-	unsigned int	i;
-
-	if (!(new_tab = (t_frame*)ft_memalloc(sizeof(t_frame) * (n_frame + 1))))
-		return (ui_null_error("Allocation failed ui_add_frame"));
-	i = 0;
-	while (i < n_frame)
-	{
-		new_tab[i] = frames[i];
-		i++;
-	}
-	new_tab[i] = new_frame;
-	return (new_tab);
-}
-
 
 int					ui_add_button_to_frame(t_frame *frame, t_btn btn)
 {
@@ -67,4 +45,29 @@ int					ui_add_button_to_frame(t_frame *frame, t_btn btn)
 	frame->n_btn++;
 	free(tmp);
 	return (1);
+}
+
+void				ui_set_frame_rect(t_frame *frame, int x, int y, t_len size)
+{
+	frame->rect.x = x;
+	frame->rect.y = y;
+	frame->rect.w = size.x;
+	frame->rect.h = size.y;
+}
+
+void				ui_move_frame(t_frame *frame, int dx, int dy)
+{
+	frame->rect.x += dx;
+	frame->rect.y += dy;
+}
+
+void				ui_resize_frame(t_frame *frame, int dw, int dh)
+{
+	frame->rect.w += dw;
+	frame->rect.h += dh;
+}
+
+void				ui_draw_frame(SDL_Renderer *rend, t_frame *frame)
+{
+	ui_draw_texture(rend, frame->texture, frame->rect);
 }

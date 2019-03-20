@@ -12,10 +12,10 @@ void	ui_draw_point(SDL_Renderer *rend, int x, int y, t_frame *frame)
 	}
 	else
 	{
-		if (x >= frame->r.x && x <= frame->r.x + (int)frame->r.w
-			&& y >= frame->r.y && x <= frame->r.y + (int)frame->r.h)
+		if (x >= frame->rect.x && x <= frame->rect.x + (int)frame->rect.w
+			&& y >= frame->rect.y && x <= frame->rect.y + (int)frame->rect.h)
 		{
-			if (SDL_RenderDrawPoint(rend, x + frame->r.x, y + frame->r.y) < 0)
+			if (SDL_RenderDrawPoint(rend, x + frame->rect.x, y + frame->rect.y) < 0)
 				ui_error(SDL_GetError());
 		}
 	}

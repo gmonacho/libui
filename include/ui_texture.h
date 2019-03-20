@@ -4,5 +4,6 @@
 # include "SDL.h"
 
 SDL_Texture     *ui_load_texture(const char *bmp_file, SDL_Renderer *rend);
+SDL_Texture		*ui_create_bloc_texture(SDL_Renderer *rend, t_len size, int background_color, int border_color);
 
 #endif

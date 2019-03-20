@@ -3,17 +3,10 @@
 
 # include "SDL.h"
 # include "ui_shape.h"
+# include "ui_struct_2d.h"
 # include "ui_btn.h"
 
-/*
-** Les frames sont des elements incontournables,
-** la plupart des interfaces et fonction d'affichage en dependent
-** Il est conseille de stocker les frames dans un tableau de structure dans leur ordre d'affichage
-** L'affichage se fera du premier au dernier
-** r : zone permettant de delimiter l'affichage ect
-** *name : nom du frame (id sous forme de chaine de caractere)
-** *texture : pointeur sur la texture a afficher sur le frame
-*/
+
 typedef struct	s_frame
 {
 	t_rect				r;
@@ -26,9 +19,20 @@ typedef struct	s_frame
 	*/
 }					t_frame;
 
-t_frame		ui_new_frame(t_rect rect, char *name, SDL_Texture *texture);
-//void		ui_add_frame_n(t_frame **frames, t_frame *new_frame, int n);
-//t_frame		ui_get_frame(t_frame **frames, char *name);
+t_frame				*ui_new_frame(t_rect rect, char *name, SDL_Texture *texture);
+
+/*
+**	=========================== Manage Frame ==========================
+*/
+
+void		ui_set_frame_rect(t_frame *frame, int x, int y, t_len size);
+void		ui_move_frame(t_frame *frame, int dx, int dy);
+void		ui_resize_frame(t_frame *frame, int dw, int dh);
+
+/*
+**	======================= Manage Frame's Butttons =====================
+*/
+
 int			ui_add_button_to_frame(t_frame *frame, t_btn btn);
 
 #endif

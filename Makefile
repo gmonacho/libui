@@ -5,13 +5,11 @@ PATH_1 =	/window/
 PATH_2 =	/renderer/
 PATH_3 =	/event/
 PATH_4 =	/container/
-PATH_5 = /utils/
 SRC =	$(wildcard $(SRC_PATH)*.c)\
 		$(wildcard $(SRC_PATH)$(PATH_1)*.c)\
 		$(wildcard $(SRC_PATH)$(PATH_2)*.c)\
 		$(wildcard $(SRC_PATH)$(PATH_3)*.c)\
-		$(wildcard $(SRC_PATH)$(PATH_4)*.c)\
-		$(wildcard $(SRC_PATH)$(PATH_5)*.c)
+		$(wildcard $(SRC_PATH)$(PATH_4)*.c)
 
 BIN_PATH =		./bin
 BIN = $(patsubst $(SRC_PATH)%.c,./bin/%.o,$(SRC))
