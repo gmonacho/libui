@@ -49,10 +49,24 @@ void set_click_event(SDL_Event event, t_btn *btn, SDL_Renderer	*rend)
 			if (btn->type == ARROW)
 			{
 				if (ui_render_arrow_btn(rend, btn, event.button.x, event.button.y) == 1)
-					ui_draw_rend(rend);
+					;
 			}
+			/*if (btn->type == SLIDER)
+			{
+				ui_render_slider_btn(rend, btn, event.button.x, event.button.y);
+			}*/
 		}
 	}
+	/*if (event.type == SDL_MOUSEBUTTONUP)
+	{
+		if(event.button.button == SDL_BUTTON_LEFT)
+		{
+			if (btn->type == SLIDER)
+			{
+				ui_render_slider_btn(rend, btn, event.button.x, event.button.y);
+			}
+		}
+	}*/
 }
 
 // ------------------ TODO DRAG & DROP --------------------
