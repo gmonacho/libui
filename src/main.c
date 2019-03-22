@@ -29,7 +29,7 @@ int		main()
   ui_add_btn_pos(btn, (t_rect){150, 400, 50, 30}, ui_load_img("./ressource/image/slider.jpg", UI_JPG, win->rend), SLIDER);
   ui_add_btn_pos(btn, (t_rect){150, 400, 100, 30}, NULL, SLIDER);
 
-  texture = ui_create_bloc_texture(win->rend, (t_len){30, 100}, 0x7f827a, 0xfffffff);
+  texture = ui_create_bloc_texture(win->rend, (t_len){30, 100}, 0xFF005544, 0xFF0000FF);
   ui_load_slider_texture(btn, win->rend, 0, 0);
   //ui_draw_texture(win->rend, texture, (t_rect){100, 100, 50, 50});
 	//ui_load_arrow_texture(btn, win->rend);
@@ -39,8 +39,8 @@ int		main()
   prev_y = 0;
 	while (loop)
 	{
-		ui_update_event(UI_KEY_UPDATE);
-    ui_set_draw_color(win->rend, 0x7f827a);
+	ui_update_event(UI_KEY_UPDATE);
+    ui_set_draw_color(win->rend, 0x666666FF);
     SDL_WaitEvent(&event);
     set_click_event(event, btn, win->rend);
     if (ui_is_key_pressed(SDL_SCANCODE_Q, 0))
