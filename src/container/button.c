@@ -72,7 +72,6 @@ void ui_add_btn_pos(t_btn *btn, t_rect new_pos, SDL_Texture *texture, int type)
   i = 0;
   if (!(dst_pos = malloc(sizeof(t_all_pos *) * (btn->count_pos + 1))))
     return ;
-  type = 0;
   while (i < btn->count_pos)
   {
       dst_pos[i] = malloc(sizeof(t_all_pos));
@@ -87,6 +86,8 @@ void ui_add_btn_pos(t_btn *btn, t_rect new_pos, SDL_Texture *texture, int type)
     dst_pos[i]->texture = texture;
   btn->pos = dst_pos;
   btn->count_pos++;
+  if (type < MAX_BTN)
+    btn->key[type] = btn->count_pos;
 }
 
 /*
@@ -98,27 +99,70 @@ void ui_add_btn_pos(t_btn *btn, t_rect new_pos, SDL_Texture *texture, int type)
 */
 void ui_load_slider_texture(t_btn *btn, SDL_Renderer *rend, int mouse_x, int mouse_y)
 {
-  mouse_x = 0;
-  if (btn->count_pos == 3 && btn->type == SLIDER)
+  int    m_x;
+  t_rect pos_slider;
+  t_rect pos_line;
+  SDL_Texture *btn_texture;
+
+  m_x = mouse_x;
+  btn_texture = NULL;
+  if ((btn->count_pos == 2 || btn->count_pos == 3) && btn->type == SLIDER)
   {
-      SDL_SetRenderDrawColor(rend, 255, 255, 255, SDL_ALPHA_OPAQUE);
-      SDL_RenderDrawLine(rend, btn->pos[2]->pos.x, btn->pos[2]->pos.y, btn->pos[2]->pos.x, btn->pos[2]->pos.y + btn->pos[2]->pos.w);
-      if ((mouse_y != 0 && (mouse_y <= ((int)btn->pos[2]->pos.y + ((int)btn->pos[2]->pos.w))) && mouse_y >= (int)btn->pos[2]->pos.y))
+    if ((btn->key[SLIDER]) != 0 && (btn->key[H_LINE] != 0 || btn->key[V_LINE] != 0))
+    {
+      pos_slider = btn->pos[btn->key[SLIDER] - 1]->pos;
+      btn_texture = btn->pos[btn->key[SLIDER] - 1]->texture;
+      pos_line = (btn->key[V_LINE] != 0) ? btn->pos[(btn->key[V_LINE] - 1)]->pos : btn->pos[(btn->key[H_LINE] - 1)]->pos;
+      SDL_SetRenderDrawColor(rend, (btn->color >> 24) & 0xFF, (btn->color >> 16) & 0xFF, (btn->color >> 8) & 0xFF, btn->color & 0xFF);
+      // Vertical btn.
+      if (btn->key[V_LINE] != 0)
       {
-        btn->value = ((int)btn->pos[2]->pos.y + ((int)btn->pos[2]->pos.w)) - mouse_y;
-        ui_draw_texture(rend, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", rend), btn->pos[0]->pos);
-        ui_draw_texture(rend, btn->pos[1]->texture, (t_rect){btn->pos[2]->pos.x - (btn->pos[1]->pos.w / 2),
-          btn->pos[1]->pos.y - ((btn->pos[1]->pos.y + (btn->pos[1]->pos.h / 2)) - mouse_y), btn->pos[1]->pos.w, btn->pos[1]->pos.h});
-        btn->pos[1]->pos.x = btn->pos[2]->pos.x - (btn->pos[1]->pos.w / 2);
-        // ------ NOTE : mouse_x et pos.x, si la ligne est a la vertical.
-        btn->pos[1]->pos.y = btn->pos[1]->pos.y - ((btn->pos[1]->pos.y + (btn->pos[1]->pos.h / 2)) - mouse_y);
+        btn->value = ((int)pos_line.y + ((int)pos_line.w)) - mouse_y;
+        SDL_RenderDrawLine(rend, pos_line.x, pos_line.y, pos_line.x, pos_line.y + pos_line.w);
+        if ((mouse_y != 0 && (mouse_y <= ((int)pos_line.y + ((int)pos_line.w))) && mouse_y >= (int)pos_line.y))
+        {
+          ui_draw_texture(rend, btn_texture, (t_rect){pos_line.x - (pos_slider.w / 2),
+            pos_slider.y - ((pos_slider.y + (pos_slider.h / 2)) - mouse_y), pos_slider.w, pos_slider.h});
+
+          btn->pos[btn->key[SLIDER] - 1]->pos.x = pos_line.x - (pos_slider.w / 2);
+          btn->pos[btn->key[SLIDER] - 1]->pos.y = pos_slider.y - ((pos_slider.y + (pos_slider.h / 2)) - mouse_y);
+        }
+        else
+        {
+          if (btn->key[SLIDER] != 0)
+          {
+            ui_draw_texture(rend, btn->pos[(btn->key[SLIDER] - 1)]->texture, (t_rect){pos_line.x - (pos_slider.w / 2),
+              pos_slider.y, pos_slider.w, pos_slider.h});
+          }
+        }
       }
-      else
+      // Horizontal btn.
+      if (btn->key[H_LINE] != 0)
       {
-        ui_draw_texture(rend, btn->pos[1]->texture, (t_rect){btn->pos[2]->pos.x - (btn->pos[1]->pos.w / 2), btn->pos[1]->pos.y, btn->pos[1]->pos.w, btn->pos[1]->pos.h});
-        ui_draw_texture(rend, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", rend), btn->pos[0]->pos);
+        SDL_RenderDrawLine(rend, pos_line.x, pos_line.y, pos_line.x + pos_line.w, pos_line.y);
+        if ((m_x != 0 && (m_x <= ((int)pos_line.x + ((int)pos_line.w))) && m_x >= (int)pos_line.x))
+        {
+          btn->value = ((int)pos_line.x + ((int)pos_line.w)) - mouse_x;
+          ui_draw_texture(rend, btn_texture, (t_rect){pos_slider.x - ((pos_slider.x + (pos_slider.w / 2)) - m_x),
+          pos_line.y - (pos_slider.h / 2), pos_slider.w, pos_slider.h});
+
+          btn->pos[btn->key[SLIDER] - 1]->pos.x = pos_slider.x - ((pos_slider.x + (pos_slider.w / 2)) - m_x);
+          btn->pos[btn->key[SLIDER] - 1]->pos.y = pos_line.y - (pos_slider.h / 2);
+        }
+        else
+        {
+          if (btn->key[SLIDER] != 0)
+          {
+            ui_draw_texture(rend, btn->pos[btn->key[SLIDER] - 1]->texture, (t_rect){pos_slider.x,
+            pos_line.y - (pos_slider.h / 2), pos_slider.w, pos_slider.h});
+          }
+        }
       }
+    }
   }
+  if (btn->count_pos == 3 && btn->count_pos > 1 && btn->key[TEXT] != 0)
+    ui_draw_texture(rend, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", rend),
+    btn->pos[btn->key[TEXT] - 1]->pos);
 }
 
 /*
@@ -157,12 +201,16 @@ void ui_render_slider_btn(SDL_Renderer *rend, t_btn *btn, int x, int y)
 */
 void ui_load_arrow_texture(t_btn *btn, SDL_Renderer *rend)
 {
-    if (btn->count_pos == 3 && btn->type == ARROW)
+    if ((btn->count_pos == 2 || btn->count_pos == 3) && btn->type == ARROW)
     {
-      ui_draw_texture(rend, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", rend), btn->pos[0]->pos);
-      ui_draw_texture(rend, btn->pos[1]->texture, btn->pos[1]->pos);
-      ui_draw_texture(rend, btn->pos[2]->texture, btn->pos[2]->pos);
+      if (btn->key[ARROW_UP] != 0 && btn->key[ARROW_DOWN] != 0)
+      {
+        ui_draw_texture(rend, btn->pos[btn->key[ARROW_UP] - 1]->texture, btn->pos[btn->key[ARROW_UP] - 1]->pos);
+        ui_draw_texture(rend, btn->pos[btn->key[ARROW_DOWN] - 1]->texture, btn->pos[btn->key[ARROW_DOWN] - 1]->pos);
+      }
     }
+    if (btn->count_pos == 3 && btn->count_pos > 1 && btn->key[TEXT] != 0)
+      ui_draw_texture(rend, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", rend), btn->pos[btn->key[TEXT] - 1]->pos);
 }
 
 /*
@@ -186,14 +234,14 @@ int  ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y)
     && (x < btn->pos[i]->pos.x + (int)btn->pos[i]->pos.w)
     && (y < btn->pos[i]->pos.y + (int)btn->pos[i]->pos.h))
     {
-      if (btn->type == ARROW && i == 1)
+      if (btn->type == ARROW && btn->key[ARROW_UP] != 0 && i == btn->key[ARROW_UP] - 1)
       {
         btn->value++;
         ui_set_draw_color(rend, 0x7f827a);
         ui_load_arrow_texture(btn, rend);
         is_set = 1;
       }
-      if (btn->type == ARROW && i == 2 && btn->value > 0)
+      if (btn->type == ARROW && btn->key[ARROW_DOWN] != 0 && btn->value > 0 && i == btn->key[ARROW_DOWN] - 1)
       {
         btn->value--;
         ui_set_draw_color(rend, 0x7f827a);
@@ -212,14 +260,23 @@ int  ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y)
 ** @param  action: l'action associe au bouton.
 ** @return  struct btn.
 **/
-t_btn *ui_create_btn(int type, int action)
+t_btn *ui_create_btn(int type, int action, char *name, int color)
 {
   t_btn *btn;
+  int i;
 
+  i = 0;
   btn = malloc(sizeof(t_btn));
   btn->type = type;
+  btn->color = color;
+  btn->name = ft_strdup(name);
   if (type == SLIDER)
     btn->value = 100;
+  while (i < MAX_BTN)
+  {
+    btn->key[i] = 0;
+    i++;
+  }
   btn->action = action;
   btn->pos = NULL;
   btn->count_pos = 0;

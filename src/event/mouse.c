@@ -42,6 +42,7 @@ int		ui_is_mouse_pressed(Uint32 mouse_flags, int *x, int *y)
 */
 void set_click_event(SDL_Event event, t_btn *btn, SDL_Renderer	*rend)
 {
+	rend = NULL;
 	if (event.type == SDL_MOUSEBUTTONDOWN)
 	{
 		if(event.button.button == SDL_BUTTON_LEFT)

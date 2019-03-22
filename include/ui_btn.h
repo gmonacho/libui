@@ -4,6 +4,8 @@
 
 #include "ui_shape.h"
 
+# define MAX_BTN 30
+
 enum s_btn_type
 {
   LOGO = 1,
@@ -11,9 +13,12 @@ enum s_btn_type
   CHECKBOX = 3,
   PANEL = 4,
   OPTIONS = 5,
-  ARROW = 6,
-  SLIDER = 7,
-  SCROLL = 8
+  ARROW_UP = 6,
+  ARROW_DOWN = 7,
+  SLIDER = 15,
+  V_LINE = 14,
+  H_LINE = 17,
+  ARROW = 12
 };
 
 enum s_btn_display
@@ -91,15 +96,19 @@ typedef struct  s_btn
   t_checkbox  checkbox;
   t_modify_txt modify_txt;
   //t_slide      slide;
+  int         key[MAX_BTN];
   int         type;
   int         state;
   int         action;
   int         count_pos;
+  char        *name;
+  int         color;
 }               t_btn;
 
 SDL_Texture    *ui_create_text(char *str, char *police_path, SDL_Renderer *rend);
 char		       *ft_itoa(int value);
-t_btn          *ui_create_btn(int type, int action);
+char           *ft_strdup(const char *s);
+t_btn          *ui_create_btn(int type, int action, char *name, int color);
 void           ui_add_btn_pos(t_btn *btn, t_rect new_pos, SDL_Texture *texture, int type);
 void           ui_load_arrow_texture(t_btn *btn, SDL_Renderer *rend);
 int            ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y);
