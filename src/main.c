@@ -26,7 +26,7 @@ int		main()
 
   btn = ui_create_btn(SLIDER, 0);
   ui_add_btn_pos(btn, (t_rect){100, 410, 30, 20}, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", win->rend), SLIDER);
-  ui_add_btn_pos(btn, (t_rect){150, 400, 50, 30}, ui_load_img("./ressource/image/slider.jpg", UI_JPG, win->rend), SLIDER);
+  ui_add_btn_pos(btn, (t_rect){150, 400, 40, 30}, ui_load_img("./ressource/image/slider.png", UI_JPG, win->rend), SLIDER);
   ui_add_btn_pos(btn, (t_rect){150, 400, 100, 30}, NULL, SLIDER);
 
   texture = ui_create_bloc_texture(win->rend, (t_len){30, 100}, 0xFF005544, 0xFF0000FF);
