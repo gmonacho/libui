@@ -12,7 +12,7 @@ enum s_btn_type
   PANEL = 4,
   OPTIONS = 5,
   ARROW = 6,
-  SLIDE = 7,
+  SLIDER = 7,
   SCROLL = 8
 };
 
@@ -100,8 +100,10 @@ typedef struct  s_btn
 SDL_Texture    *ui_create_text(char *str, char *police_path, SDL_Renderer *rend);
 char		       *ft_itoa(int value);
 t_btn          *ui_create_btn(int type, int action);
-void           ui_add_btn_pos(t_btn *btn, t_rect new_pos, SDL_Texture *texture);
+void           ui_add_btn_pos(t_btn *btn, t_rect new_pos, SDL_Texture *texture, int type);
 void           ui_load_arrow_texture(t_btn *btn, SDL_Renderer *rend);
 int            ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y);
+void           ui_render_slider_btn(SDL_Renderer *rend, t_btn *btn, int x, int y);
+void           ui_load_slider_texture(t_btn *btn, SDL_Renderer *rend, int mouse_x, int mouse_y);
 
 #endif
