@@ -21,6 +21,7 @@ t_win			*ui_open_window(const char *title, t_dot pos, t_len size, Uint32 flags)
 		ft_putstr_fd(SDL_GetError(), 2);
 			return (ui_null_error(SDL_GetError()));
 	}
+	SDL_SetRenderDrawBlendMode(win->rend, SDL_BLENDMODE_BLEND);
 	win->pos = pos;
 	win->size = size;
 	win->frames = NULL;
