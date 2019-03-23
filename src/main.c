@@ -53,6 +53,7 @@ int		main()
 	{
 		ui_update_event(UI_KEY_UPDATE);
 		ui_set_draw_color(win->rend, 0x666666FF);
+		ui_clear_rend(win->rend);
 		SDL_WaitEvent(&event);
 		set_click_event(event, btn, win->rend);
 		if (ui_is_key_pressed(SDL_SCANCODE_Q, 0))
@@ -61,7 +62,8 @@ int		main()
 		ui_draw_texture(win->rend, dst, (t_rect){100, 0, 800, 1200});
 		//ui_draw_texture(win->rend, src, (t_rect){200, 500, 600, 300});
 		ui_draw_texture(win->rend, texture, (t_rect){100, 100, 200, 200});
-		//ui_load_arrow_texture(btn, win->rend);
+		ui_load_arrow_texture(btn, win->rend);
+		ui_fill_curved_rect(win->rend, (t_rect){600, 300, 300, 100}, 30, 0xFFFFFFAA, 0xFFFFFFFF);
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
 			is_pushed = 1;
 		if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT)
