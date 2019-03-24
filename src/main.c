@@ -14,6 +14,7 @@ int		main()
 	int				loop;
 	t_btn 			*btn;
 	t_rect			r;
+	t_len			resolution;
 
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
         return (1);
@@ -39,12 +40,17 @@ int		main()
 	//ui_add_btn_pos(btn, (t_rect){100, 410, 30, 20}, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", win->rend), TEXT);
 	//ui_add_btn_pos(btn, (t_rect){100, 410, 30, 20}, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", win->rend), TEXT);
 
-	texture = ui_create_bloc_texture(win->rend, (t_len){200, 200}, 0xFFFFFFAA, 0xFFFFFFFF);
+	texture = ui_create_empty_texture(win->rend, (t_len){400, 100});
+	resolution = ui_get_texture_resolution(texture);
+	printf("x = %d, y = %d\n", resolution.x, resolution.y);
+	ui_set_render_target(win->rend, texture);
+	ui_fill_curved_rect(win->rend, (t_rect){0, 0, resolution.x - 1, resolution.y - 1}, 50, 0x5555FFAA);
+	ui_draw_curved_rect(win->rend, (t_rect){0, 0, resolution.x - 1, resolution.y - 1}, 50, 0xAAAABBFF);
+	ui_set_render_target(win->rend, NULL);
 	ui_load_slider_texture(btn, win->rend, 0, 0);
 	//ui_draw_texture(win->rend, texture, (t_rect){100, 100, 50, 50});
 	//ui_load_arrow_texture(btn, win->rend);
 	// evt.key.keysym.sym == SDLK_ESCAPE
-	ui_draw_rend(win->rend);
 	is_pushed = 0;
 	prev_x = 0;
 	prev_y = 0;
@@ -59,11 +65,11 @@ int		main()
 		if (ui_is_key_pressed(SDL_SCANCODE_Q, 0))
 				loop = 0;
 		r = (t_rect){0, 0, 100, 50};
-		ui_draw_texture(win->rend, dst, (t_rect){100, 0, 800, 1200});
 		//ui_draw_texture(win->rend, src, (t_rect){200, 500, 600, 300});
-		ui_draw_texture(win->rend, texture, (t_rect){100, 100, 200, 200});
+		//ui_fill_curved_rect(win->rend, (t_rect){300, 400, 200, 50}, 40, 0x5555FFAA);
+		ui_draw_texture(win->rend, texture, (t_rect){100, 100, 400, 100});
+		//ui_draw_texture(win->rend, texture, (t_rect){500, 500, 600, 600});
 		ui_load_arrow_texture(btn, win->rend);
-		ui_fill_curved_rect(win->rend, (t_rect){600, 300, 300, 100}, 30, 0xFFFFFFAA, 0xFFFFFFFF);
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
 			is_pushed = 1;
 		if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT)
@@ -79,7 +85,7 @@ int		main()
 		}
 		else
 			ui_load_slider_texture(btn, win->rend, 0, 0);
-			ui_draw_rend(win->rend);
+		ui_draw_rend(win->rend);
 	}
 	SDL_DestroyWindow(win->ptr);
 	SDL_Quit();

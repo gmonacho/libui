@@ -18,18 +18,23 @@ SDL_Texture		*ui_load_texture(const char *bmp_file, SDL_Renderer *rend)
 	return (texture);
 }
 
-SDL_Texture		*ui_create_bloc_texture(SDL_Renderer *rend, t_len size, int background_color, int border_color)
+t_len			ui_get_texture_resolution(SDL_Texture *texture)
 {
-	SDL_Texture	*texture;
+	t_len	resolution;
 
-	if (!(texture = SDL_CreateTexture(rend, SDL_PIXELFORMAT_RGBA8888,
-							SDL_TEXTUREACCESS_TARGET,
-							size.x,
-							size.y)))
+	SDL_QueryTexture(texture, NULL, NULL, (int*)&(resolution.x), (int*)&(resolution.y));
+	return (resolution);
+}
+
+SDL_Texture		*ui_create_empty_texture(SDL_Renderer *rend, t_len resolution)
+{
+	SDL_Texture 	*texture;
+	if (!(texture = SDL_CreateTexture(rend,
+										SDL_PIXELFORMAT_RGBA8888,
+										SDL_TEXTUREACCESS_TARGET,
+										resolution.x,
+										resolution.y)))
 		return (ui_null_error(SDL_GetError()));
-	SDL_SetRenderTarget(rend, texture);
-	ui_fill_rect(rend, (t_rect){0, 0, size.x - 1, size.y - 1}, background_color, border_color);
-	SDL_SetRenderTarget(rend, NULL);
 	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
 	return (texture);
 }

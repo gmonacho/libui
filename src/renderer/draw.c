@@ -73,18 +73,13 @@ void	ui_draw_circle(SDL_Renderer *rend, t_dot p, int radius, int color, int corn
     }
 }
 
-void	ui_fill_circle(SDL_Renderer *rend, t_dot p, int radius, int bg_color, int border_color, int corner_flag)
+void	ui_fill_circle(SDL_Renderer *rend, t_dot p, int radius, int color, int corner_flag)
 {
 	int		r;
-	int		color;
 	
 	r = radius;
-	color = border_color;
 	while (r)
-	{
 		ui_draw_circle(rend, p, r--, color, corner_flag);
-		color = bg_color;
-	}
 }
 
 void	ui_draw_rect(SDL_Renderer *rend, t_rect rect, int color)
@@ -93,13 +88,10 @@ void	ui_draw_rect(SDL_Renderer *rend, t_rect rect, int color)
 	SDL_RenderDrawRect(rend, (SDL_Rect*)&rect);
 }
 
-void	ui_fill_rect(SDL_Renderer *rend, t_rect rect, int bg_color, int border_color)
+void	ui_fill_rect(SDL_Renderer *rend, t_rect rect, int color)
 {
-	ui_set_draw_color(rend, bg_color);
+	ui_set_draw_color(rend, color);
 	SDL_RenderFillRect(rend, (SDL_Rect*)&rect);
-	ui_set_draw_color(rend, border_color);
-	if (bg_color != border_color)
-		SDL_RenderDrawRect(rend, (SDL_Rect*)&rect);
 }
 
 void	ui_draw_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int color)
@@ -115,8 +107,8 @@ void	ui_draw_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int color)
 	points[5] = (t_dot){rect.x + radius, rect.y + rect.h};
 	points[6] = (t_dot){rect.x, rect.y + rect.h - radius};
 	points[7] = (t_dot){rect.x, rect.y + radius};
-	ui_set_draw_color(rend, color);
 	i = 0;
+	ui_set_draw_color(rend, color);
 	while (i < 8)
 	{
 		SDL_RenderDrawLine(rend, points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
@@ -128,7 +120,7 @@ void	ui_draw_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int color)
 	ui_draw_circle(rend, (t_dot){points[0].x, points[7].y}, radius, color, UI_UPLEFT_CORNER);
 }
 
-void	ui_fill_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int bg_color, int border_color)
+void	ui_fill_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int color)
 {
 	int		i;
 	t_dot	points[8];
@@ -145,18 +137,18 @@ void	ui_fill_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int bg_col
 	points[5] = (t_dot){rect.x + radius, rect.y + rect.h};
 	points[6] = (t_dot){rect.x, rect.y + rect.h - radius};
 	points[7] = (t_dot){rect.x, rect.y + radius};
-	ui_fill_circle(rend, (t_dot){points[1].x, points[2].y}, radius, bg_color, border_color, UI_UPRIGHT_CORNER);
-	ui_fill_circle(rend, (t_dot){points[4].x, points[3].y}, radius, bg_color, border_color, UI_DOWNRIGHT_CORNER);
-	ui_fill_circle(rend, (t_dot){points[5].x, points[6].y}, radius, bg_color, border_color, UI_DOWNLEFT_CORNER);
-	ui_fill_circle(rend, (t_dot){points[0].x, points[7].y}, radius, bg_color, border_color, UI_UPLEFT_CORNER);
-	ui_set_draw_color(rend, border_color);
+	ui_fill_circle(rend, (t_dot){points[1].x, points[2].y}, radius, color, UI_UPRIGHT_CORNER);
+	ui_fill_circle(rend, (t_dot){points[4].x, points[3].y}, radius, color, UI_DOWNRIGHT_CORNER);
+	ui_fill_circle(rend, (t_dot){points[5].x, points[6].y}, radius, color, UI_DOWNLEFT_CORNER);
+	ui_fill_circle(rend, (t_dot){points[0].x, points[7].y}, radius, color, UI_UPLEFT_CORNER);
+	ui_set_draw_color(rend, color);
 	i = 0;
 	while (i < 8)
 	{
 		SDL_RenderDrawLine(rend, points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
 		i += 2;
 	}
-	ui_fill_rect(rend, (t_rect){rect.x + 1, rect.y + radius + 1, radius, rect.h - radius * 2 - 1}, bg_color, bg_color);
-	ui_fill_rect(rend, (t_rect){rect.x + rect.w - radius, rect.y + radius + 1, radius, rect.h - radius * 2 - 1}, bg_color, bg_color);
-	ui_fill_rect(rend, (t_rect){rect.x + radius + 1, rect.y + 1, rect.w - radius * 2 - 1, rect.h - 1}, bg_color, bg_color);
+	ui_fill_rect(rend, (t_rect){rect.x + 1, rect.y + radius + 1, radius, rect.h - radius * 2 - 1}, color);
+	ui_fill_rect(rend, (t_rect){rect.x + rect.w - radius, rect.y + radius + 1, radius, rect.h - radius * 2 - 1}, color);
+	ui_fill_rect(rend, (t_rect){rect.x + radius + 1, rect.y + 1, rect.w - radius * 2 - 1, rect.h - 1}, color);
 }

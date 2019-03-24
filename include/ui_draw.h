@@ -41,10 +41,10 @@ void    ui_draw_point(SDL_Renderer *rend, int x, int y, t_frame *frame);
 void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst);
 void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst);
 void	ui_draw_circle(SDL_Renderer *rend, t_dot p, int radius, int color, int corner_flag);
-void	ui_fill_circle(SDL_Renderer *rend, t_dot p, int radius, int bg_color, int border_color, int corner_flag);
-void	ui_fill_rect(SDL_Renderer *rend, t_rect rect, int bg_color, int border_color);
+void	ui_fill_circle(SDL_Renderer *rend, t_dot p, int radius, int color, int corner_flag);
 void	ui_draw_rect(SDL_Renderer *rend, t_rect rect, int color);
+void	ui_fill_rect(SDL_Renderer *rend, t_rect rect, int color);
 void	ui_draw_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int color);
-void	ui_fill_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int bg_color, int border_color);
+void	ui_fill_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int color);
 
 #endif
