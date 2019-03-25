@@ -21,6 +21,11 @@ typedef struct		s_len
 	unsigned int	y;
 }					t_len;
 
+typedef struct	s_interval
+{
+	int		start;
+	int		end;
+}				t_interval;
 
 typedef struct		s_index
 {

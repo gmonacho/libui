@@ -14,6 +14,7 @@ int		main()
 	int				loop;
 	t_btn 			*btn;
 	t_rect			r;
+	t_len			resolution;
 
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
         return (1);
@@ -37,13 +38,13 @@ int		main()
 	ui_add_btn_pos(btn, (t_rect){150, 400, 40, 30}, ui_create_bloc_texture(win->rend, (t_len){40, 40}, 0xFFFFFFAA, 0xFFFFFFFF), CHECKBOX);
 	ui_add_btn_pos(btn, (t_rect){110, 410, 30, 20}, ui_create_text("check", "./ressource/police/arial.ttf", win->rend), TEXT);
 
+
 	texture = ui_create_bloc_texture(win->rend, (t_len){200, 200}, 0xFFFFFFAA, 0xFFFFFFFF);
 
 	ui_load_slider_texture(btn, win->rend, 0, 0);
 	//ui_draw_texture(win->rend, texture, (t_rect){100, 100, 50, 50});
 	//ui_load_arrow_texture(btn, win->rend);
 	// evt.key.keysym.sym == SDLK_ESCAPE
-	ui_draw_rend(win->rend);
 	is_pushed = 0;
 	prev_x = 0;
 	prev_y = 0;
@@ -52,6 +53,7 @@ int		main()
 	{
 		ui_update_event(UI_KEY_UPDATE);
 		ui_set_draw_color(win->rend, 0x666666FF);
+		ui_clear_rend(win->rend);
 		SDL_WaitEvent(&event);
 		set_click_event(event, btn, win->rend);
 		if (ui_is_key_pressed(SDL_SCANCODE_Q, 0))
