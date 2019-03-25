@@ -21,6 +21,14 @@ enum s_btn_type
   ARROW = 12
 };
 
+enum s_state
+{
+  CHECKED = 1,
+  UNCHECKED = 2,
+  IS_PUSHED = 3,
+  NOT_PUSHED = 4
+};
+
 enum s_btn_display
 {
   SHOW_CONTENT = 1,
@@ -55,47 +63,12 @@ typedef struct  s_all_pos
   SDL_Texture *texture;
 }               t_all_pos;
 
-typedef struct  s_arrow
-{
-  t_texture **texture;
-  int       value;
-  /*SDL_Texture *up_arrow_texture;
-  SDL_Texture *down_arrow_texture;
-  SDL_Texture *btn_value;
-  t_rect      up_arrow;
-  t_rect      down_arrow;
-  t_rect      linked_btn;*/
-}              t_arrow;
-
-typedef struct  s_option
-{
-  t_rect pos;
-  SDL_Texture *txt;
-}              t_option;
-
-typedef struct  s_checkbox
-{
-  t_rect pos;
-
-}              t_checkbox;
-
-typedef struct  s_modify_txt
-{
-  t_rect pos;
-
-}              t_modify_txt;
-
 typedef struct  s_btn
 {
   t_rect      rect;
   SDL_Texture *texture;
   t_all_pos   **pos;
-  t_arrow     arrow;
   int         value;
-  t_option    option;
-  t_checkbox  checkbox;
-  t_modify_txt modify_txt;
-  //t_slide      slide;
   int         key[MAX_BTN];
   int         type;
   int         state;
@@ -114,5 +87,7 @@ void           ui_load_arrow_texture(t_btn *btn, SDL_Renderer *rend);
 int            ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y);
 void           ui_render_slider_btn(SDL_Renderer *rend, t_btn *btn, int x, int y);
 void           ui_load_slider_texture(t_btn *btn, SDL_Renderer *rend, int mouse_x, int mouse_y);
+void           ui_render_checkbox_btn(t_btn *btn, int x, int y);
+void           ui_load_checkbox_btn(SDL_Renderer *rend, t_btn *btn);
 
 #endif
