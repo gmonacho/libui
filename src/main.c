@@ -42,10 +42,9 @@ int		main()
 
 	texture = ui_create_empty_texture(win->rend, (t_len){400, 100});
 	resolution = ui_get_texture_resolution(texture);
-	printf("x = %d, y = %d\n", resolution.x, resolution.y);
 	ui_set_render_target(win->rend, texture);
-	ui_fill_curved_rect(win->rend, (t_rect){0, 0, resolution.x - 1, resolution.y - 1}, 50, 0x5555FFAA);
-	ui_draw_curved_rect(win->rend, (t_rect){0, 0, resolution.x - 1, resolution.y - 1}, 50, 0xAAAABBFF);
+	//ui_fill_curved_rect(win->rend, (t_rect){0, 0, resolution.x - 1, resolution.y - 1}, 50, 0x5555FFAA);
+	//ui_draw_curved_rect(win->rend, (t_rect){0, 0, resolution.x - 1, resolution.y - 1}, 50, 0xAAAABBFF);
 	ui_set_render_target(win->rend, NULL);
 	ui_load_slider_texture(btn, win->rend, 0, 0);
 	//ui_draw_texture(win->rend, texture, (t_rect){100, 100, 50, 50});
@@ -65,10 +64,14 @@ int		main()
 		if (ui_is_key_pressed(SDL_SCANCODE_Q, 0))
 				loop = 0;
 		r = (t_rect){0, 0, 100, 50};
-		//ui_draw_texture(win->rend, src, (t_rect){200, 500, 600, 300});
-		//ui_fill_curved_rect(win->rend, (t_rect){300, 400, 200, 50}, 40, 0x5555FFAA);
 		ui_draw_texture(win->rend, texture, (t_rect){100, 100, 400, 100});
-		//ui_draw_texture(win->rend, texture, (t_rect){500, 500, 600, 600});
+		ui_fill_curved_rect(win->rend, (t_rect){600, 200, 300, 200}, 60, 0xFFFFFF22);
+		ui_fill_arc(win->rend, (t_circle){300, 300, 200}, ARCFULL, 0xFFFFFF22);
+		ui_fill_rect(win->rend, (t_rect){600, 600, 300, 200}, 0xFFFFFF22);
+		ui_draw_curved_rect(win->rend, (t_curved_rect){600, 200, 300, 200, 60}, 10, 0xFFFFFFAA);
+		ui_draw_arc(win->rend, (t_circle){300, 300, 200}, ARCFULL, 0xFFFFFFAA);
+		ui_draw_rect(win->rend, (t_rect){600, 600, 300, 200}, 10, 0xFFFFFFAA);
+		ui_draw_rect(win->rend, (t_rect){600, 600, 300, 200}, 1, 0xFF0000FF);
 		ui_load_arrow_texture(btn, win->rend);
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
 			is_pushed = 1;

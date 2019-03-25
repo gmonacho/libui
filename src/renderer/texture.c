@@ -35,7 +35,7 @@ SDL_Texture		*ui_create_empty_texture(SDL_Renderer *rend, t_len resolution)
 										resolution.x,
 										resolution.y)))
 		return (ui_null_error(SDL_GetError()));
-	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_ADD);
 	return (texture);
 }
 
