@@ -228,6 +228,7 @@ int  ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y)
 
   i = 0;
   is_set = 0;
+  // pas besoin de la boucle : btn->pos[btn->key[ARROW_UP] - 1] et btn->pos[btn->key[ARROW_DOWN] - 1].
   while (i < btn->count_pos)
   {
     if ((x >= btn->pos[i]->pos.x) && (y >= btn->pos[i]->pos.y)
@@ -254,6 +255,55 @@ int  ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y)
   return (is_set);
 }
 
+
+void ui_load_checkbox_btn(SDL_Renderer *rend, t_btn *btn)
+{
+  int i;
+
+  if (btn->key[CHECKBOX] != 0)
+  {
+    i = btn->key[CHECKBOX] - 1;
+    if (btn->state == CHECKED)
+    {
+      SDL_SetRenderDrawColor(rend, (btn->color >> 24) & 0xFF, (btn->color >> 16) & 0xFF, (btn->color >> 8) & 0xFF, btn->color & 0xFF);
+      SDL_RenderDrawLine(rend, btn->pos[i]->pos.x, btn->pos[i]->pos.y,
+        btn->pos[i]->pos.x + btn->pos[i]->pos.w, btn->pos[i]->pos.y + btn->pos[i]->pos.h);
+      SDL_RenderDrawLine(rend, btn->pos[i]->pos.x + btn->pos[i]->pos.w, btn->pos[i]->pos.y,
+        btn->pos[i]->pos.x, btn->pos[i]->pos.y + btn->pos[i]->pos.h);
+      ui_draw_texture(rend, btn->pos[i]->texture, btn->pos[i]->pos);
+    }
+    else if (btn->state == UNCHECKED)
+      ui_draw_texture(rend, btn->pos[i]->texture, btn->pos[i]->pos);
+  }
+  if (btn->count_pos == 2 && btn->key[TEXT] != 0)
+    ui_draw_texture(rend, btn->pos[btn->key[TEXT] - 1]->texture, btn->pos[btn->key[TEXT] - 1]->pos);
+}
+
+/*
+** ui_render_checkbox_btn: Applique les textures du bouton checkbox.
+** @param rend
+** @param btn
+** @param x: la positon en x de la souris.
+** @param y: la position en y de la souris.
+*/
+void ui_render_checkbox_btn(t_btn *btn, int x, int y)
+{
+  int i;
+
+  if (btn->key[CHECKBOX] != 0)
+  {
+    i = btn->key[CHECKBOX] - 1;
+    if ((x >= btn->pos[i]->pos.x) && (y >= btn->pos[i]->pos.y)
+    && (x < btn->pos[i]->pos.x + (int)btn->pos[i]->pos.w)
+    && (y < btn->pos[i]->pos.y + (int)btn->pos[i]->pos.h) && btn->state == UNCHECKED)
+      btn->state = CHECKED;
+    else if ((x >= btn->pos[i]->pos.x) && (y >= btn->pos[i]->pos.y)
+    && (x < btn->pos[i]->pos.x + (int)btn->pos[i]->pos.w)
+    && (y < btn->pos[i]->pos.y + (int)btn->pos[i]->pos.h) && btn->state == CHECKED)
+      btn->state = UNCHECKED;
+  }
+}
+
 /*
 ** ui_create_btn: Création d'un bouton.
 ** @param  type: le type de boutton.
@@ -277,6 +327,10 @@ t_btn *ui_create_btn(int type, int action, char *name, int color)
     btn->key[i] = 0;
     i++;
   }
+  if (type == CHECKBOX)
+    btn->state = UNCHECKED;
+  if (type == SLIDER)
+    btn->state = NOT_PUSHED;
   btn->action = action;
   btn->pos = NULL;
   btn->count_pos = 0;

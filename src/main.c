@@ -26,20 +26,19 @@ int		main()
 	//ui_add_btn_pos(btn, (t_rect){150, 420, 30, 10}, ui_load_img("./ressource/image/down-arrow.png", UI_PNG, win->rend));
 	src = ui_load_img("./ressource/image/teleteub.png", UI_PNG, win->rend);
 	dst = ui_load_img("./ressource/image/top-arrow.png", UI_PNG, win->rend);
-	printf("la2\n");
+
 	ui_blit_texture(win->rend, src, dst, (t_frect){0.5, 0.4, 0.3, 0.5});
 	btn = ui_create_btn(SLIDER, 0, "Test button", 0xffffffff);
-
-
-	ui_add_btn_pos(btn, (t_rect){150, 400, 100, 30}, NULL, H_LINE);
-	ui_add_btn_pos(btn, (t_rect){150, 400, 40, 30}, ui_load_img("./ressource/image/slider.png", UI_JPG, win->rend), SLIDER);
-	//ui_add_btn_pos(btn, (t_rect){150, 400, 100, 30}, NULL, H_LINE);
-	ui_add_btn_pos(btn, (t_rect){110, 410, 30, 20}, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", win->rend), TEXT);
 	//ui_add_btn_pos(btn, (t_rect){150, 400, 40, 30}, ui_load_img("./ressource/image/slider.png", UI_JPG, win->rend), SLIDER);
-	//ui_add_btn_pos(btn, (t_rect){100, 410, 30, 20}, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", win->rend), TEXT);
-	//ui_add_btn_pos(btn, (t_rect){100, 410, 30, 20}, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", win->rend), TEXT);
+	//ui_add_btn_pos(btn, (t_rect){150, 400, 100, 30}, NULL, H_LINE);
+	//ui_add_btn_pos(btn, (t_rect){110, 410, 30, 20}, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", win->rend), TEXT);
+
+	btn = ui_create_btn(CHECKBOX, 0, "Test checkbox button", 0xffffffff);
+	ui_add_btn_pos(btn, (t_rect){150, 400, 40, 30}, ui_create_bloc_texture(win->rend, (t_len){40, 40}, 0xFFFFFFAA, 0xFFFFFFFF), CHECKBOX);
+	ui_add_btn_pos(btn, (t_rect){110, 410, 30, 20}, ui_create_text("check", "./ressource/police/arial.ttf", win->rend), TEXT);
 
 	texture = ui_create_bloc_texture(win->rend, (t_len){200, 200}, 0xFFFFFFAA, 0xFFFFFFFF);
+
 	ui_load_slider_texture(btn, win->rend, 0, 0);
 	//ui_draw_texture(win->rend, texture, (t_rect){100, 100, 50, 50});
 	//ui_load_arrow_texture(btn, win->rend);
@@ -59,26 +58,12 @@ int		main()
 				loop = 0;
 		r = (t_rect){0, 0, 100, 50};
 		ui_draw_texture(win->rend, dst, (t_rect){100, 0, 800, 1200});
-		//ui_draw_texture(win->rend, src, (t_rect){200, 500, 600, 300});
 		ui_draw_texture(win->rend, texture, (t_rect){100, 100, 200, 200});
-		//ui_load_arrow_texture(btn, win->rend);
-		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
-			is_pushed = 1;
-		if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT)
-			is_pushed = 0;
-		if ((event.button.x >= btn->pos[btn->key[SLIDER] - 1]->pos.x) && (event.button.y >= btn->pos[btn->key[SLIDER] - 1]->pos.y)
-			&& (event.button.x < btn->pos[btn->key[SLIDER] - 1]->pos.x + (int)btn->pos[btn->key[SLIDER] - 1]->pos.w)
-			&& (event.button.y < btn->pos[btn->key[SLIDER] - 1]->pos.y + (int)btn->pos[btn->key[SLIDER] - 1]->pos.h))
-		{
-			if (event.type == SDL_MOUSEMOTION && is_pushed)
-				ui_load_slider_texture(btn, win->rend, event.motion.x, event.motion.y);
-			else
-				ui_load_slider_texture(btn, win->rend, 0, 0);
-		}
-		else
-			ui_load_slider_texture(btn, win->rend, 0, 0);
-			ui_draw_rend(win->rend);
+		ui_load_checkbox_btn(win->rend, btn);
+		ui_draw_rend(win->rend);
 	}
+	if (win->rend)
+		SDL_DestroyRenderer(win->rend);
 	SDL_DestroyWindow(win->ptr);
 	SDL_Quit();
 	return (0);

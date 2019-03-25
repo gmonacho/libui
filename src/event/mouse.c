@@ -33,6 +33,28 @@ int		ui_is_mouse_pressed(Uint32 mouse_flags, int *x, int *y)
 }
 
 /*
+*  @brief is_mouse_in_rect: verifie si la souris est dans le bouton.
+*  @param  btn
+** @param  x: pos en x de la souris.
+** @param  y: pos en y de la souris.
+** @param  type: le type du bouton.
+** @return  true si la souris est dans le boutton, false dans le cas contraire.
+*/
+int     is_mouse_in_rect(t_btn *btn, int x, int y, int type)
+{
+	int i;
+
+	i = btn->key[type] - 1;
+	if (btn->key[type] != 0 && i >= 0 && i <= MAX_BTN)
+	{
+		return ((x >= btn->pos[i]->pos.x) && (y >= btn->pos[i]->pos.y)
+		&& (x < btn->pos[i]->pos.x + (int)btn->pos[i]->pos.w)
+		&& (y < btn->pos[i]->pos.y + (int)btn->pos[i]->pos.h));
+	}
+	return (0);
+}
+
+/*
 ** @brief set_click_event
 ** @note  recupere les actions associees aux boutons et applique les textures au rendu.
 ** @param SDL event
@@ -40,9 +62,8 @@ int		ui_is_mouse_pressed(Uint32 mouse_flags, int *x, int *y)
 ** @param rend: le rendu avec les textures.
 ** @retVal NONE.
 */
-void set_click_event(SDL_Event event, t_btn *btn, SDL_Renderer	*rend)
+void set_click_event(SDL_Event event, t_btn *btn, SDL_Renderer *rend)
 {
-	rend = NULL;
 	if (event.type == SDL_MOUSEBUTTONDOWN)
 	{
 		if(event.button.button == SDL_BUTTON_LEFT)
@@ -52,22 +73,26 @@ void set_click_event(SDL_Event event, t_btn *btn, SDL_Renderer	*rend)
 				if (ui_render_arrow_btn(rend, btn, event.button.x, event.button.y) == 1)
 					;
 			}
-			/*if (btn->type == SLIDER)
-			{
-				ui_render_slider_btn(rend, btn, event.button.x, event.button.y);
-			}*/
+			if (btn->type == CHECKBOX)
+				ui_render_checkbox_btn(btn, event.button.x, event.button.y);
 		}
 	}
-	/*if (event.type == SDL_MOUSEBUTTONUP)
+	if (btn->type == SLIDER)
 	{
-		if(event.button.button == SDL_BUTTON_LEFT)
-		{
-			if (btn->type == SLIDER)
-			{
-				ui_render_slider_btn(rend, btn, event.button.x, event.button.y);
-			}
-		}
-	}*/
+		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
+			btn->state = IS_PUSHED;
+		if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT)
+			btn->state = NOT_PUSHED;
+	}
+	if (btn->key[SLIDER] != 0 && is_mouse_in_rect(btn, event.button.x, event.button.y, SLIDER))
+	{
+				if (event.type == SDL_MOUSEMOTION && btn->state == IS_PUSHED)
+					ui_load_slider_texture(btn, rend, event.motion.x, event.motion.y);
+				else
+					ui_load_slider_texture(btn, rend, 0, 0);
+	}
+	else if (btn->key[SLIDER] != 0)
+		ui_load_slider_texture(btn, rend, 0, 0);
 }
 
 // ------------------ TODO DRAG & DROP --------------------
