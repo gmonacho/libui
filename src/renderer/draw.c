@@ -76,23 +76,21 @@ void	ui_fill_arc(SDL_Renderer *rend, t_circle circle, int arc, int color)
 void	ui_draw_rect(SDL_Renderer *rend, t_rect rect, int border_width, int color)
 {
 	SDL_Rect	sdl_rect;
-	int			mid;
-	int			current;
+	int			i;
 
 	ui_set_draw_color(rend, color);
 	if (border_width == 1)
 		SDL_RenderDrawRect(rend, (SDL_Rect*)&rect);
 	else
 	{
-		mid = border_width / 2;
-		current = 0;
-		while (current < mid)
+		i = 0;
+		while (i < border_width)
 		{
-			sdl_rect = (SDL_Rect){rect.x - current, rect.y - current, rect.w + current * 2, rect.h + current * 2};
+			//sdl_rect = (SDL_Rect){rect.x - i, rect.y - i, rect.w + i * 2, rect.h + i * 2};
+			//SDL_RenderDrawRect(rend, (SDL_Rect*)&sdl_rect);
+			sdl_rect = (SDL_Rect){rect.x + i, rect.y + i, rect.w - i * 2, rect.h - i * 2};
 			SDL_RenderDrawRect(rend, (SDL_Rect*)&sdl_rect);
-			sdl_rect = (SDL_Rect){rect.x + current, rect.y + current, rect.w - current * 2, rect.h - current * 2};
-			SDL_RenderDrawRect(rend, (SDL_Rect*)&sdl_rect);
-			current++;
+			i++;
 		}
 	}
 }
