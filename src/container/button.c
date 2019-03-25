@@ -267,9 +267,9 @@ void ui_load_checkbox_btn(SDL_Renderer *rend, t_btn *btn)
     {
       SDL_SetRenderDrawColor(rend, (btn->color >> 24) & 0xFF, (btn->color >> 16) & 0xFF, (btn->color >> 8) & 0xFF, btn->color & 0xFF);
       SDL_RenderDrawLine(rend, btn->pos[i]->pos.x, btn->pos[i]->pos.y,
-        btn->pos[i]->pos.x + btn->pos[i]->pos.w, btn->pos[i]->pos.y + btn->pos[i]->pos.h);
-      SDL_RenderDrawLine(rend, btn->pos[i]->pos.x + btn->pos[i]->pos.w, btn->pos[i]->pos.y,
-        btn->pos[i]->pos.x, btn->pos[i]->pos.y + btn->pos[i]->pos.h);
+        btn->pos[i]->pos.x + btn->pos[i]->pos.w - 1, btn->pos[i]->pos.y + btn->pos[i]->pos.h - 1);
+      SDL_RenderDrawLine(rend, btn->pos[i]->pos.x + btn->pos[i]->pos.w - 1, btn->pos[i]->pos.y,
+        btn->pos[i]->pos.x, btn->pos[i]->pos.y + btn->pos[i]->pos.h - 1);
       ui_draw_texture(rend, btn->pos[i]->texture, btn->pos[i]->pos);
     }
     else if (btn->state == UNCHECKED)
