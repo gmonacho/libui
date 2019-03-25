@@ -28,11 +28,11 @@ void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst)
 }
 
 void	ui_draw_arc(SDL_Renderer *rend, t_circle circle, int flags_arc, int color)
-{   
+{
     int		x;
     int		y;
     int		d;
-    
+
 	x = 0;
 	y = circle.radius;
 	d = circle.radius - 1;
@@ -139,12 +139,12 @@ void	ui_fill_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int color)
 {
 	int		i;
 	t_dot	points[8];
-	
+
 	if (radius * 2 > rect.w)
 		radius = rect.w / 2;
 	if (radius * 2 > rect.h)
 		radius = rect.h / 2;
-	points[0] = (t_dot){rect.x + radius, rect.y};	
+	points[0] = (t_dot){rect.x + radius, rect.y};
 	points[1] = (t_dot){rect.x + rect.w - radius, rect.y};
 	points[2] = (t_dot){rect.x + rect.w, rect.y + radius};
 	points[3] = (t_dot){rect.x + rect.w, rect.y + rect.h - radius};

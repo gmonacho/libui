@@ -33,8 +33,8 @@ int		ui_is_mouse_pressed(Uint32 mouse_flags, int *x, int *y)
 }
 
 /*
-*  @brief is_mouse_in_rect: verifie si la souris est dans le bouton.
-*  @param  btn
+** @brief is_mouse_in_rect: verifie si la souris est dans le bouton.
+**  @param  btn
 ** @param  x: pos en x de la souris.
 ** @param  y: pos en y de la souris.
 ** @param  type: le type du bouton.
@@ -50,6 +50,22 @@ int     is_mouse_in_rect(t_btn *btn, int x, int y, int type)
 		return ((x >= btn->pos[i]->pos.x) && (y >= btn->pos[i]->pos.y)
 		&& (x < btn->pos[i]->pos.x + (int)btn->pos[i]->pos.w)
 		&& (y < btn->pos[i]->pos.y + (int)btn->pos[i]->pos.h));
+	}
+	return (0);
+}
+
+/*
+** is_btn_clicked:
+** @param  btn
+** @param  event
+** @return true si le bouton est cliqué, false dans le cas contraire.
+*/
+int      is_btn_clicked(t_btn *btn, SDL_Event event)
+{
+	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
+	{
+		if (is_mouse_in_rect(btn, event.button.x, event.button.y, btn->type))
+			return (1);
 	}
 	return (0);
 }
