@@ -214,7 +214,7 @@ void ui_load_arrow_texture(t_btn *btn, SDL_Renderer *rend)
 }
 
 /*
-** ui_render_arrow_btn: Applique les textures du bouton arrow.
+** ui_render_arrow_btn: applique les textures du bouton arrow.
 ** @param  rend: le rendu.
 ** @param  btn: la structure boutton.
 ** @param  x: la positon en x de la souris.
@@ -255,7 +255,32 @@ int  ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y)
   return (is_set);
 }
 
+/*
+** ui_load_simple_btn: applique les textures d'un bouton simple définit par l'utilisateur.
+** @param rend
+** @param btn
+*/
+void ui_load_simple_btn(SDL_Renderer *rend, t_btn *btn)
+{
+  int i;
 
+  if (btn->key[SIMPLE] != 0 && btn->count_pos > 0)
+  {
+    i = btn->key[SIMPLE] - 1;
+    ui_draw_texture(rend, btn->pos[i]->texture, btn->pos[i]->pos);
+    if (btn->key[TEXT] != 0)
+    {
+      i = btn->key[TEXT] - 1;
+      ui_draw_texture(rend, btn->pos[i]->texture, btn->pos[i]->pos);
+    }
+  }
+}
+
+/*
+** ui_load_checkbox_btn: applique la texture de la checkbox en fonction des events.
+** @param rend
+** @param btn
+*/
 void ui_load_checkbox_btn(SDL_Renderer *rend, t_btn *btn)
 {
   int i;

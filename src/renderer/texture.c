@@ -35,26 +35,30 @@ SDL_Texture		*ui_create_empty_texture(SDL_Renderer *rend, t_len resolution)
 										resolution.x,
 										resolution.y)))
 		return (ui_null_error(SDL_GetError()));
-	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_ADD);
+	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
 	return (texture);
 }
 
 //nonfonctionnel
-void		ui_blit_texture(SDL_Renderer *rend, SDL_Texture *src, SDL_Texture *dst, t_frect ratio)
+/*void		ui_blit_texture(SDL_Renderer *rend, SDL_Texture *src, SDL_Texture *dst, t_frect ratio)
 {
 	SDL_Rect	sdl_rect;
 	int			w;
 	int			h;
 
-	SDL_QueryTexture(src, NULL, NULL, &w, &h);
-
+	if (src)
+		w = 0;
+	SDL_QueryTexture(dst, NULL, NULL, &w, &h);
+	printf("res.x = %d, res.y = %d\n", w, h);
 	sdl_rect = (SDL_Rect){w * ratio.x,
 						h * ratio.y,
 						w * ratio.w,
 						h * ratio.h};
+	printf("x = %d, y = %d, w = %d, h = %d", sdl_rect.x, sdl_rect.y, sdl_rect.w, sdl_rect.h);
 	SDL_SetRenderTarget(rend, dst);
+	SDL_SetTextureBlendMode(dst, SDL_BLENDMODE_BLEND);
 	SDL_SetRenderDrawColor(rend, 255, 255, 255, 255);
-	SDL_RenderDrawLine(rend, 50, 0, 50, 100);
-	SDL_RenderCopy(rend, src, NULL, &sdl_rect);
+	SDL_RenderDrawLine(rend, 0, 0, 400, 400);
+	//SDL_RenderCopy(rend, src, NULL, &sdl_rect);
 	SDL_SetRenderTarget(rend, NULL);
-}
+}*/

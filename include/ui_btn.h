@@ -18,7 +18,8 @@ enum s_btn_type
   SLIDER = 15,
   V_LINE = 14,
   H_LINE = 17,
-  ARROW = 12
+  ARROW = 12,
+  SIMPLE = 18
 };
 
 enum s_state
@@ -89,5 +90,6 @@ void           ui_render_slider_btn(SDL_Renderer *rend, t_btn *btn, int x, int y
 void           ui_load_slider_texture(t_btn *btn, SDL_Renderer *rend, int mouse_x, int mouse_y);
 void           ui_render_checkbox_btn(t_btn *btn, int x, int y);
 void           ui_load_checkbox_btn(SDL_Renderer *rend, t_btn *btn);
+void           ui_load_simple_btn(SDL_Renderer *rend, t_btn *btn);
 
 #endif
