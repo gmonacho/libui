@@ -40,6 +40,6 @@ void	ui_fill_arc(SDL_Renderer *rend, t_circle circle, int arc, int color);
 void	ui_draw_rect(SDL_Renderer *rend, t_rect rect, int border_width, int color);
 void	ui_fill_rect(SDL_Renderer *rend, t_rect rect, int color);
 void	ui_draw_curved_rect(SDL_Renderer *rend, t_curved_rect rect, int border_width, int color);
-void	ui_fill_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int color);
+void	ui_fill_curved_rect(SDL_Renderer *rend, t_curved_rect rect, int color);
 
 #endif

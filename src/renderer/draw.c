@@ -87,51 +87,43 @@ void	ui_fill_rect(SDL_Renderer *rend, t_rect rect, int color)
 
 void	ui_draw_curved_rect(SDL_Renderer *rend, t_curved_rect rect, int border_width, int color)
 {
-	int		i;
-	int		mid;
-	int		current;
-	t_dot	points[8];
+	int			i;
+    SDL_Rect    sdl_rects[4];
 
 	if (rect.radius * 2 > rect.w)
 		rect.radius = rect.w / 2;
 	if (rect.radius * 2 > rect.h)
 		rect.radius = rect.h / 2;
-	points[0] = (t_dot){rect.x + rect.radius, rect.y};
-	points[1] = (t_dot){rect.x + rect.w - rect.radius, rect.y};
-	points[2] = (t_dot){rect.x + rect.w - 1, rect.y + rect.radius};
-	points[3] = (t_dot){rect.x + rect.w - 1, rect.y + rect.h - rect.radius};
-	points[4] = (t_dot){rect.x + rect.w - rect.radius, rect.y + rect.h - 1};
-	points[5] = (t_dot){rect.x + rect.radius, rect.y + rect.h - 1};
-	points[6] = (t_dot){rect.x, rect.y + rect.h - rect.radius};
-	points[7] = (t_dot){rect.x, rect.y + rect.radius};
+    ui_set_draw_color(rend, color);
+    sdl_rects[0] = (SDL_Rect){rect.x + rect.radius, rect.y, rect.w - 2 * rect.radius, border_width};
+    sdl_rects[1] = (SDL_Rect){rect.x + rect.w - border_width, rect.y + rect.radius, border_width, rect.h - 2 * rect.radius};
+    sdl_rects[2] = (SDL_Rect){rect.x + rect.radius, rect.y + rect.h - border_width, rect.w - 2 * rect.radius, border_width};
+    sdl_rects[3] = (SDL_Rect){rect.x, rect.y + rect.radius + 1, border_width, rect.h - 2 * rect.radius};
+	SDL_RenderFillRects(rend, sdl_rects, 4);
 	i = 0;
-	ui_set_draw_color(rend, color);
-	mid = border_width / 2;
-	current = 0;
-	while (i < 8)
+	while (i < border_width)
 	{
-		SDL_RenderDrawLine(rend, points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
-		i += 2;
+		ui_draw_arc(rend, (t_circle){rect.x + rect.w - rect.radius - 1, rect.y + rect.h - rect.radius, rect.radius - i}, ARC315 | ARC360, color);
+		ui_draw_arc(rend, (t_circle){rect.x + rect.radius - 1, rect.y + rect.h - rect.radius, rect.radius - i}, ARC225 | ARC270, color);
+		ui_draw_arc(rend, (t_circle){rect.x + rect.radius, rect.y + rect.radius, rect.radius - i}, ARC135 | ARC180, color);
+		ui_draw_arc(rend, (t_circle){rect.x + rect.w - rect.radius, rect.y + rect.radius, rect.radius - i}, ARC45 | ARC90, color);
+		i++;
 	}
-	ui_draw_arc(rend, (t_circle){points[4].x, points[3].y, rect.radius - 1}, ARC315 | ARC360, color);
-	ui_draw_arc(rend, (t_circle){points[5].x, points[6].y, rect.radius - 1}, ARC225 | ARC270, color);
-	ui_draw_arc(rend, (t_circle){points[0].x, points[7].y, rect.radius - 1}, ARC135 | ARC180, color);
-	ui_draw_arc(rend, (t_circle){points[1].x, points[2].y, rect.radius - 1}, ARC45 | ARC90, color);
-}	
+}
 
-void	ui_fill_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int color)
+void	ui_fill_curved_rect(SDL_Renderer *rend, t_curved_rect rect, int color)
 {
-	if (radius * 2 > rect.w)
-		radius = rect.w / 2;
-	if (radius * 2 > rect.h)
-		radius = rect.h / 2;
+	if (rect.radius * 2 > rect.w)
+		rect.radius = rect.w / 2;
+	if (rect.radius * 2 > rect.h)
+		rect.radius = rect.h / 2;
 
-    ui_fill_arc(rend, (t_circle){rect.x + rect.w - radius, rect.y + radius, radius - 1}, ARC45 | ARC90, color);
-    ui_fill_arc(rend, (t_circle){rect.x + radius, rect.y + radius - 1, radius - 1}, ARC135 | ARC180, color);
-    ui_fill_arc(rend, (t_circle){rect.x + radius - 1, rect.y + rect.h - radius - 1, radius - 1}, ARC225 | ARC270, color);
-    ui_fill_arc(rend, (t_circle){rect.x + rect.w - radius - 1, rect.y + rect.h - radius, radius - 1}, ARC315 | ARC360, color);
+    ui_fill_arc(rend, (t_circle){rect.x + rect.w - rect.radius, rect.y + rect.radius, rect.radius - 1}, ARC45 | ARC90, color);
+    ui_fill_arc(rend, (t_circle){rect.x + rect.radius, rect.y + rect.radius - 1, rect.radius - 1}, ARC135 | ARC180, color);
+    ui_fill_arc(rend, (t_circle){rect.x + rect.radius - 1, rect.y + rect.h - rect.radius - 1, rect.radius - 1}, ARC225 | ARC270, color);
+    ui_fill_arc(rend, (t_circle){rect.x + rect.w - rect.radius - 1, rect.y + rect.h - rect.radius, rect.radius - 1}, ARC315 | ARC360, color);
 	ui_set_draw_color(rend, color);
-	ui_fill_rect(rend, (t_rect){rect.x, rect.y + radius, radius, rect.h - radius * 2}, color);
-	ui_fill_rect(rend, (t_rect){rect.x + rect.w - radius, rect.y + radius, radius, rect.h - radius * 2}, color);
-	ui_fill_rect(rend, (t_rect){rect.x + radius, rect.y, rect.w - radius * 2, rect.h}, color);
+	ui_fill_rect(rend, (t_rect){rect.x, rect.y + rect.radius, rect.radius, rect.h - rect.radius * 2}, color);
+	ui_fill_rect(rend, (t_rect){rect.x + rect.w - rect.radius, rect.y + rect.radius, rect.radius, rect.h - rect.radius * 2}, color);
+	ui_fill_rect(rend, (t_rect){rect.x + rect.radius, rect.y, rect.w - rect.radius * 2, rect.h}, color);
 }

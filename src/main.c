@@ -2,18 +2,18 @@
 #include <stdio.h>
 
 
-SDL_Texture *create_curved_texture(SDL_Renderer *rend, t_rect rect,
-	t_curved_rect curved_rect, int border_width, int back_color, int b_color)
+/*SDL_Texture *create_curved_texture(SDL_Renderer *rend, t_rect rect,
+	// t_curved_rect curved_rect, int border_width, int back_color, int b_color)
 {
 	SDL_Texture		*texture;
 
 	texture = ui_create_empty_texture(rend, (t_len){rect.w, rect.h});
 	ui_set_render_target(rend, texture);
-	ui_fill_curved_rect(rend, rect, border_width, back_color);
+	// ui_fill_curved_rect(rend, rect, border_width, back_color);
 	ui_draw_curved_rect(rend, curved_rect, (int)(border_width / 10), b_color);
 	ui_set_render_target(rend, NULL);
 	return (texture);
-}
+}*/
 
 int		main()
 {
@@ -41,13 +41,13 @@ int		main()
 	//ui_add_btn_pos(btn, (t_rect){110, 410, 30, 20}, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", win->rend), TEXT);
 
 	btn = ui_create_btn(SIMPLE, 0, "Test checkbox button", 0xffffffff);
-	texture = ui_create_empty_texture(win->rend, (t_len){150, 100});
+	texture = ui_create_empty_texture(win->rend, (t_len){500, 300});
 	ui_set_render_target(win->rend, texture);
-	ui_fill_rect(win->rend, (t_rect){0, 0, 150, 100}, 0x0000FFFF);
-	ui_fill_curved_rect(win->rend, (t_rect){1, 1, 148, 98}, 10, 0xAAAAAAAA);
-	ui_draw_curved_rect(win->rend, (t_curved_rect){1, 1, 148, 98, 10}, 10, 0xFFFFFFFF);
+	//ui_fill_rect(win->rend, (t_rect){0, 0, 500, 300}, 0x0000FFFF);
+	ui_fill_curved_rect(win->rend, (t_curved_rect){1, 1, 500, 300, 50}, 0xFFAAAAAA);
+	ui_draw_curved_rect(win->rend, (t_curved_rect){1, 1, 500, 300, 50}, 50, 0xFF0000FF);
 	ui_set_render_target(win->rend, NULL);
-	ui_add_btn_pos(btn, (t_rect){150, 400, 150, 100}, texture, SIMPLE);
+	ui_add_btn_pos(btn, (t_rect){150, 400, 500, 300}, texture, SIMPLE);
 	ui_add_btn_pos(btn, (t_rect){205, 425, 30, 20}, ui_create_text("Oh !", "./ressource/police/arial.ttf", win->rend), TEXT);
 
 	/*
@@ -56,7 +56,7 @@ int		main()
 	test = ui_create_empty_texture(win->rend, (t_len){50, 40});
 	ui_set_render_target(win->rend, test);
 	ui_fill_rect(win->rend, (t_rect){0, 0, 50, 40}, 0xffffff55);
-	ui_draw_rect(win->rend, (t_rect){0, 0, 50, 40}, 10, 0xffffffff);
+	ui_draw_rect(win->rend, (t_rect){0, 0, 50, 40}, 10, 0xffffff77);
 	ui_set_render_target(win->rend, NULL);
 	//texture = ui_create_bloc_texture(win->rend, (t_len){200, 200}, 0xFFFFFFAA, 0xFFFFFFFF);
 
@@ -82,6 +82,7 @@ int		main()
 		//ui_draw_texture(win->rend, texture, (t_rect){100, 100, 200, 200});
 		ui_draw_texture(win->rend, texture, (t_rect){400, 400, 100, 70});
 		ui_draw_texture(win->rend, test, (t_rect){600, 400, 100, 70});
+		ui_draw_arc(win->rend, (t_circle){200, 200, 50}, ARCFULL, 0x00FF0077);
 		ui_load_simple_btn(win->rend, btn);
 		//ui_load_checkbox_btn(win->rend, btn);
 		ui_draw_rend(win->rend);
