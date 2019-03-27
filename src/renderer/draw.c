@@ -3,24 +3,6 @@
 #include "ui_frame.h"
 #include "ui_draw.h"
 
-void	ui_draw_point(SDL_Renderer *rend, int x, int y, t_frame *frame)
-{
-	if (!frame)
-	{
-		if (SDL_RenderDrawPoint(rend, x, y) < 0)
-			ui_error(SDL_GetError());
-	}
-	else
-	{
-		if (x >= frame->rect.x && x <= frame->rect.x + (int)frame->rect.w
-			&& y >= frame->rect.y && x <= frame->rect.y + (int)frame->rect.h)
-		{
-			if (SDL_RenderDrawPoint(rend, x + frame->rect.x, y + frame->rect.y) < 0)
-				ui_error(SDL_GetError());
-		}
-	}
-}
-
 void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst)
 {
 	if (SDL_RenderCopy(rend, texture, NULL, (SDL_Rect*)&dst) < 0)
@@ -72,6 +54,8 @@ void	ui_fill_arc(SDL_Renderer *rend, t_circle circle, int arc, int color)
 		circle.radius--;
 	}
 }
+
+//void	ui_draw_line(SDL_renderer *rend, t_line line, int width, int color)
 
 void	ui_draw_rect(SDL_Renderer *rend, t_rect rect, int border_width, int color)
 {
@@ -133,7 +117,7 @@ void	ui_draw_curved_rect(SDL_Renderer *rend, t_curved_rect rect, int border_widt
 	ui_draw_arc(rend, (t_circle){points[5].x, points[6].y, rect.radius}, ARC225 | ARC270, color);
 	ui_draw_arc(rend, (t_circle){points[0].x, points[7].y, rect.radius}, ARC135 | ARC180, color);
 	ui_draw_arc(rend, (t_circle){points[1].x, points[2].y, rect.radius}, ARC45 | ARC90, color);
-}
+}	
 
 void	ui_fill_curved_rect(SDL_Renderer *rend, t_rect rect, int radius, int color)
 {
