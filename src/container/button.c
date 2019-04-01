@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   button.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: thbrouss <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/17 20:27:46 by thbrouss     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/17 20:29:14 by thbrouss    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/28 19:06:22 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -238,14 +238,14 @@ int  ui_render_arrow_btn(SDL_Renderer *rend, t_btn *btn, int x, int y)
       if (btn->type == ARROW && btn->key[ARROW_UP] != 0 && i == btn->key[ARROW_UP] - 1)
       {
         btn->value++;
-        ui_set_draw_color(rend, 0x7f827a);
+        ui_set_draw_color(rend, 0x7f827aff);
         ui_load_arrow_texture(btn, rend);
         is_set = 1;
       }
       if (btn->type == ARROW && btn->key[ARROW_DOWN] != 0 && btn->value > 0 && i == btn->key[ARROW_DOWN] - 1)
       {
         btn->value--;
-        ui_set_draw_color(rend, 0x7f827a);
+        ui_set_draw_color(rend, 0x7f827aff);
         ui_load_arrow_texture(btn, rend);
         is_set = 1;
       }
@@ -341,10 +341,13 @@ t_btn *ui_create_btn(int type, int action, char *name, int color)
   int i;
 
   i = 0;
-  btn = malloc(sizeof(t_btn));
+
+  if (!(btn = malloc(sizeof(t_btn))))
+    return (ui_null_perror("btn allocation failed in ui_create_btn\n"));
   btn->type = type;
   btn->color = color;
-  btn->name = ft_strdup(name);
+  if (!(btn->name = ft_strdup(name)))
+    return (ui_null_perror("ft_strdup malloc failed in ui_create_btn\n"));
   if (type == SLIDER)
     btn->value = 100;
   while (i < MAX_BTN)

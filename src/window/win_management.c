@@ -16,7 +16,7 @@ t_win			*ui_open_window(const char *title, t_dot pos, t_len size, Uint32 flags)
 		ft_putstr_fd(SDL_GetError(), 2);
 			return (ui_null_error(SDL_GetError()));
 	}
-	if (!(win->rend = SDL_CreateRenderer(win->ptr, -1, SDL_RENDERER_SOFTWARE)))
+	if (!(win->rend = SDL_CreateRenderer(win->ptr, -1, SDL_RENDERER_ACCELERATED)))
 	{
 		ft_putstr_fd(SDL_GetError(), 2);
 			return (ui_null_error(SDL_GetError()));
@@ -40,7 +40,7 @@ int			ui_add_frame_to_win(t_win *win, t_frame *frame)
 	t_frame **tmp;
 	int		i;
 
-	if (!(new_tab = (t_frame**)ft_memalloc(sizeof(t_frame*) * win->n_frames)))
+	if (!(new_tab = (t_frame**)ft_memalloc(sizeof(t_frame*) * (win->n_frames + 1))))
 		return (ui_perror("new frame allocation failed in ui_update_window\n"));
 	i = 0;
 	while (i < win->n_frames)
@@ -54,6 +54,18 @@ int			ui_add_frame_to_win(t_win *win, t_frame *frame)
 	win->n_frames++;
 	free(tmp);
 	return (1);
+}
+
+void	ui_draw_window(t_win *win)
+{
+	int		i;
+
+	i = 0;
+	while (i < win->n_frames)
+	{
+		ui_draw_frame(win->rend, win->frames[i]);
+		i++;
+	}
 }
 
 /*int				ui_add_frame_to_win_n(t_win *win, t_frame *frame, int n)

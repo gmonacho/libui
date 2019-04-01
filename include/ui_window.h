@@ -28,6 +28,7 @@ void			ui_set_win_pos(SDL_Window *win, int x, int y);
 void			ui_set_win_size(SDL_Window *win, int w, int h);
 t_dot			ui_get_win_pos(SDL_Window *win);
 t_dot			ui_get_win_size(SDL_Window *win);
+void			ui_draw_window(t_win *win);
 
 /*
 ** ================================= Manage Window's frames =========================

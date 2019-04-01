@@ -1,12 +1,112 @@
 #include "SDL.h"
 #include "ui_error.h"
 #include "ui_frame.h"
+#include "libft.h"
+#include "ui_texture.h"
 #include "ui_draw.h"
 
-void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst)
+static void 	ui_sort_triangle(t_dot p[3])
 {
-	if (SDL_RenderCopy(rend, texture, NULL, (SDL_Rect*)&dst) < 0)
-		perror(SDL_GetError());
+	int		i;
+	int		j;
+	int		pos;
+	int		tmp;
+
+	i = 0;
+	while (i < 3)
+	{
+		j = 0;
+		pos = 0;
+		tmp = p[i].x;
+		while (j < 3)
+		{
+			if (tmp > p[j].x)
+				pos++;
+			j++;
+		}
+		ft_swap(&(p[i].x), &(p[pos].x));
+		ft_swap(&(p[i].y), &(p[pos].y));
+		i++;
+	}
+}
+
+static double	ui_get_slope(t_dot	p1, t_dot	p2)
+{
+	return ((double)(p2.y - p1.y) / (double)(p2.x - p1.x));
+}
+
+void	ui_draw_triangle(SDL_Renderer *rend, t_triangle	triangle, int color)
+{
+	double	a1;
+	double	a2;
+	double	a3;
+	t_dot	p[3];
+	int		x;
+	double	y1;
+	double	y2;
+
+	p[0] = triangle.p1;
+	p[1] = triangle.p2;
+	p[2] = triangle.p3;
+	ui_sort_triangle(p);
+	a1 = ui_get_slope(p[0], p[1]);
+	a2 = ui_get_slope(p[0], p[2]);
+	a3 = ui_get_slope(p[1], p[2]);
+	x = p[0].x;
+	y1 = p[0].y;
+	y2 = p[0].y;
+	ui_set_draw_color(rend, color);
+	while (x <= p[2].x)
+	{
+		SDL_RenderDrawLine(rend, x, y1, x, y2);
+		x++;
+		if (x > p[1].x)
+			a1 = a3;
+		y1 += a1;
+		y2 += a2;
+	}
+}
+
+static double	ui_draw_line_get_rect(t_line line, int width, t_dot dot[4])
+{
+	double	ap;
+	double	alpha;
+	int		dx;
+	int		dy;
+
+	ap = -1 / ui_get_slope(line.p1, line.p2);
+	alpha = atan(ap);
+	dx = cos(alpha) * width;
+	dy = dx * ap;
+	dot[0] = line.p1;
+	dot[1] = line.p2;
+	dot[2] = (t_dot){line.p2.x + dx, line.p2.y + dy};
+	dot[3] = (t_dot){line.p1.x + dx, line.p1.y + dy};
+	return (ap);
+}
+
+void	ui_draw_line(SDL_Renderer *rend, t_line line, int width, int color)
+{
+	t_triangle	t1;
+	t_triangle	t2;
+	t_dot		dot[4];
+	double		ap;
+	double		alpha;
+
+	ap = ui_draw_line_get_rect(line, width, dot);
+	t1 = (t_triangle){dot[0], dot[1], dot[2]};
+	alpha = atan(ap);
+	/*dot[0].x += cos(fabs(alpha)) / 2;
+	dot[0].y += ap / (fabs(alpha) * 4);
+	dot[2].x += cos(fabs(alpha)) / 2;
+	dot[2].y += ap / (fabs(alpha) * 4);*/
+	/*dot[0].x += 1;
+	dot[0].y += 1;
+	dot[2].x += 1;
+	dot[2].y += 1;*/
+	t2 = (t_triangle){dot[0], dot[2], dot[3]};
+	ui_draw_triangle(rend, t1, color);
+	ui_draw_triangle(rend, t2, color);
 }
 
 void	ui_draw_arc(SDL_Renderer *rend, t_circle circle, int flags_arc, int color)
@@ -54,8 +154,6 @@ void	ui_fill_arc(SDL_Renderer *rend, t_circle circle, int arc, int color)
 		circle.radius--;
 	}
 }
-
-//void	ui_draw_line(SDL_renderer *rend, t_line line, int width, int color)
 
 void	ui_draw_rect(SDL_Renderer *rend, t_rect rect, int border_width, int color)
 {

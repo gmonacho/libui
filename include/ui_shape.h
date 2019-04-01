@@ -42,4 +42,11 @@ typedef struct		s_circle
 	unsigned int	radius;
 }					t_circle;
 
+typedef struct	s_triangle
+{
+	t_dot		p1;
+	t_dot		p2;
+	t_dot		p3;
+}				t_triangle;
+
 #endif

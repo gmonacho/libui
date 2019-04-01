@@ -18,7 +18,7 @@ void	ui_update_event(Uint32 event_flags)
 ** @note   recupere l'évenement
 ** @retVal None
 */
-void ui_set_event(SDL_Event event)
+void	ui_set_event(SDL_Event *event)
 {
-		SDL_WaitEvent(&event);
+		SDL_WaitEvent(event);
 }

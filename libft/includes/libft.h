@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libft.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: gmonacho <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 10:23:36 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 18:16:11 by thbrouss    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/31 16:48:13 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,7 +52,7 @@ void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstrev(t_list **alst);
 void				ft_lstswap(t_list **lst1, t_list **lst2);
-void				ft_swap(int *elem1, int *elem2);
+void				ft_swap(int *a, int *b);
 void				ft_2dintdel(int ***atab, int len);
 void				ft_2dputint(int **tab, int ilen, int jlen);
 void				ft_tabputint(int *tab, int len);

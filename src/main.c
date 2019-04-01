@@ -2,89 +2,84 @@
 #include <stdio.h>
 
 
-/*SDL_Texture *create_curved_texture(SDL_Renderer *rend, t_rect rect,
-	// t_curved_rect curved_rect, int border_width, int back_color, int b_color)
-{
-	SDL_Texture		*texture;
-
-	texture = ui_create_empty_texture(rend, (t_len){rect.w, rect.h});
-	ui_set_render_target(rend, texture);
-	// ui_fill_curved_rect(rend, rect, border_width, back_color);
-	ui_draw_curved_rect(rend, curved_rect, (int)(border_width / 10), b_color);
-	ui_set_render_target(rend, NULL);
-	return (texture);
-}*/
 
 int		main()
 {
 	t_win			*win;
-	int      		is_pushed;
-	int      		prev_x;
-	int      		prev_y;
 	SDL_Event		event;
-	SDL_Texture		*texture;
-	SDL_Texture		*test;
 	int				loop;
-	t_btn 			*btn;
-	t_rect			r;
+	t_frame			*frame;
+	SDL_Texture		*ftexture;
+	SDL_Texture		*btexture;
+	SDL_Texture		*simple_btn_texture;
+	t_btn			*btn;
+	t_rect			tmp;
 
-	if(SDL_Init(SDL_INIT_VIDEO) < 0)
+	//	initialisation de la SDL
+	if(ui_init(SDL_INIT_VIDEO, IMG_INIT_JPG | IMG_INIT_PNG) < 0)
         return (1);
-	win = ui_open_window("test", (t_dot){200, 200}, (t_len){1000, 1000}, UI_WIN_RESIZABLE);
+
+	//	ouverture fenetre et rendu
+	if (!(win = ui_open_window("test", (t_dot){200, 200}, (t_len){2000, 1000}, UI_WIN_RESIZABLE)))
+		return (1);
+	//	creation des textures frames
+	if (!(ftexture = ui_create_empty_texture(win->rend, (t_len){300, 300})))
+		return (1);	
+	if (!(btexture = ui_create_empty_texture(win->rend, (t_len){300, 300})))
+		return (1);
+	//	creation des texture btn
+	if (!(simple_btn_texture = ui_create_empty_texture(win->rend, (t_len){50, 50})))
+		return (1);
+
+	//	ecriture sur les textures personnalisees
+	ui_set_render_target(win->rend, ftexture);
+	ui_fill_rect(win->rend, (t_rect){1, 1, 298, 298}, 0x444444FF);
+	ui_draw_rect(win->rend, (t_rect){0, 0, 300, 300}, 1, 0x000000FF);
+	ui_set_render_target(win->rend, btexture);
+	ui_fill_rect(win->rend, (t_rect){1, 1, 298, 298}, 0x222222FF);
+	ui_draw_rect(win->rend, (t_rect){0, 0, 300, 300}, 1, 0x000000FF);
+	ui_set_render_target(win->rend, simple_btn_texture);
+	ui_fill_rect(win->rend, (t_rect){1, 1, 48, 48}, 0xAAAAAAFF);
+	ui_draw_rect(win->rend, (t_rect){0, 0, 50, 50}, 1, 0x000000FF);
+	ui_set_render_target(win->rend, NULL);
+	//	creation de frames
+	//		frame centre
+	if (!(frame = ui_new_frame((t_rect){win->size.x / 4, 0, win->size.x - 2 * (win->size.x / 4), win->size.y}, btexture)))
+		return (1);
+	ui_add_frame_to_win(win, frame);
+	//			creation btn
+	if (!(btn = ui_create_btn(SIMPLE, 0, "test", 0xFFFFFFFF)))
+		return (1);
+	tmp = frame->rect;
+	ui_add_btn_pos(btn, (t_rect){tmp.x + tmp.w / 10, tmp.y + tmp.h / 20, tmp.w / 10, tmp.h / 20},
+													simple_btn_texture, SIMPLE);
+	ui_add_btn_pos(btn, (t_rect){tmp.x + tmp.w / 10, tmp.y + tmp.h / 20, tmp.w / 10, tmp.h / 20},
+													simple_btn_texture, TEXT);
+	ui_add_button_to_frame(frame, btn);
+	//		frame gauche
+	if (!(frame = ui_new_frame((t_rect){0, 0, win->size.x / 4, win->size.y}, ftexture)))
+		return (1);
+	ui_add_frame_to_win(win, frame);
+	//		frame droite
+	if (!(frame = ui_new_frame((t_rect){win->size.x - win->size.x / 4, 0, win->size.x / 4, win->size.y}, ftexture)))
+		return (1);
+	ui_add_frame_to_win(win, frame);
+
+	//		window_loop
 	loop = 1;
-	//btn = ui_create_btn(ARROW, 0);
-	ui_set_draw_color(win->rend, 0x666666FF);
-	ui_clear_rend(win->rend);
-	//btn = ui_create_btn(SLIDER, 0, "Test button", 0xffffffff);
-	//ui_add_btn_pos(btn, (t_rect){150, 400, 40, 30}, ui_load_img("./ressource/image/slider.png", UI_JPG, win->rend), SLIDER);
-	//ui_add_btn_pos(btn, (t_rect){150, 400, 100, 30}, NULL, H_LINE);
-	//ui_add_btn_pos(btn, (t_rect){110, 410, 30, 20}, ui_create_text(ft_itoa(btn->value), "./ressource/police/arial.ttf", win->rend), TEXT);
-
-	btn = ui_create_btn(SIMPLE, 0, "Test checkbox button", 0xffffffff);
-	texture = ui_create_empty_texture(win->rend, (t_len){500, 300});
-	ui_set_render_target(win->rend, texture);
-	//ui_fill_rect(win->rend, (t_rect){0, 0, 500, 300}, 0x0000FFFF);
-	ui_fill_curved_rect(win->rend, (t_curved_rect){1, 1, 500, 300, 50}, 0xFFAAAAAA);
-	ui_draw_curved_rect(win->rend, (t_curved_rect){1, 1, 500, 300, 50}, 50, 0xFF0000FF);
-	ui_set_render_target(win->rend, NULL);
-	ui_add_btn_pos(btn, (t_rect){150, 400, 500, 300}, texture, SIMPLE);
-	ui_add_btn_pos(btn, (t_rect){205, 425, 30, 20}, ui_create_text("Oh !", "./ressource/police/arial.ttf", win->rend), TEXT);
-
-	/*
-	**	Copie du meme rect
-	*/
-	test = ui_create_empty_texture(win->rend, (t_len){50, 40});
-	ui_set_render_target(win->rend, test);
-	ui_fill_rect(win->rend, (t_rect){0, 0, 50, 40}, 0xffffff55);
-	ui_draw_rect(win->rend, (t_rect){0, 0, 50, 40}, 10, 0xffffff77);
-	ui_set_render_target(win->rend, NULL);
-	//texture = ui_create_bloc_texture(win->rend, (t_len){200, 200}, 0xFFFFFFAA, 0xFFFFFFFF);
-
-	//ui_load_slider_texture(btn, win->rend, 0, 0);
-	//ui_draw_texture(win->rend, texture, (t_rect){100, 100, 50, 50});
-	//ui_load_arrow_texture(btn, win->rend);
-	// evt.key.keysym.sym == SDLK_ESCAPE
-	is_pushed = 0;
-	prev_x = 0;
-	prev_y = 0;
-	// checkbox, simple btn : create_bloc_rect..., create_bloc_curl...
 	while (loop)
 	{
 		ui_update_event(UI_KEY_UPDATE);
 		ui_set_draw_color(win->rend, 0x666666FF);
 		ui_clear_rend(win->rend);
 		SDL_WaitEvent(&event);
-		set_click_event(event, btn, win->rend);
 		if (ui_is_key_pressed(SDL_SCANCODE_Q, 0))
 				loop = 0;
-		r = (t_rect){0, 0, 100, 50};
-		//ui_draw_texture(win->rend, dst, (t_rect){100, 0, 800, 1200});
-		//ui_draw_texture(win->rend, texture, (t_rect){100, 100, 200, 200});
-		ui_draw_texture(win->rend, texture, (t_rect){400, 400, 100, 70});
-		ui_draw_texture(win->rend, test, (t_rect){600, 400, 100, 70});
-		ui_draw_arc(win->rend, (t_circle){200, 200, 50}, ARCFULL, 0x00FF0077);
-		ui_load_simple_btn(win->rend, btn);
-		//ui_load_checkbox_btn(win->rend, btn);
+		ui_draw_window(win);
+		//ui_draw_triangle(win->rend, (t_triangle){(t_dot){300, 300}, (t_dot){300, 200}, (t_dot){400, 250}}, 0xFFFFFFAA);
+		ui_draw_line(win->rend, (t_line){(t_dot){100, 400}, (t_dot){500, 200}}, 50, 0xFFFFFFAA);
+		ui_draw_line(win->rend, (t_line){(t_dot){600, 300}, (t_dot){800, 280}}, 50, 0xFFFFFFAA);
+		ui_draw_line(win->rend, (t_line){(t_dot){810, 300}, (t_dot){1100, 310}}, 50, 0xFFFFFFAA);
 		ui_draw_rend(win->rend);
 	}
 	if (win->rend)

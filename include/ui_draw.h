@@ -3,6 +3,7 @@
 
 # include "SDL.h"
 # include "ui_frame.h"
+# include "ui_texture.h"
 # include "ui_renderer.h"
 
 enum	e_arc
@@ -33,8 +34,8 @@ typedef struct      s_draw
 }                   t_draw;
 
 void    ui_draw_point(SDL_Renderer *rend, int x, int y, t_frame *frame);
-void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst);
-void	ui_draw_texture(SDL_Renderer *rend, SDL_Texture *texture, t_rect dst);
+void	ui_draw_triangle(SDL_Renderer *rend, t_triangle	triangle, int color);
+void	ui_draw_line(SDL_Renderer *rend, t_line line, int width, int color);
 void	ui_draw_arc(SDL_Renderer *rend, t_circle circle, int flags_arc, int color);
 void	ui_fill_arc(SDL_Renderer *rend, t_circle circle, int arc, int color);
 void	ui_draw_rect(SDL_Renderer *rend, t_rect rect, int border_width, int color);

@@ -1,6 +1,8 @@
 #ifndef UI_IMAGE_H
 # define UI_IMAGE_H
 
+#include "SDL_image.h"
+
 enum	s_img_format
 {
 	UI_PNG = 1,
