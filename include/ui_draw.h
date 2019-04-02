@@ -42,5 +42,7 @@ void	ui_draw_rect(SDL_Renderer *rend, t_rect rect, int border_width, int color);
 void	ui_fill_rect(SDL_Renderer *rend, t_rect rect, int color);
 void	ui_draw_curved_rect(SDL_Renderer *rend, t_curved_rect rect, int border_width, int color);
 void	ui_fill_curved_rect(SDL_Renderer *rend, t_curved_rect rect, int color);
+double	ui_get_slope(t_dot p1, t_dot p2);
+t_dot	ui_translate_dx(t_dot dot, double a, int dx);
 
 #endif

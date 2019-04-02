@@ -3,6 +3,7 @@
 #include "ui_frame.h"
 #include "libft.h"
 #include "ui_texture.h"
+#include "ui_struct_2d.h"
 #include "ui_draw.h"
 
 static void 	ui_sort_triangle(t_dot p[3])
@@ -30,7 +31,7 @@ static void 	ui_sort_triangle(t_dot p[3])
 	}
 }
 
-static double	ui_get_slope(t_dot	p1, t_dot	p2)
+double	ui_get_slope(t_dot p1, t_dot p2)
 {
 	return ((double)(p2.y - p1.y) / (double)(p2.x - p1.x));
 }
@@ -67,46 +68,14 @@ void	ui_draw_triangle(SDL_Renderer *rend, t_triangle	triangle, int color)
 	}
 }
 
-static double	ui_draw_line_get_rect(t_line line, int width, t_dot dot[4])
+
+t_dot	ui_translate_dx(t_dot dot, double a, int dx)
 {
-	double	ap;
-	double	alpha;
-	int		dx;
-	int		dy;
+	t_dot	ndot;
 
-	ap = -1 / ui_get_slope(line.p1, line.p2);
-	alpha = atan(ap);
-	dx = cos(alpha) * width;
-	dy = dx * ap;
-	dot[0] = line.p1;
-	dot[1] = line.p2;
-	dot[2] = (t_dot){line.p2.x + dx, line.p2.y + dy};
-	dot[3] = (t_dot){line.p1.x + dx, line.p1.y + dy};
-	return (ap);
-}
-
-void	ui_draw_line(SDL_Renderer *rend, t_line line, int width, int color)
-{
-	t_triangle	t1;
-	t_triangle	t2;
-	t_dot		dot[4];
-	double		ap;
-	double		alpha;
-
-	ap = ui_draw_line_get_rect(line, width, dot);
-	t1 = (t_triangle){dot[0], dot[1], dot[2]};
-	alpha = atan(ap);
-	/*dot[0].x += cos(fabs(alpha)) / 2;
-	dot[0].y += ap / (fabs(alpha) * 4);
-	dot[2].x += cos(fabs(alpha)) / 2;
-	dot[2].y += ap / (fabs(alpha) * 4);*/
-	/*dot[0].x += 1;
-	dot[0].y += 1;
-	dot[2].x += 1;
-	dot[2].y += 1;*/
-	t2 = (t_triangle){dot[0], dot[2], dot[3]};
-	ui_draw_triangle(rend, t1, color);
-	ui_draw_triangle(rend, t2, color);
+	ndot.x = dot.x + dx;
+	ndot.y = dot.y + dx * a;
+	return (ndot);
 }
 
 void	ui_draw_arc(SDL_Renderer *rend, t_circle circle, int flags_arc, int color)
