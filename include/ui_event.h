@@ -1,13 +1,26 @@
-#ifndef EVENT_H
-# define EVENT_H
+#ifndef UI_EVENT_H
+# define UI_EVENT_H
 
-# include "ui_event_flag.h"
-# include "ui_btn.h"
+# include "ui_win.h"
 
-void	ui_update_event(Uint32 event_flags);
-void	ui_set_event(SDL_Event *event);
-int		ui_is_key_pressed(Uint32 key_flags, int update);
-int		ui_is_mouse_pressed(Uint32 mouse_flags, int *x, int *y);
-void  set_click_event(SDL_Event event, t_btn *btn, SDL_Renderer	*rend);
+
+typedef enum		s_mouse_button
+{
+	UI_MOUSE_NONE = 0,
+	UI_MOUSE_LEFT = 1,
+	UI_MOUSE_RIGHT = 2,
+	UI_MOUSE_MIDDLE = 4
+}					ui_mouse_button;
+
+typedef struct	s_mouse
+{
+	ui_dot			pos;
+	ui_mouse_button clicked;
+}				ui_mouse;
+
+
+
+void	ui_poll_event(ui_win *win);
+void	ui_wait_event(ui_win *win);
 
 #endif

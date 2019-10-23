@@ -1,63 +1,65 @@
-NAME = libui
+NAME = ui_test
 
-SRC_PATH =		./src/
-PATH_1 =	/window/
-PATH_2 =	/renderer/
-PATH_3 =	/event/
-PATH_4 =	/container/
-SRC =	$(wildcard $(SRC_PATH)*.c)\
-		$(wildcard $(SRC_PATH)$(PATH_1)*.c)\
-		$(wildcard $(SRC_PATH)$(PATH_2)*.c)\
-		$(wildcard $(SRC_PATH)$(PATH_3)*.c)\
-		$(wildcard $(SRC_PATH)$(PATH_4)*.c)
+SRCS_PATH =     ./src
+SRCS_PATH_1 =   win
+SRCS_PATH_2 =   event
 
-BIN_PATH =		./bin
-BIN = $(patsubst $(SRC_PATH)%.c,./bin/%.o,$(SRC))
+#Pas le droit aux wildcards
+SRCS =      $(wildcard $(SRCS_PATH)/*.c)\
+            $(wildcard $(SRCS_PATH)/$(SRCS_PATH_1)/*.c)\
+            $(wildcard $(SRCS_PATH)/$(SRCS_PATH_2)/*.c)
 
-INCLUDE_PATH = include
+OBJS_PATH = ./objs
+OBJS = $(patsubst $(SRCS_PATH)/%.c , $(OBJS_PATH)/%.o , $(SRCS))
+
 FW_PATH = ./frameworks
-CC = gcc
-CFLAGS += -Wall -Wextra -Werror -g -fsanitize=address -O3 -I./$(INCLUDE_PATH)\
-														  -I./libft/includes/\
-														  -I$(FW_PATH)/SDL2_image.framework/Headers/\
-														  -I$(FW_PATH)/SDL2_ttf.framework/Headers/\
-														  -I$(FW_PATH)/SDL2.framework/Headers/
-
-LIBSDL2 = -framework SDL2 -F $(FW_PATH) -framework SDL2_image -framework SDL2_ttf -rpath $(FW_PATH)
+LIBSDL2 = -framework SDL2 -F $(FW_PATH) -framework SDL2_image -framework SDL2_ttf -framework SDL2_mixer -rpath $(FW_PATH)
 LIBFT = libft
-LIBRARIES = $(LIBSDL2) $(LIBFT)/$(LIBFT).a
+LIBRARIES = $(LIBSDL2) ./$(LIBFT)/$(LIBFT).a
 
-all:	directory $(NAME)
+INCLUDE_PATH = ./include
+CC = gcc
+#CFLAGS += -Wall -Wextra -Werror -g3   -I$(INCLUDE_PATH)
+CFLAGS += -Wall -Wextra -Werror -g3 -fsanitize=address  -I$(INCLUDE_PATH)\
+                                                        -I$(LIBFT)/includes/\
+														-I./$(LIBSDLMIXER)/\
+                                                        -I$(FW_PATH)/SDL2_image.framework/Headers/\
+                                                        -I$(FW_PATH)/SDL2_ttf.framework/Headers/\
+                                                        -I$(FW_PATH)/SDL2.framework/Headers/\
+                                                        -I$(FW_PATH)/SDL2_mixer.framework/Headers/
 
-$(NAME): $(BIN)
+#Enlever le flag -fsanitize=address
+
+all:    directory $(NAME)
+
+$(NAME): $(OBJS)
 		make -C $(LIBFT)
-		$(CC) $(CFLAGS) $(BIN) -o $(NAME) $(LIBRARIES)
+		$(CC) $(CFLAGS) $(LIBRARIES) $(OBJS) -o $(NAME)
 
-$(BIN_PATH)/%.o : $(SRC_PATH)/%.c
+$(OBJS_PATH)/%.o : $(SRCS_PATH)/%.c
 		$(CC) $(CFLAGS) -c $< -o $@
-
-$(BIN_PATH)/$(SRC_PATH_1)/%.o : $(SRC_PATH)/$(SRC_PATH_1)/%.c
+$(OBJS_PATH)/$(SRCS_PATH_1)/%.o : $(SRCS_PATH)/$(SRCS_PATH_1)/%.c
+		$(CC) $(CFLAGS) -c $< -o $@
+$(OBJS_PATH)/$(SRCS_PATH_2)/%.o : $(SRCS_PATH)/$(SRCS_PATH_2)/%.c
 		$(CC) $(CFLAGS) -c $< -o $@
 
 directory:
-		@mkdir $(BIN_PATH) 2> /dev/null || true
-		@mkdir $(BIN_PATH)/$(PATH_1) 2> /dev/null || true
-		@mkdir $(BIN_PATH)/$(PATH_2) 2> /dev/null || true
-		@mkdir $(BIN_PATH)/$(PATH_3) 2> /dev/null || true
-		@mkdir $(BIN_PATH)/$(PATH_4) 2> /dev/null || true
+		@mkdir $(OBJS_PATH) 2> /dev/null || true
+		@mkdir $(OBJS_PATH)/$(SRCS_PATH_1) 2> /dev/null || true
 
 clean:
-		rm -rf $(BIN_PATH)
+		rm -rf $(OBJS_PATH)
 		make clean -C $(LIBFT)
 
-fclean:	clean
+fclean: clean
 		rm -rf $(NAME)
 		make fclean -C $(LIBFT)
 
-re:		fclean all
+re:   		fclean all
 
 norme:
-		@norminette $(SRC_PATH)
+		@norminette $(LIBFT)/*.c
+		@norminette $(SRCS_PATH)
 		@norminette $(INCLUDE_PATH)
 
 .PHONY: all, clean, fclean, re, directory, norme

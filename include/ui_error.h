@@ -1,9 +1,7 @@
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef UI_ERROR_H
+# define UI_ERROR_H
 
-int     ui_error(const char *error_msg);
-void    *ui_null_error(const char *error_msg);
-int		ui_perror(const char *error_msg);
-void	*ui_null_perror(const char *error_msg);
+int		ui_ret_error(const char *function, const char *error_msg, int ret_value);
+void	*ui_ret_null_error(const char *function, const char *error_msg, void *return_value);
 
 #endif
