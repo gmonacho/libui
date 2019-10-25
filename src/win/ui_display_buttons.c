@@ -1,17 +1,17 @@
 #include "ui_win.h"
 
-static void		ui_display_simple(ui_win *win, ui_simple_button *simple_button)
-{
-	if (simple_button->textures.current)
-	{
+// static void		ui_display_simple(ui_win *win, ui_simple_button *simple_button)
+// {
+// 	if (simple_button->textures.current)
+// 	{
 		
-	}
-	else
-	{
-		printf("NO_TEXTURES\n");
-	}
+// 	}
+// 	else
+// 	{
+// 		printf("NO_TEXTURES\n");
+// 	}
 	
-}
+// }
 
 void			ui_display_buttons(ui_win *win)
 {
@@ -21,7 +21,8 @@ void			ui_display_buttons(ui_win *win)
 	while (b)
 	{
 		if (b->type == UI_BUTTON_SIMPLE)
-			ui_display_simple(win, (ui_simple_button*)b->data);
+			printf("draw_simple\n");
+		// ui_display_simple(win, (ui_simple_button*)b->data);
 		b = b->next;
 	}
 }

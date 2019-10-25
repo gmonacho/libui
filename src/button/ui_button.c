@@ -12,6 +12,7 @@ ui_button		*ui_new_button(ui_button_type type, ui_resize_type resize_type)
 	new_button->type = type;
 	new_button->resize_type = resize_type;
 	new_button->next = NULL;
+	return (new_button);
 }
 
 void		ui_add_button(ui_button **buttons, ui_button *new_button)
@@ -34,6 +35,7 @@ ui_simple_button	*ui_new_simple_button(ui_mouse_button clicked_condition, void (
 	new_simple->textures.normal = NULL;
 	new_simple->textures.on_click = NULL;
 	new_simple->textures.on_mouse = NULL;
+	new_simple->ratio = ratio;
 	new_simple->clicked_condition = clicked_condition;
 	new_simple->state = UI_SIMPLE_NONE;
 	new_simple->f = f;
