@@ -17,12 +17,9 @@ typedef struct		s_simple_button
 {
 	char			*text;
 	ui_simple_set	textures;
-	ui_simple_state	state;
 	ui_mouse_button	clicked_condition;
 	void			(*f)(void *argument);
 	void			*argurment;
-	ui_rect			rect;
-	ui_frect		ratio;
 }					ui_simple_button;
 
 typedef enum			s_button_type
@@ -49,12 +46,14 @@ typedef struct			s_button
 	void				*data;
 	ui_button_type		type;
 	ui_resize_type		resize_type;
+	ui_rect				rect;
+	ui_frect			ratio;
 	struct s_button		*next;
 }						ui_button;
 
-ui_button	*ui_new_button(ui_button_type type, ui_resize_type resize_type);
-ui_simple_button	*ui_new_simple_button(ui_mouse_button clicked_condition, void (*f)(void *argument), void *argument, ui_frect ratio);
-void		ui_add_button(ui_button **buttons, ui_button *new_button);
+ui_button			*ui_new_button(ui_button_type type, ui_resize_type resize_type, ui_frect ratio,void *data);
+ui_simple_button	*ui_new_simple_button(ui_mouse_button clicked_condition, void (*f)(void *argument), void *argument, ui_simple_set textures);
+void				ui_add_button(ui_button **buttons, ui_button *new_button);
 
 
 #endif	//	UI_BUTTON_H

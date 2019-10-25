@@ -8,5 +8,8 @@ int		ui_init(Uint32 sdl_flags)
 
 	if ((ret = SDL_Init(sdl_flags)) < 0)
 		return (ui_ret_error("ui_init", SDL_GetError(), ret));
+	if (TTF_Init() == -1)
+		return (ui_ret_error("ui_init", TTF_GetError(), -1));
+
 	return (1);
 }

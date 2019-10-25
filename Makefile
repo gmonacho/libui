@@ -1,4 +1,4 @@
-NAME = ui_test
+NAME = e_libui
 
 SRCS_PATH =     ./src
 SRCS_PATH_1 =   win
@@ -6,6 +6,7 @@ SRCS_PATH_2 =   event
 SRCS_PATH_3 =   shape
 SRCS_PATH_4 =   button
 SRCS_PATH_5 =   texture
+SRCS_PATH_6 =   draw
 
 #Pas le droit aux wildcards
 SRCS =      $(wildcard $(SRCS_PATH)/*.c)\
@@ -13,7 +14,8 @@ SRCS =      $(wildcard $(SRCS_PATH)/*.c)\
             $(wildcard $(SRCS_PATH)/$(SRCS_PATH_2)/*.c)\
             $(wildcard $(SRCS_PATH)/$(SRCS_PATH_3)/*.c)\
             $(wildcard $(SRCS_PATH)/$(SRCS_PATH_4)/*.c)\
-            $(wildcard $(SRCS_PATH)/$(SRCS_PATH_5)/*.c)
+            $(wildcard $(SRCS_PATH)/$(SRCS_PATH_5)/*.c)\
+            $(wildcard $(SRCS_PATH)/$(SRCS_PATH_6)/*.c)
 
 OBJS_PATH = ./objs
 OBJS = $(patsubst $(SRCS_PATH)/%.c , $(OBJS_PATH)/%.o , $(SRCS))
@@ -53,6 +55,8 @@ $(OBJS_PATH)/$(SRCS_PATH_3)/%.o : $(SRCS_PATH)/$(SRCS_PATH_3)/%.c
 $(OBJS_PATH)/$(SRCS_PATH_4)/%.o : $(SRCS_PATH)/$(SRCS_PATH_4)/%.c
 		$(CC) $(CFLAGS) -c $< -o $@
 $(OBJS_PATH)/$(SRCS_PATH_5)/%.o : $(SRCS_PATH)/$(SRCS_PATH_5)/%.c
+		$(CC) $(CFLAGS) -c $< -o $@
+$(OBJS_PATH)/$(SRCS_PATH_5)/%.o : $(SRCS_PATH)/$(SRCS_PATH_6)/%.c
 		$(CC) $(CFLAGS) -c $< -o $@
 
 directory:

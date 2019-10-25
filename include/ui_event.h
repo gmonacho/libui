@@ -16,6 +16,8 @@ typedef struct	s_mouse
 {
 	ui_dot			pos;
 	ui_mouse_button clicked;
+	ui_mouse_button	clicking;
+	ui_mouse_button	releasing;
 }				ui_mouse;
 
 void	ui_poll_event(SDL_Event *event);

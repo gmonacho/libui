@@ -7,6 +7,11 @@ typedef struct	s_dot
 	int			y;
 }				ui_dot;
 
+typedef struct	s_line
+{
+	ui_dot		d1;
+	ui_dot		d2;
+}				ui_line;
 
 typedef struct	s_rect
 {
