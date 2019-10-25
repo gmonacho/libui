@@ -21,7 +21,7 @@ int		main()
 		ui_set_draw_color(win, (SDL_Color){100, 100, 100, 255});
 		ui_clear_win(win);
 		ui_draw_rend(win);
-		ui_wait_event(win);
+		ui_wait_event(&win->event);
 		if (win->event.type == SDL_QUIT)
 			loop = 0;
 	}

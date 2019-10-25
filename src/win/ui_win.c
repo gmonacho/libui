@@ -1,7 +1,7 @@
 #include "ui_win.h"
-#include "ui_shape.h"
-#include "libft.h"
 #include "ui_error.h"
+#include "libft.h"
+#include "ui_shape.h"
 
 ui_win	*ui_create_win(const char *title, ui_rect rect, Uint32 sdl_win_flags, Uint32 sdl_rend_flags)
 {
