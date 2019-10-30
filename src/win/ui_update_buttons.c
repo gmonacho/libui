@@ -3,13 +3,15 @@
 
 static void		ui_update_simple_button(ui_simple_button *simple_button, ui_simple_state state)
 {
-	if (state == UI_SIMPLE_CLICKED)
-		simple_button->textures.current = simple_button->textures.clicked;
-	else if (state == UI_SIMPLE_ON_MOUSE)
-		simple_button->textures.current = simple_button->textures.on_mouse;
-	else
-		simple_button->textures.current = simple_button->textures.normal;
-	
+	if (simple_button)
+	{
+		if (state == UI_SIMPLE_CLICKED && simple_button->textures.clicked)
+			simple_button->textures.current = simple_button->textures.clicked;
+		else if (state == UI_SIMPLE_ON_MOUSE && simple_button->textures.on_mouse)
+				simple_button->textures.current = simple_button->textures.on_mouse;
+		else
+			simple_button->textures.current = simple_button->textures.normal;
+	}
 }
 
 void			ui_update_buttons_rect(ui_win *win)
@@ -49,6 +51,6 @@ static void			ui_update_buttons_textures(ui_button **buttons, ui_button *on_mous
 void			ui_update_buttons(ui_win *win)
 {
 	ui_update_buttons_rect(win);
-	ui_update_buttons_textures(&win->ui.buttons, win->on_mouse_button, win->clicked_button);
+	ui_update_buttons_textures(&win->ui.buttons, win->ui.on_mouse_button, win->ui.clicked_button);
 }
 

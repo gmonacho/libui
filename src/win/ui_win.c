@@ -13,6 +13,14 @@ ui_win		*ui_new_win(const char *title, ui_rect rect, Uint32 sdl_win_flags, Uint3
 		return (ui_ret_null_error("ui_create_win", SDL_GetError(), NULL));
 	if (!(win->rend = SDL_CreateRenderer(win->ptr, -1, sdl_rend_flags)))
 		return (ui_ret_null_error("ui_create_win", SDL_GetError(), NULL));
+	SDL_PollEvent(&win->event);
+	ui_event_update_mouse(&win->mouse);
+	win->ui.buttons = NULL;
+	win->ui.on_mouse_button = NULL;
+	win->ui.clicked_button = NULL;
+	win->ui.button_font = NULL;
+	win->ui.button_text_color = (SDL_Color){255, 255, 255, 255};
+	win->ui.button_text_ratio = 0.7;
 	return (win);
 }
 
@@ -49,7 +57,7 @@ void		ui_draw_rend(ui_win *win)
 	SDL_RenderPresent(win->rend);
 }
 
-static void	ui_event_update_mouse(ui_mouse *mouse)
+void		ui_event_update_mouse(ui_mouse *mouse)
 {
 	Uint32			mouse_state;
 	ui_mouse_button	last_clicked;
@@ -89,6 +97,4 @@ void		ui_update_ui(ui_win *win)
 	ui_event(win);
 	ui_resolve_buttons_event(win);
 	ui_update_buttons(win);
-	printf("win->clicked_button = %p\n", win->clicked_button);
-	printf("win->on_mouse_button = %p\n", win->on_mouse_button);
 }

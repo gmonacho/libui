@@ -10,6 +10,6 @@ int		ui_init(Uint32 sdl_flags)
 		return (ui_ret_error("ui_init", SDL_GetError(), ret));
 	if (TTF_Init() == -1)
 		return (ui_ret_error("ui_init", TTF_GetError(), -1));
-
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "2");
 	return (1);
 }

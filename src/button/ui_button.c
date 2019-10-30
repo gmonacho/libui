@@ -37,5 +37,6 @@ ui_simple_button	*ui_new_simple_button(ui_mouse_button clicked_condition, void (
 	new_simple->clicked_condition = clicked_condition;
 	new_simple->f = f;
 	new_simple->argurment = argument;
+	new_simple->text = NULL;
 	return (new_simple);
 }

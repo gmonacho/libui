@@ -1,6 +1,6 @@
 #include "../includes/libft.h"
 
-char    *ft_strrev(char *str)
+char    *ft_strrev(const char *str)
 {
     char    *str_rev;
     int     i;

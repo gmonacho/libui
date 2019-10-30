@@ -30,18 +30,21 @@ typedef enum	e_text_align
 	TEXT_ALIGN_CENTER = 3
 }				ui_text_align;
 
-typedef struct	s_text
+typedef struct		s_text
 {
 	char			*text;
 	int				height;
-	SDL_Color		*color;
+	TTF_Font		*font;
+	SDL_Color		color;
 	ui_dot			pos;
 	ui_text_align	alignment;
-}				ui_text;
+}					ui_text;
 
 
 TTF_Font		*ui_load_font(const char *file, int pixel_height);
 SDL_Texture		*ui_new_text(SDL_Renderer *rend, TTF_Font *font, const char *text, const SDL_Color *color);
-void			ui_draw_text(SDL_Renderer *rend, TTF_Font *font, const ui_text *text);
+int				ui_get_text_width(TTF_Font *font, const char *text, int height);
+void			ui_draw_text(SDL_Renderer *rend, const ui_text *text);
+void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rect);
 
 #endif

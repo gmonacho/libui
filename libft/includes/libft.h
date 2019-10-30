@@ -84,7 +84,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_strrchr(const char *s, int c);
-char    			*ft_strrev(char *str);
+char    			*ft_strrev(const char *str);
 
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
