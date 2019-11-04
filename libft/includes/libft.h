@@ -110,6 +110,7 @@ int					get_next_line(const int fd, char **line);
 int					ft_index(const char *str, int c);
 int					ft_countnumbers(char *str);
 int					ft_round(double nb);
+int     			ft_get_pgcd(int a, int b);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));

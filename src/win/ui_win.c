@@ -87,9 +87,18 @@ void		ui_event_update_mouse(ui_mouse *mouse)
 		mouse->releasing |= UI_MOUSE_MIDDLE;
 }
 
+// static void		ui_window_resize()
+
 static void		ui_event(ui_win *win)
 {
 	ui_event_update_mouse(&win->mouse);
+	// if (win->event.type == SDL_WINDOWEVENT)
+	// {
+	// 	if (win->event.window.event == SDL_WINDOWEVENT_RESIZED)
+	// 	{
+			
+	// 	}
+	// }
 }
 
 void		ui_update_ui(ui_win *win)

@@ -30,6 +30,16 @@ typedef enum	e_text_align
 	TEXT_ALIGN_CENTER = 3
 }				ui_text_align;
 
+typedef struct	s_text_entry_texture_set
+{
+	SDL_Texture *name_side_texture;
+	SDL_Texture	*normal_box_texture;
+	SDL_Texture	*writting_box_texture;
+	SDL_Texture *current_box_texture;
+}				ui_text_entry_set;
+
+ui_text_entry_set	ui_create_text_entry_set(SDL_Texture *name_side_texture, SDL_Texture *normal_box_texture, SDL_Texture *writting_box_texture);
+
 typedef struct		s_text
 {
 	char			*text;

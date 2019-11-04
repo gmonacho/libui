@@ -25,7 +25,7 @@ int		main()
 							SDL_WINDOWPOS_CENTERED,
 							1000,
 							1000},
-							0,
+							SDL_WINDOW_RESIZABLE,
 							SDL_RENDERER_ACCELERATED)))
 		return (1);
 
@@ -44,21 +44,42 @@ int		main()
 	////////////////////// ADD_BUTTONS //////////////////////
 	/////////////////////////////////////////////////////////
 
-	int				value = 0;
-	ui_simple_set	simple_set;
-
+	int					value = 0;
+	ui_simple_set		simple_set;
+	ui_text_entry_set	text_entry_set;
 
 	simple_set.normal = ui_load_image(win->rend, "textures/ui_normal_button.png");
 	simple_set.clicked = ui_load_image(win->rend, "textures/ui_clicked_button.png");
 	simple_set.on_mouse = ui_load_image(win->rend, "textures/ui_on_mouse_button.png");
 	ui_add_button(&win->ui.buttons,
-				  ui_new_button(UI_BUTTON_SIMPLE, UI_RESIZE_NONE,
+				  ui_new_button(UI_BUTTON_SIMPLE, UI_RESIZE_ALL_LINEAR,
 				  (ui_frect){0.1, 0.1, 0.09, 0.03},
 				  ui_new_simple_button(UI_MOUSE_LEFT,
 				  					   &incre_value,
 									   &value,
 									   simple_set)));
 	((ui_simple_button*)win->ui.buttons->data)->text = "button";
+
+
+	ui_add_button(&win->ui.buttons,
+				  ui_new_button(UI_BUTTON_SIMPLE, UI_RESIZE_ALL_LINEAR,
+				  (ui_frect){0.1, 0.3, 0.09, 0.03},
+				  ui_new_simple_button(UI_MOUSE_LEFT,
+				  					   &incre_value,
+									   &value,
+									   simple_set)));
+	((ui_simple_button*)win->ui.buttons->data)->text = "button";
+
+	text_entry_set.name_side_texture = NULL;
+	text_entry_set.normal_box_texture = ui_load_image(win->rend, "textures/ui_text_entry_button_normal.png");
+	text_entry_set.writting_box_texture = ui_load_image(win->rend, "textures/ui_text_entry_button_writting.png");
+	text_entry_set.name_side_texture = ui_load_image(win->rend, "textures/ui_text_entry_button_normal.png");
+	ui_add_button(&win->ui.buttons,
+				  ui_new_button(UI_BUTTON_TEXT_ENTRY,
+				  UI_RESIZE_ALL_LINEAR,
+				  (ui_frect){0.4, 0.1, 0.09, 0.03},
+				  ui_new_text_entry_button("nom", NULL, UI_TEXT_SIDE_LEFT, text_entry_set)));
+	ui_update_buttons_rect(win, SDL_TRUE);
 
 	/////////////////////////////////////////////////////////
 	///---------------------------------------------------///
@@ -71,7 +92,7 @@ int		main()
 	loop = 1;
 	while (loop)
 	{
-		ui_set_draw_color(win->rend, &(SDL_Color){100, 100, 100, 255});
+		ui_set_draw_color(win->rend, &(SDL_Color){50, 50, 50, 255});
 		ui_clear_win(win);
 		ui_display_buttons(win, win->ui.buttons);
 		// SDL_RenderCopy(win->rend, texture, NULL, NULL);

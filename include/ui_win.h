@@ -4,9 +4,10 @@
 # include "ui_button.h"
 # include "ui_event.h"
 # include "ui_shape.h"
+# include "ui_texture.h"
 # include "SDL.h"
 
-# define TEXT_BUTTON_RATIO 0.9
+# define TEXT_BUTTON_RATIO 0.8
 
 
 typedef struct		s_ui
@@ -45,6 +46,7 @@ void	ui_update_buttons(ui_win *win);
 void	ui_display_buttons(ui_win *win, ui_button *buttons);
 
 void	ui_resolve_buttons_event(ui_win *win);
+void	ui_update_buttons_rect(ui_win *win, SDL_bool force_update);
 void	ui_update_ui(ui_win *win);
 
 
