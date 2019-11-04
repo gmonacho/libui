@@ -7,8 +7,6 @@
 # include "ui_texture.h"
 # include "SDL.h"
 
-# define TEXT_BUTTON_RATIO 0.8
-
 
 typedef struct		s_ui
 {

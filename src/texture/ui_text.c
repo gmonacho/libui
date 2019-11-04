@@ -185,6 +185,7 @@ static int		ui_draw_line_in_rect(SDL_Renderer *rend, ui_text *ui_text, ui_rect r
 		{
 			if ((texture = ui_new_text(rend, ui_text->font, text, &ui_text->color)) && rect.y + ui_text->height <= rect.y + rect.h)
 			{
+				// if (width > )
 				SDL_RenderCopy(rend, texture, NULL, &(SDL_Rect){ui_get_x_alignment(rect, ui_text->alignment, width), rect.y, width, ui_text->height});
 				SDL_DestroyTexture(texture);
 			}

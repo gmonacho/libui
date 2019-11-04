@@ -60,7 +60,6 @@ int		main()
 									   simple_set)));
 	((ui_simple_button*)win->ui.buttons->data)->text = "button";
 
-
 	ui_add_button(&win->ui.buttons,
 				  ui_new_button(UI_BUTTON_SIMPLE, UI_RESIZE_ALL_LINEAR,
 				  (ui_frect){0.1, 0.3, 0.09, 0.03},
@@ -78,7 +77,8 @@ int		main()
 				  ui_new_button(UI_BUTTON_TEXT_ENTRY,
 				  UI_RESIZE_ALL_LINEAR,
 				  (ui_frect){0.4, 0.1, 0.09, 0.03},
-				  ui_new_text_entry_button("nom", NULL, UI_TEXT_SIDE_LEFT, text_entry_set)));
+				  ui_new_text_entry_button("nom", NULL, UI_TEXT_SIDE_LEFT, 10)));
+	((ui_text_entry_button*)win->ui.buttons->data)->textures = text_entry_set;
 	ui_update_buttons_rect(win, SDL_TRUE);
 
 	/////////////////////////////////////////////////////////

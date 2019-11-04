@@ -41,17 +41,22 @@ ui_simple_button		*ui_new_simple_button(ui_mouse_button clicked_condition, void 
 	return (new_simple);
 }
 
-ui_text_entry_button	*ui_new_text_entry_button(char *name, void (*f)(char *argument), ui_text_side text_side, ui_text_entry_set textures)
+ui_text_entry_button	*ui_new_text_entry_button(char *name, void (*f)(char *argument), ui_text_side text_side, int max_text_size)
 {
 	ui_text_entry_button	*new_text_entry;
 
 	if (!(new_text_entry = (ui_text_entry_button*)ft_memalloc(sizeof(ui_text_entry_button))))
-		return (ui_ret_null_error("ui_new_text_entry_button", "new_text_entry alloction failed", NULL));
+		return (ui_ret_null_error("ui_new_text_entry_button", "new_text_entry allocation failed", NULL));
 	new_text_entry->name = name;
-	new_text_entry->text = NULL;
-	new_text_entry->new_text = NULL;
+	new_text_entry->max_text_size = max_text_size;
+	if (!(new_text_entry->text = (char*)ft_memalloc(sizeof(char) * (max_text_size + 1))))
+		return (ui_ret_null_error("ui_new_text_entry_button", "new_text_entry->text allocation failed", NULL));
+	new_text_entry->text[max_text_size] = '\0';
+	if (!(new_text_entry->new_text = (char*)ft_memalloc(sizeof(char) * (max_text_size + 1))))
+		return (ui_ret_null_error("ui_new_text_entry_button", "new_text_entry->new_text allocation failed", NULL));
+	new_text_entry->new_text[max_text_size] = '\0';
 	new_text_entry->f = f;
 	new_text_entry->text_side = text_side;
-	new_text_entry->textures = textures;
+	new_text_entry->textures = (ui_text_entry_set){NULL, NULL, NULL, NULL};
 	return (new_text_entry);
 }

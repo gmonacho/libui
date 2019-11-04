@@ -35,6 +35,7 @@ typedef struct		s_text_entry_button
 {
 	char				*name;
 	char				*text;
+	int					max_text_size;
 	char				*new_text;
 	ui_text_side		text_side;
 	ui_text_entry_set	textures;
@@ -45,7 +46,7 @@ typedef struct		s_text_entry_button
 ui_text_entry_button	*ui_new_text_entry_button(char *name,
 													void (*f)(char *argument),
 													ui_text_side text_side,
-													ui_text_entry_set textures);
+													int max_text_size);
 
 
 typedef enum			s_button_type

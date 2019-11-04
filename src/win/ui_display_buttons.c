@@ -44,6 +44,7 @@ static void		ui_display_text_entry(ui_win *win, ui_text_entry_button *text_entry
 	ui_rect		texture_rect;
 	int			text_width;
 	int			text_height;
+	char		*text_entry;
 
 	if (text_entry_button->textures.current_box_texture)
 		SDL_RenderCopy(win->rend, text_entry_button->textures.current_box_texture, NULL, (SDL_Rect*)rect);
@@ -94,6 +95,22 @@ static void		ui_display_text_entry(ui_win *win, ui_text_entry_button *text_entry
 										(ui_dot){0, 0},
 										TEXT_ALIGN_CENTER}, name_rect);
 				}
+			}
+			if (win->ui.clicked_button && win->ui.clicked_button->type == UI_BUTTON_TEXT_ENTRY)
+				text_entry = text_entry_button->new_text;
+			else
+				text_entry =  text_entry_button->text;
+			if (text_entry[0] && (text_texture = ui_new_text(win->rend, win->ui.button_font, text_entry, &win->ui.button_text_color)))
+			{
+				ui_draw_text_in_rect(win->rend,
+									&(ui_text){text_entry,
+									rect->h * win->ui.button_text_ratio,
+									win->ui.button_font, win->ui.button_text_color,
+									(ui_dot){0, 0},
+									TEXT_ALIGN_LEFT}, (ui_rect){rect->x + rect->w / 10,
+																	rect->y + (rect->h - rect->h * win->ui.button_text_ratio) / 2,
+																	rect->w,
+																	rect->h * win->ui.button_text_ratio});
 			}
 		}
 	
