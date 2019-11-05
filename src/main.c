@@ -8,6 +8,11 @@ void	incre_value(void *value)
 	*int_value += 1;
 }
 
+void	assign_value(void *dst, char *value)
+{
+	*((int*)dst) = ft_atoi(value);
+}
+
 int		main()
 {
 	ui_win		*win;
@@ -45,6 +50,7 @@ int		main()
 	/////////////////////////////////////////////////////////
 
 	int					value = 0;
+	int					text_entry_value = 0;
 	ui_simple_set		simple_set;
 	ui_text_entry_set	text_entry_set;
 
@@ -77,8 +83,11 @@ int		main()
 				  ui_new_button(UI_BUTTON_TEXT_ENTRY,
 				  UI_RESIZE_ALL_LINEAR,
 				  (ui_frect){0.4, 0.1, 0.09, 0.03},
-				  ui_new_text_entry_button("nom", NULL, UI_TEXT_SIDE_LEFT, 10)));
+				  ui_new_text_entry_button("nom", &assign_value, &text_entry_value, 10)));
 	((ui_text_entry_button*)win->ui.buttons->data)->textures = text_entry_set;
+	((ui_text_entry_button*)win->ui.buttons->data)->text_type = UI_TEXT_TYPE_DIGITAL;
+	((ui_text_entry_button*)win->ui.buttons->data)->max_int = 99;
+	((ui_text_entry_button*)win->ui.buttons->data)->min_int = 0;
 	ui_update_buttons_rect(win, SDL_TRUE);
 
 	/////////////////////////////////////////////////////////
@@ -112,6 +121,7 @@ int		main()
 		ui_draw_rend(win);
 		ui_wait_event(&win->event);
 		ui_update_ui(win);
+		printf("text_entry_value = %d\n", text_entry_value);
 		if (win->event.type == SDL_QUIT)
 			loop = 0;
 	}

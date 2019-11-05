@@ -56,6 +56,7 @@ void				ft_swap(int *elem1, int *elem2);
 void				ft_tabputint(int *tab, int len);
 void				ft_addtofloat(float *nb, float add);
 void				ft_intdel(int **tab);
+int					ft_intlen(int nb);
 
 void				ft_2dstrdel(char ***tab);
 void    			ft_2dputendl(const char **str);

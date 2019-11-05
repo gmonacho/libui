@@ -31,21 +31,32 @@ typedef enum		e_text_side
 	UI_TEXT_SIDE_BOT = 4
 }					ui_text_side;
 
+typedef enum		e_text_type
+{
+	UI_TEXT_TYPE_NONE = 0,
+	UI_TEXT_TYPE_DIGITAL = 1
+}					ui_text_type;
+
 typedef struct		s_text_entry_button
 {
 	char				*name;
 	char				*text;
 	int					max_text_size;
+	int					max_int;
+	int					min_int;
 	char				*new_text;
 	ui_text_side		text_side;
+	ui_text_type		text_type;
 	ui_text_entry_set	textures;
-	void				(*f)(char *argument);
+	void				(*f)(void *argument, char *button_output);
+	void				*argument;
 	
 }					ui_text_entry_button;
 
 ui_text_entry_button	*ui_new_text_entry_button(char *name,
-													void (*f)(char *argument),
-													ui_text_side text_side,
+													void (*f)(void *argument,
+													char *button_output),
+													void *argument,
 													int max_text_size);
 
 

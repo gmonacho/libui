@@ -8,7 +8,9 @@ static void	ui_resolve_simple_button(ui_win *win, ui_simple_button *simple_butto
 }
 
 static void	ui_resolve_text_entry_button(ui_win *win, ui_text_entry_button *text_entry_button)
-{		
+{
+	int		nb;
+
 	if (win->event.type == SDL_KEYDOWN)
 	{
 		if (win->event.key.keysym.scancode == SDL_SCANCODE_BACKSPACE)
@@ -19,10 +21,30 @@ static void	ui_resolve_text_entry_button(ui_win *win, ui_text_entry_button *text
 	}
 	if (win->event.type == SDL_TEXTINPUT)
 	{
-
-		if ((int)ft_strlen(text_entry_button->new_text) <= text_entry_button->max_text_size - 1)
-        	ft_strcat(text_entry_button->new_text, win->event.text.text);
+		if (text_entry_button->text_type & UI_TEXT_TYPE_DIGITAL)
+		{
+			if (ft_isdigit(win->event.text.text[0]) || (win->event.text.text[0] == '-' && text_entry_button->min_int < 0))
+			{
+				if ((int)ft_strlen(text_entry_button->new_text) <= text_entry_button->max_text_size - 1)
+				{
+					ft_strcat(text_entry_button->new_text, win->event.text.text);
+					nb = ft_atoi(text_entry_button->new_text);
+					if (nb > text_entry_button->max_int || nb < text_entry_button->min_int)
+						text_entry_button->new_text[ft_strlen(text_entry_button->new_text) - 1] = '\0';
+				}
+			}
+		}
+		else
+		{	
+			if ((int)ft_strlen(text_entry_button->new_text) <= text_entry_button->max_text_size - 1)
+				ft_strcat(text_entry_button->new_text, win->event.text.text);
+		}
 	}
+}
+
+static void	ui_call_text_entry_function(ui_text_entry_button *text_entry_button)
+{
+	text_entry_button->f(text_entry_button->argument, text_entry_button->text);
 }
 
 void		ui_resolve_buttons_event(ui_win *win)
@@ -46,7 +68,7 @@ void		ui_resolve_buttons_event(ui_win *win)
 			SDL_StopTextInput();
 			ft_strcpy(((ui_text_entry_button*)win->ui.clicked_button->data)->text, ((ui_text_entry_button*)win->ui.clicked_button->data)->new_text);
 			ft_bzero(((ui_text_entry_button*)win->ui.clicked_button->data)->new_text, ((ui_text_entry_button*)win->ui.clicked_button->data)->max_text_size);
-			ui_resolve_simple_button(win, win->ui.clicked_button->data);
+			ui_call_text_entry_function(win->ui.clicked_button->data);
 			win->ui.clicked_button = NULL;
 		}
 		else

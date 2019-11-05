@@ -41,7 +41,7 @@ ui_simple_button		*ui_new_simple_button(ui_mouse_button clicked_condition, void 
 	return (new_simple);
 }
 
-ui_text_entry_button	*ui_new_text_entry_button(char *name, void (*f)(char *argument), ui_text_side text_side, int max_text_size)
+ui_text_entry_button	*ui_new_text_entry_button(char *name, void (*f)(void *argument, char *button_output), void *argument, int max_text_size)
 {
 	ui_text_entry_button	*new_text_entry;
 
@@ -49,6 +49,8 @@ ui_text_entry_button	*ui_new_text_entry_button(char *name, void (*f)(char *argum
 		return (ui_ret_null_error("ui_new_text_entry_button", "new_text_entry allocation failed", NULL));
 	new_text_entry->name = name;
 	new_text_entry->max_text_size = max_text_size;
+	new_text_entry->max_int = 2147483647;
+	new_text_entry->min_int = -2147483648;
 	if (!(new_text_entry->text = (char*)ft_memalloc(sizeof(char) * (max_text_size + 1))))
 		return (ui_ret_null_error("ui_new_text_entry_button", "new_text_entry->text allocation failed", NULL));
 	new_text_entry->text[max_text_size] = '\0';
@@ -56,7 +58,9 @@ ui_text_entry_button	*ui_new_text_entry_button(char *name, void (*f)(char *argum
 		return (ui_ret_null_error("ui_new_text_entry_button", "new_text_entry->new_text allocation failed", NULL));
 	new_text_entry->new_text[max_text_size] = '\0';
 	new_text_entry->f = f;
-	new_text_entry->text_side = text_side;
+	new_text_entry->argument = argument;
+	new_text_entry->text_side = UI_TEXT_SIDE_LEFT;
+	new_text_entry->text_type = UI_TEXT_TYPE_NONE;
 	new_text_entry->textures = (ui_text_entry_set){NULL, NULL, NULL, NULL};
 	return (new_text_entry);
 }

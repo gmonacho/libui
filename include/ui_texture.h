@@ -5,7 +5,6 @@
 # include "SDL_ttf.h"
 # include "ui_shape.h"
 
-
 void			ui_set_rend_target(SDL_Renderer *rend, SDL_Texture *texture);
 void			ui_draw_texture(SDL_Renderer *rend, SDL_Texture	*texture, const ui_rect *src_rect, const ui_rect *dst_rect);
 

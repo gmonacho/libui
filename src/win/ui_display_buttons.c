@@ -109,7 +109,7 @@ static void		ui_display_text_entry(ui_win *win, ui_text_entry_button *text_entry
 									(ui_dot){0, 0},
 									TEXT_ALIGN_LEFT}, (ui_rect){rect->x + rect->w / 20,
 																	rect->y + (rect->h - rect->h * win->ui.button_text_ratio) / 2,
-																	rect->w - rect->w / 20,
+																	rect->w - rect->w / 10,
 																	rect->h * win->ui.button_text_ratio},
 																	(win->ui.clicked_button && win->ui.clicked_button->data == text_entry_button) ? UI_DRAW_TEXT_HIDE_LEFT : UI_DRAW_TEXT_HIDE_RIGHT);
 			}
