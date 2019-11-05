@@ -27,8 +27,19 @@ typedef enum	e_text_align
 	TEXT_ALIGN_NONE = 0,
 	TEXT_ALIGN_LEFT = 1,
 	TEXT_ALIGN_RIGHT = 2,
-	TEXT_ALIGN_CENTER = 3
+	TEXT_ALIGN_CENTER = 4,
+	TEXT_ALIGN_V_MIDDLE = 8,
+	TEXT_ALIGN_V_TOP = 16,
+	TEXT_ALIGN_V_BOT = 32
 }				ui_text_align;
+
+typedef enum	e_text_flag
+{
+	UI_DRAW_TEXT_NONE = 0b0,
+	UI_DRAW_TEXT_LINE_BREAK = 1,
+	UI_DRAW_TEXT_HIDE_RIGHT = 2,
+	UI_DRAW_TEXT_HIDE_LEFT = 4
+}				ui_draw_text_flag;
 
 typedef struct	s_text_entry_texture_set
 {
@@ -55,6 +66,6 @@ TTF_Font		*ui_load_font(const char *file, int pixel_height);
 SDL_Texture		*ui_new_text(SDL_Renderer *rend, TTF_Font *font, const char *text, const SDL_Color *color);
 int				ui_get_text_width(TTF_Font *font, const char *text, int height);
 void			ui_draw_text(SDL_Renderer *rend, const ui_text *text);
-void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rect);
+void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rect, ui_draw_text_flag flags);
 
 #endif

@@ -27,7 +27,7 @@ static void		ui_display_simple(ui_win *win, ui_simple_button *simple_button, con
 										TEXT_ALIGN_CENTER}, (ui_rect){rect->x,
 																		rect->y + (rect->h - rect->h * win->ui.button_text_ratio) / 2,
 																		rect->w,
-																		rect->h * win->ui.button_text_ratio});
+																		rect->h * win->ui.button_text_ratio}, UI_DRAW_TEXT_NONE);
 			}
 			else
 				ui_ret_error("ui_display_simple", "ui_new_text failed", 0);
@@ -93,7 +93,7 @@ static void		ui_display_text_entry(ui_win *win, ui_text_entry_button *text_entry
 										text_height,
 										win->ui.button_font, win->ui.button_text_color,
 										(ui_dot){0, 0},
-										TEXT_ALIGN_CENTER}, name_rect);
+										TEXT_ALIGN_CENTER}, name_rect, UI_DRAW_TEXT_NONE);
 				}
 			}
 			if (win->ui.clicked_button && win->ui.clicked_button->type == UI_BUTTON_TEXT_ENTRY)
@@ -107,10 +107,11 @@ static void		ui_display_text_entry(ui_win *win, ui_text_entry_button *text_entry
 									rect->h * win->ui.button_text_ratio,
 									win->ui.button_font, win->ui.button_text_color,
 									(ui_dot){0, 0},
-									TEXT_ALIGN_LEFT}, (ui_rect){rect->x + rect->w / 10,
+									TEXT_ALIGN_LEFT}, (ui_rect){rect->x + rect->w / 20,
 																	rect->y + (rect->h - rect->h * win->ui.button_text_ratio) / 2,
-																	rect->w,
-																	rect->h * win->ui.button_text_ratio});
+																	rect->w - rect->w / 20,
+																	rect->h * win->ui.button_text_ratio},
+																	(win->ui.clicked_button && win->ui.clicked_button->data == text_entry_button) ? UI_DRAW_TEXT_HIDE_LEFT : UI_DRAW_TEXT_HIDE_RIGHT);
 			}
 		}
 	

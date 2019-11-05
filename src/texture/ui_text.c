@@ -64,9 +64,9 @@ void			ui_draw_text(SDL_Renderer *rend, const ui_text *text)
 
 static int		ui_get_x_alignment(ui_rect rect, ui_text_align aligment, int text_width)
 {	
-	if (aligment == TEXT_ALIGN_CENTER)
+	if (aligment & TEXT_ALIGN_CENTER)
 		return (rect.x + rect.w / 2 - text_width / 2);
-	else if (aligment == TEXT_ALIGN_RIGHT)
+	else if (aligment & TEXT_ALIGN_RIGHT)
 		return (rect.x + rect.w - text_width);
 	else
 		return (rect.x);
@@ -163,17 +163,20 @@ static int		ui_count_words(char *str, char c)
 	return (i_words);
 }
 
-static int		ui_draw_line_in_rect(SDL_Renderer *rend, ui_text *ui_text, ui_rect rect)
+static int		ui_draw_line_in_rect(SDL_Renderer *rend, ui_text *ui_text, ui_rect rect, ui_draw_text_flag flags)
 {
 	int			width;
 	char		*text;
 	SDL_Texture	*texture;
 	void		*tmp;
 	int			nb_words;
+	SDL_Rect	src_rect;
+	SDL_Rect	dst_rect;
+	ui_dot		texture_size;
 
 	text = ft_strdup(ui_text->text);
 	nb_words = 0;
-	while (text && nb_words < ui_count_words(text, ' '))
+	while (text && nb_words < ui_count_words(ui_text->text, ' '))
 	{
 		while (text && (width = ui_get_text_width(ui_text->font, text, ui_text->height)) > rect.w && ui_count_words(text, ' ') > 1)
 		{
@@ -185,21 +188,44 @@ static int		ui_draw_line_in_rect(SDL_Renderer *rend, ui_text *ui_text, ui_rect r
 		{
 			if ((texture = ui_new_text(rend, ui_text->font, text, &ui_text->color)) && rect.y + ui_text->height <= rect.y + rect.h)
 			{
-				// if (width > )
-				SDL_RenderCopy(rend, texture, NULL, &(SDL_Rect){ui_get_x_alignment(rect, ui_text->alignment, width), rect.y, width, ui_text->height});
+				SDL_QueryTexture(texture, NULL, NULL, &texture_size.x, &texture_size.y);
+				if (width > rect.w)
+				{
+					if (flags & UI_DRAW_TEXT_HIDE_RIGHT)
+					{
+						src_rect = (SDL_Rect){0, 0, texture_size.x * rect.w / width, texture_size.y};
+						dst_rect = (SDL_Rect){ui_get_x_alignment(rect, ui_text->alignment, width), rect.y, rect.w - 1, ui_text->height};
+					}
+					else if (flags & UI_DRAW_TEXT_HIDE_LEFT)
+					{
+						src_rect = (SDL_Rect){texture_size.x - texture_size.x * rect.w / width, 0, texture_size.x, texture_size.y};
+						dst_rect = (SDL_Rect){ui_get_x_alignment(rect, ui_text->alignment, width) + 1, rect.y, rect.w - 1, ui_text->height};
+					}
+					else
+					{
+						src_rect = (SDL_Rect){-1, -1, -1, -1};
+						dst_rect = (SDL_Rect){ui_get_x_alignment(rect, ui_text->alignment, width), rect.y, width, ui_text->height};
+					}
+				}
+				else
+				{
+					src_rect = (SDL_Rect){-1, -1, -1, -1};
+					dst_rect = (SDL_Rect){ui_get_x_alignment(rect, ui_text->alignment, width), rect.y, width, ui_text->height};
+				}
+				SDL_RenderCopy(rend, texture, (src_rect.x != -1) ? &src_rect : NULL, &dst_rect);
 				SDL_DestroyTexture(texture);
 			}
-			nb_words = ui_count_words(text, ' ');
+			nb_words += ui_count_words(text, ' ');
 			ft_strdel(&text);
 			text = ui_jump_words(ui_text->text, nb_words);
 			rect.y += ui_text->height;
-			rect.h -= rect.y;
+			rect.h -= ui_text->height;
 		}
 	}
 	return (rect.y);
 }
 
-void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rect)
+void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rect, ui_draw_text_flag flags)
 {
 	char		**text_tab;
 	int			i;
@@ -211,7 +237,7 @@ void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rec
 		i = 0;
 		while (text_tab[i])
 		{
-			y = ui_draw_line_in_rect(rend, &(ui_text){text_tab[i], text->height, text->font, text->color, text->pos, text->alignment}, rect);
+			y = ui_draw_line_in_rect(rend, &(ui_text){text_tab[i], text->height, text->font, text->color, text->pos, text->alignment}, rect, flags);
 			rect.h -= y - rect.y;
 			rect.y = y;
 			i++;

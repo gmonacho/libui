@@ -58,19 +58,17 @@ void		ui_resolve_buttons_event(ui_win *win)
 	{
 		if (ui_is_dot_in_rect(win->mouse.pos, b->rect))
 		{
-			if (win->mouse.clicking)
+			if (win->mouse.clicking && !(win->ui.clicked_button && win->ui.clicked_button->type == UI_BUTTON_TEXT_ENTRY && win->ui.clicked_button == b))
 			{
 				win->ui.clicked_button = b;
 				if (win->ui.clicked_button->type == UI_BUTTON_TEXT_ENTRY)
 				{
-    				SDL_StartTextInput();
-					if (b != win->ui.clicked_button)
-						ft_strcpy(((ui_text_entry_button*)win->ui.clicked_button->data)->new_text, ((ui_text_entry_button*)win->ui.clicked_button->data)->text);
+					SDL_StartTextInput();
+					ft_strcpy(((ui_text_entry_button*)win->ui.clicked_button->data)->new_text, ((ui_text_entry_button*)win->ui.clicked_button->data)->text);
 				}
 			}
 			win->ui.on_mouse_button = b;
 		}
 		b = b->next;
 	}
-	
 }

@@ -101,14 +101,14 @@ int		main()
 		// 										&(SDL_Color){200, 200, 255, 255},
 		// 										(ui_dot){200, 200}, TEXT_ALIGN_LEFT});
 		ui_set_draw_color(win->rend, &(SDL_Color){255, 0, 0, 255});
-		// ui_draw_rect(win->rend, &(ui_rect){200, 400, 200, 255});
-		// ui_draw_text_in_rect(win->rend, &(ui_text){"voilatrucmuch on s'ammuse\ngrosse ambiance putain\nCordialement\net\npuet puet puetpuetpuet",
-		// 										20,
-		// 										win->ui.button_font,
-		// 										(SDL_Color){200, 200, 200, 255},
-		// 										(ui_dot){200, 200},
-		// 										TEXT_ALIGN_CENTER},
-		// 										(ui_rect){200, 400, 200, 200});
+		ui_draw_rect(win->rend, &(ui_rect){400, 200, 200, 200});
+		ui_draw_text_in_rect(win->rend, &(ui_text){"11111111111111111 222222222222222222222222222 222222222222222222",
+												20,
+												win->ui.button_font,
+												(SDL_Color){200, 200, 200, 255},
+												(ui_dot){200, 200},
+												TEXT_ALIGN_LEFT | TEXT_ALIGN_V_MIDDLE},
+												(ui_rect){400, 200, 200, 200}, UI_DRAW_TEXT_HIDE_LEFT);
 		ui_draw_rend(win);
 		ui_wait_event(&win->event);
 		ui_update_ui(win);
