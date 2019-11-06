@@ -37,11 +37,36 @@ static void		ui_display_simple(ui_win *win, ui_simple_button *simple_button, con
 	}
 }
 
+static void		ui_draw_cursor(ui_win* win, char *text, const ui_rect *rect)
+{
+	int		i;
+	int		x_pos;
+	int		width;
+	int		height;
+	ui_dot	min;
+	ui_dot	max;
+
+	i = 0;
+	x_pos = 0;
+	height = TTF_FontHeight(win->ui.button_font);
+	while (i < win->ui.cursor_position)
+	{
+		TTF_GlyphMetrics(win->ui.button_font, text[i], &min.x, &max.x, &min.y, &max.y, &width);
+		printf("c = %c, minx = %d, maxx = %d, miny = %d, maxy = %d\n", text[i], min.x, max.x, min.y, max.y);
+		ui_draw_rect(win->rend, rect);
+		x_pos += rect->h * width / height;
+		i++;
+	}
+	ui_set_draw_color(win->rend, &win->ui.cursor_color);
+	ui_draw_line(win->rend, &((ui_line){(ui_dot){rect->x + x_pos, rect->y}, (ui_dot){rect->x + x_pos, rect->y + rect->h}}));
+}
+
 static void		ui_display_text_entry(ui_win *win, ui_text_entry_button *text_entry_button, const ui_rect *rect)
 {
 	SDL_Texture	*text_texture;
 	ui_rect		name_rect;
 	ui_rect		texture_rect;
+	ui_rect		display_rect;
 	int			text_width;
 	int			text_height;
 	char		*text_entry;
@@ -102,16 +127,17 @@ static void		ui_display_text_entry(ui_win *win, ui_text_entry_button *text_entry
 				text_entry =  text_entry_button->text;
 			if (text_entry[0] && (text_texture = ui_new_text(win->rend, win->ui.button_font, text_entry, &win->ui.button_text_color)))
 			{
+				display_rect = (ui_rect){rect->x + rect->w / 20,
+									rect->y + (rect->h - rect->h * win->ui.button_text_ratio) / 2,
+									rect->w - rect->w / 10,
+									rect->h * win->ui.button_text_ratio};
 				ui_draw_text_in_rect(win->rend,
 									&(ui_text){text_entry,
 									rect->h * win->ui.button_text_ratio,
 									win->ui.button_font, win->ui.button_text_color,
 									(ui_dot){0, 0},
-									TEXT_ALIGN_LEFT}, (ui_rect){rect->x + rect->w / 20,
-																	rect->y + (rect->h - rect->h * win->ui.button_text_ratio) / 2,
-																	rect->w - rect->w / 10,
-																	rect->h * win->ui.button_text_ratio},
-																	(win->ui.clicked_button && win->ui.clicked_button->data == text_entry_button) ? UI_DRAW_TEXT_HIDE_LEFT : UI_DRAW_TEXT_HIDE_RIGHT);
+									TEXT_ALIGN_LEFT}, display_rect, (win->ui.clicked_button && win->ui.clicked_button->data == text_entry_button) ? UI_DRAW_TEXT_HIDE_LEFT : UI_DRAW_TEXT_HIDE_RIGHT);
+				ui_draw_cursor(win, text_entry, &display_rect);
 			}
 		}
 	

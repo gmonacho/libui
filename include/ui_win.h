@@ -16,6 +16,8 @@ typedef struct		s_ui
 	TTF_Font		*button_font;
 	SDL_Color		button_text_color;
 	float			button_text_ratio;
+	int				cursor_position;
+	SDL_Color		cursor_color;
 }					ui_ui;
 
 typedef struct		s_win

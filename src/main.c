@@ -13,6 +13,11 @@ void	assign_value(void *dst, char *value)
 	*((int*)dst) = ft_atoi(value);
 }
 
+void 	assign_char_value(void *dst, char *value)
+{
+	*((char**)dst) = ft_strdup(value);
+}
+
 int		main()
 {
 	ui_win		*win;
@@ -50,7 +55,7 @@ int		main()
 	/////////////////////////////////////////////////////////
 
 	int					value = 0;
-	int					text_entry_value = 0;
+	char				*text_entry_value = NULL;
 	ui_simple_set		simple_set;
 	ui_text_entry_set	text_entry_set;
 
@@ -83,11 +88,9 @@ int		main()
 				  ui_new_button(UI_BUTTON_TEXT_ENTRY,
 				  UI_RESIZE_ALL_LINEAR,
 				  (ui_frect){0.4, 0.1, 0.09, 0.03},
-				  ui_new_text_entry_button("nom", &assign_value, &text_entry_value, 10)));
+				  ui_new_text_entry_button("nom", &assign_char_value, &text_entry_value, 15)));
 	((ui_text_entry_button*)win->ui.buttons->data)->textures = text_entry_set;
-	((ui_text_entry_button*)win->ui.buttons->data)->text_type = UI_TEXT_TYPE_DIGITAL;
-	((ui_text_entry_button*)win->ui.buttons->data)->max_int = 99;
-	((ui_text_entry_button*)win->ui.buttons->data)->min_int = 0;
+	// ((ui_text_entry_button*)win->ui.buttons->data)->text_type = UI_TEXT_TYPE_DIGITAL;
 	ui_update_buttons_rect(win, SDL_TRUE);
 
 	/////////////////////////////////////////////////////////
@@ -110,18 +113,18 @@ int		main()
 		// 										&(SDL_Color){200, 200, 255, 255},
 		// 										(ui_dot){200, 200}, TEXT_ALIGN_LEFT});
 		ui_set_draw_color(win->rend, &(SDL_Color){255, 0, 0, 255});
-		ui_draw_rect(win->rend, &(ui_rect){400, 200, 200, 200});
-		ui_draw_text_in_rect(win->rend, &(ui_text){"11111111111111111 222222222222222222222222222 222222222222222222",
+		ui_draw_rect(win->rend, &(ui_rect){400, 200, 200, 25});
+		ui_draw_text_in_rect(win->rend, &(ui_text){"1111111111111111122222222222",
 												20,
 												win->ui.button_font,
 												(SDL_Color){200, 200, 200, 255},
 												(ui_dot){200, 200},
 												TEXT_ALIGN_LEFT | TEXT_ALIGN_V_MIDDLE},
-												(ui_rect){400, 200, 200, 200}, UI_DRAW_TEXT_HIDE_LEFT);
+												(ui_rect){400, 200, 200, 25}, UI_DRAW_TEXT_HIDE_RIGHT);
 		ui_draw_rend(win);
 		ui_wait_event(&win->event);
 		ui_update_ui(win);
-		printf("text_entry_value = %d\n", text_entry_value);
+		// printf("text_entry_value = %s\n", text_entry_value);
 		if (win->event.type == SDL_QUIT)
 			loop = 0;
 	}

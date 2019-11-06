@@ -21,6 +21,8 @@ ui_win		*ui_new_win(const char *title, ui_rect rect, Uint32 sdl_win_flags, Uint3
 	win->ui.button_font = NULL;
 	win->ui.button_text_color = (SDL_Color){255, 255, 255, 255};
 	win->ui.button_text_ratio = 0.7;
+	win->ui.cursor_position = 0;
+	win->ui.cursor_color = (SDL_Color){255, 255, 255, 255};
 	return (win);
 }
 
@@ -92,6 +94,22 @@ void		ui_event_update_mouse(ui_mouse *mouse)
 static void		ui_event(ui_win *win)
 {
 	ui_event_update_mouse(&win->mouse);
+	if (win->event.type == SDL_KEYDOWN)
+	{
+		if (win->ui.clicked_button && win->ui.clicked_button->type == UI_BUTTON_TEXT_ENTRY)
+		{
+			if (win->event.key.keysym.scancode == SDL_SCANCODE_LEFT)
+			{
+				if (win->ui.cursor_position > 0)
+					win->ui.cursor_position--;
+			}
+			if (win->event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
+			{
+				if (win->ui.cursor_position < (int)ft_strlen(((ui_text_entry_button*)win->ui.buttons->data)->new_text))
+					win->ui.cursor_position++;
+			}
+		}
+	}
 	// if (win->event.type == SDL_WINDOWEVENT)
 	// {
 	// 	if (win->event.window.event == SDL_WINDOWEVENT_RESIZED)
