@@ -14,6 +14,14 @@ libft.h
 ui_error.h
 /home/gael/Documents/libui/src/button/ui_error.h
 
+/home/gael/Documents/libui/src/draw/draw.c
+ui_draw.h
+/home/gael/Documents/libui/src/draw/ui_draw.h
+
+/home/gael/Documents/libui/src/draw/draw_shape.c
+ui_draw.h
+/home/gael/Documents/libui/src/draw/ui_draw.h
+
 /home/gael/Documents/libui/src/event/ui_event.c
 ui_event.h
 /home/gael/Documents/libui/src/event/ui_event.h
@@ -25,6 +33,14 @@ ui.h
 /home/gael/Documents/libui/src/shape/ui_rect.c
 ui_shape.h
 /home/gael/Documents/libui/src/shape/ui_shape.h
+
+/home/gael/Documents/libui/src/texture/ui_text.c
+ui_texture.h
+/home/gael/Documents/libui/src/texture/ui_texture.h
+ui_error.h
+/home/gael/Documents/libui/src/texture/ui_error.h
+libft.h
+/home/gael/Documents/libui/src/texture/libft.h
 
 /home/gael/Documents/libui/src/texture/ui_texture.c
 ui_texture.h
@@ -53,10 +69,22 @@ ui_error.h
 /home/gael/Documents/libui/src/win/ui_display_buttons.c
 ui_win.h
 /home/gael/Documents/libui/src/win/ui_win.h
+ui_draw.h
+/home/gael/Documents/libui/src/win/ui_draw.h
+ui_error.h
+/home/gael/Documents/libui/src/win/ui_error.h
+
+/home/gael/Documents/libui/src/win/ui_resolve_buttons_event.c
+ui_win.h
+/home/gael/Documents/libui/src/win/ui_win.h
+libft.h
+/home/gael/Documents/libui/src/win/libft.h
 
 /home/gael/Documents/libui/src/win/ui_update_buttons.c
 ui_win.h
 /home/gael/Documents/libui/src/win/ui_win.h
+libft.h
+/home/gael/Documents/libui/src/win/libft.h
 
 /home/gael/Documents/libui/src/win/ui_win.c
 ui_win.h
@@ -632,6 +660,14 @@ begin_code.h
 close_code.h
 /usr/include/SDL2/close_code.h
 
+/usr/include/SDL2/SDL_ttf.h
+SDL.h
+/usr/include/SDL2/SDL.h
+begin_code.h
+/usr/include/SDL2/begin_code.h
+close_code.h
+/usr/include/SDL2/close_code.h
+
 /usr/include/SDL2/SDL_version.h
 SDL_stdinc.h
 /usr/include/SDL2/SDL_stdinc.h
@@ -663,6 +699,8 @@ stdio.h
 -
 ui_win.h
 include/ui_win.h
+ui_draw.h
+include/ui_draw.h
 libft.h
 include/libft.h
 SDL.h
@@ -675,6 +713,12 @@ ui_shape.h
 include/ui_shape.h
 ui_texture.h
 include/ui_texture.h
+
+include/ui_draw.h
+ui_shape.h
+include/ui_shape.h
+SDL.h
+include/SDL.h
 
 include/ui_error.h
 
@@ -689,6 +733,10 @@ include/ui_shape.h
 include/ui_texture.h
 SDL.h
 include/SDL.h
+SDL_ttf.h
+include/SDL_ttf.h
+ui_shape.h
+include/ui_shape.h
 
 include/ui_win.h
 ui_button.h
@@ -697,6 +745,8 @@ ui_event.h
 include/ui_event.h
 ui_shape.h
 include/ui_shape.h
+ui_texture.h
+include/ui_texture.h
 SDL.h
 include/SDL.h
 

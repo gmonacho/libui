@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(e_libui C)
 # set (CMAKE_C_COMPILER "/usr/bin/gcc")
-
+# set (CMAKE_C_FLAGS "-g3 -fsanitize=address")
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_files/)
 
 find_package(SDL2 REQUIRED)
@@ -15,10 +15,14 @@ set(LIBRARIES ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} -L${CMAK
 
 
 add_executable(${PROJECT_NAME} src/button/ui_button.c
+src/draw/draw_shape.c
+src/draw/draw.c
 src/event/ui_event.c
 src/shape/ui_rect.c
+src/texture/ui_text.c
 src/texture/ui_texture.c
 src/win/ui_display_buttons.c
+src/win/ui_resolve_buttons_event.c
 src/win/ui_update_buttons.c
 src/win/ui_win.c
 src/main.c

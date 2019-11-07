@@ -33,8 +33,8 @@ int		main()
 	if (!(win = ui_new_win("libui",
 							(ui_rect){SDL_WINDOWPOS_CENTERED,
 							SDL_WINDOWPOS_CENTERED,
-							1000,
-							1000},
+							900,
+							900},
 							SDL_WINDOW_RESIZABLE,
 							SDL_RENDERER_ACCELERATED)))
 		return (1);

@@ -1,9 +1,13 @@
 file(REMOVE_RECURSE
   "CMakeFiles/e_libui.dir/src/button/ui_button.c.o"
+  "CMakeFiles/e_libui.dir/src/draw/draw_shape.c.o"
+  "CMakeFiles/e_libui.dir/src/draw/draw.c.o"
   "CMakeFiles/e_libui.dir/src/event/ui_event.c.o"
   "CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o"
+  "CMakeFiles/e_libui.dir/src/texture/ui_text.c.o"
   "CMakeFiles/e_libui.dir/src/texture/ui_texture.c.o"
   "CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o"
+  "CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.o"
   "CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o"
   "CMakeFiles/e_libui.dir/src/win/ui_win.c.o"
   "CMakeFiles/e_libui.dir/src/main.c.o"
