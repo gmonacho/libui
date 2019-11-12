@@ -10,17 +10,17 @@ typedef enum		e_mouse_button
 	UI_MOUSE_LEFT = 1,
 	UI_MOUSE_RIGHT = 2,
 	UI_MOUSE_MIDDLE = 4
-}					ui_mouse_button;
+}					t_mouse_button;
 
-typedef struct	s_mouse
+typedef struct		s_mouse
 {
 	ui_dot			pos;
 	ui_mouse_button clicked;
 	ui_mouse_button	clicking;
 	ui_mouse_button	releasing;
-}				ui_mouse;
+}					t_mouse;
 
-void	ui_poll_event(SDL_Event *event);
-void	ui_wait_event(SDL_Event *event);
+void				ui_poll_event(SDL_Event *event);
+void				ui_wait_event(SDL_Event *event);
 
 #endif

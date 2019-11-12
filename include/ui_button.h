@@ -1,43 +1,42 @@
 #ifndef UI_BUTTON_H
 # define UI_BUTTON_H
 
-#include "ui_event.h"
-#include "ui_shape.h"
-#include "ui_texture.h"
+# include "ui_event.h"
+# include "ui_shape.h"
+# include "ui_texture.h"
 
-
-typedef enum		s_simple_state
+typedef enum			e_simple_state
 {
 	UI_SIMPLE_NONE = 0,
 	UI_SIMPLE_ON_MOUSE = 1,
 	UI_SIMPLE_CLICKED = 2
-}					ui_simple_state;
+}						t_simple_state;
 
-typedef struct		s_simple_button
+typedef struct			s_simple_button
 {
-	char			*text;
-	ui_simple_set	textures;
-	ui_mouse_button	clicked_condition;
-	void			(*f)(void *argument);
-	void			*argurment;
-}					ui_simple_button;
+	char				*text;
+	ui_simple_set		textures;
+	ui_mouse_button		clicked_condition;
+	void				(*f)(void *argument);
+	void				*argurment;
+}						t_simple_button;
 
-typedef enum		e_text_side
+typedef enum			e_text_side
 {
 	UI_TEXT_SIDE_NONE = 0,
 	UI_TEXT_SIDE_RIGHT = 1,
 	UI_TEXT_SIDE_TOP = 2,
 	UI_TEXT_SIDE_LEFT = 3,
 	UI_TEXT_SIDE_BOT = 4
-}					ui_text_side;
+}						t_text_side;
 
-typedef enum		e_text_type
+typedef enum			e_text_type
 {
 	UI_TEXT_TYPE_NONE = 0,
 	UI_TEXT_TYPE_DIGITAL = 1
-}					ui_text_type;
+}						t_text_type;
 
-typedef struct		s_text_entry_button
+typedef struct			s_text_entry_button
 {
 	char				*name;
 	char				*text;
@@ -50,8 +49,7 @@ typedef struct		s_text_entry_button
 	ui_text_entry_set	textures;
 	void				(*f)(void *argument, char *button_output);
 	void				*argument;
-	
-}					ui_text_entry_button;
+}						t_text_entry_button;
 
 ui_text_entry_button	*ui_new_text_entry_button(char *name,
 													void (*f)(void *argument,
@@ -59,19 +57,18 @@ ui_text_entry_button	*ui_new_text_entry_button(char *name,
 													void *argument,
 													int max_text_size);
 
-
-typedef enum			s_button_type
+typedef enum			e_button_type
 {
 	UI_BUTTON_NONE = 0,
 	UI_BUTTON_SIMPLE = 1,
 	UI_BUTTON_TEXT_ENTRY = 2
-}						ui_button_type;
+}						t_button_type;
 
 # define UI_RESIZE_POS_LINEAR 3
 # define UI_RESIZE_SIZE_LINEAR 12
 # define UI_RESIZE_ALL_LINEAR 15
 
-typedef enum			s_resize_type
+typedef enum			e_resize_type
 {
 	UI_RESIZE_NONE = 0,
 	UI_RESIZE_X = 1,
@@ -79,7 +76,7 @@ typedef enum			s_resize_type
 	UI_RESIZE_W = 4,
 	UI_RESIZE_H = 8,
 	UI_RESIZE_LOCK_RATIO = 16
-}						ui_resize_type;
+}						t_resize_type;
 
 typedef struct			s_button
 {
@@ -89,13 +86,16 @@ typedef struct			s_button
 	ui_rect				rect;
 	ui_frect			ratio;
 	struct s_button		*next;
-}						ui_button;
+}						t_button;
 
-ui_button			*ui_new_button(ui_button_type type, ui_resize_type resize_type, ui_frect ratio,void *data);
-ui_simple_button	*ui_new_simple_button(ui_mouse_button clicked_condition, void (*f)(void *argument), void *argument, ui_simple_set textures);
-void				ui_add_button(ui_button **buttons, ui_button *new_button);
+ui_button				*ui_new_button(t_button_type type,
+										t_resize_type resize_type,
+										t_frect ratio,
+										void *data);
+ui_simple_button		*ui_new_simple_button(t_mouse_button clicked_condition,
+												void (*f)(void *argument),
+												void *argument,
+												t_simple_set textures);
+void					ui_add_button(t_button **buttons, t_button *new_button);
 
-
-
-
-#endif	//	UI_BUTTON_H
+#endif

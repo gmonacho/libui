@@ -7,7 +7,6 @@
 # include "libft.h"
 # include "SDL.h"
 
-
 int		ui_init(Uint32 sdl_flags);
 
-#endif	//	UI_H
+#endif

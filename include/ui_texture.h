@@ -5,23 +5,28 @@
 # include "SDL_ttf.h"
 # include "ui_shape.h"
 
-void			ui_set_rend_target(SDL_Renderer *rend, SDL_Texture *texture);
-void			ui_draw_texture(SDL_Renderer *rend, SDL_Texture	*texture, const ui_rect *src_rect, const ui_rect *dst_rect);
+void				ui_set_rend_target(SDL_Renderer *rend,
+										SDL_Texture *texture);
+void				ui_draw_texture(SDL_Renderer *rend,
+									SDL_Texture	*texture,
+									const ui_rect *src_rect,
+									const ui_rect *dst_rect);
 
-typedef struct	s_button_texture_set
+typedef struct		s_button_texture_set
 {
-	SDL_Texture *normal;
-	SDL_Texture	*clicked;
-	SDL_Texture *on_mouse;
-	SDL_Texture	*current;
-}				ui_simple_set;
+	SDL_Texture		*normal;
+	SDL_Texture		*clicked;
+	SDL_Texture		*on_mouse;
+	SDL_Texture		*current;
+}					t_simple_set;
 
+SDL_Texture			*ui_load_image(SDL_Renderer *rend, const char *file);
+void				ui_destroy_texture(SDL_Texture *texture);
+ui_simple_set		ui_create_simple_set(SDL_Texture *normal,
+											SDL_Texture *clicked,
+											SDL_Texture *on_mouse);
 
-SDL_Texture		*ui_load_image(SDL_Renderer *rend, const char *file);
-void			ui_destroy_texture(SDL_Texture *texture);
-ui_simple_set	ui_create_simple_set(SDL_Texture *normal, SDL_Texture *clicked, SDL_Texture *on_mouse);
-
-typedef enum	e_text_align
+typedef enum		e_text_align
 {
 	TEXT_ALIGN_NONE = 0,
 	TEXT_ALIGN_LEFT = 1,
@@ -30,25 +35,27 @@ typedef enum	e_text_align
 	TEXT_ALIGN_V_MIDDLE = 8,
 	TEXT_ALIGN_V_TOP = 16,
 	TEXT_ALIGN_V_BOT = 32
-}				ui_text_align;
+}					t_text_align;
 
-typedef enum	e_text_flag
+typedef enum		e_text_flag
 {
 	UI_DRAW_TEXT_NONE = 0b0,
 	UI_DRAW_TEXT_LINE_BREAK = 1,
 	UI_DRAW_TEXT_HIDE_RIGHT = 2,
 	UI_DRAW_TEXT_HIDE_LEFT = 4
-}				ui_draw_text_flag;
+}					t_draw_text_flag;
 
-typedef struct	s_text_entry_texture_set
+typedef struct		s_text_entry_texture_set
 {
-	SDL_Texture *name_side_texture;
-	SDL_Texture	*normal_box_texture;
-	SDL_Texture	*writting_box_texture;
-	SDL_Texture *current_box_texture;
-}				ui_text_entry_set;
+	SDL_Texture		*name_side_texture;
+	SDL_Texture		*normal_box_texture;
+	SDL_Texture		*writting_box_texture;
+	SDL_Texture		*current_box_texture;
+}					t_text_entry_set;
 
-ui_text_entry_set	ui_create_text_entry_set(SDL_Texture *name_side_texture, SDL_Texture *normal_box_texture, SDL_Texture *writting_box_texture);
+ui_text_entry_set	ui_create_text_entry_set(SDL_Texture *name_side_texture,
+											SDL_Texture *normal_box_texture,
+											SDL_Texture *writting_box_texture);
 
 typedef struct		s_text
 {
@@ -58,13 +65,20 @@ typedef struct		s_text
 	SDL_Color		color;
 	ui_dot			pos;
 	ui_text_align	alignment;
-}					ui_text;
+}					t_text;
 
-
-TTF_Font		*ui_load_font(const char *file, int pixel_height);
-SDL_Texture		*ui_new_text(SDL_Renderer *rend, TTF_Font *font, const char *text, const SDL_Color *color);
-int				ui_get_text_width(TTF_Font *font, const char *text, int height);
-void			ui_draw_text(SDL_Renderer *rend, const ui_text *text);
-void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rect, ui_draw_text_flag flags);
+TTF_Font			*ui_load_font(const char *file, int pixel_height);
+SDL_Texture			*ui_new_text(SDL_Renderer *rend,
+									TTF_Font *font,
+									const char *text,
+									const SDL_Color *color);
+int					ui_get_text_width(TTF_Font *font,
+										const char *text,
+										int height);
+void				ui_draw_text(SDL_Renderer *rend, const t_text *text);
+void				ui_draw_text_in_rect(SDL_Renderer *rend,
+											const ui_text *text,
+											t_rect rect,
+											t_draw_text_flag flags);
 
 #endif

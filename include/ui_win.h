@@ -7,47 +7,51 @@
 # include "ui_texture.h"
 # include "SDL.h"
 
-
 typedef struct		s_ui
 {
-	ui_button		*buttons;
-	ui_button		*on_mouse_button;
-	ui_button		*clicked_button;
+	t_button		*buttons;
+	t_button		*on_mouse_button;
+	t_button		*clicked_button;
 	TTF_Font		*button_font;
 	SDL_Color		button_text_color;
 	float			button_text_ratio;
 	int				cursor_position;
 	SDL_Color		cursor_color;
-}					ui_ui;
+}					t_ui;
 
 typedef struct		s_win
 {
 	SDL_Window		*ptr;
 	SDL_Renderer	*rend;
 	SDL_Event		event;
-	ui_mouse		mouse;
-	ui_ui			ui;
-}					ui_win;
+	t_mouse			mouse;
+	t_ui			ui;
+}					t_win;
 
+t_win				*ui_new_win(const char *title,
+								t_rect rect,
+								Uint32 sdl_win_flags,
+								Uint32 sdl_rend_flags);
 
-ui_win	*ui_new_win(const char *title, ui_rect rect, Uint32 sdl_win_flags, Uint32 sdl_rend_flags);
+void				ui_set_win_size(t_win *win, int w, int h);
+t_dot				ui_get_win_size(t_win *win);
+void				ui_lock_win_size(t_win *win);
+void				ui_unlock_win_size(t_win *win);
 
-void	ui_set_win_size(ui_win *win, int w, int h);
-ui_dot	ui_get_win_size(ui_win *win);
-void	ui_lock_win_size(ui_win *win);
-void	ui_unlock_win_size(ui_win *win);
+void				ui_clear_win(t_win *win);
+void				ui_draw_rend(t_win *win);
 
-void	ui_clear_win(ui_win *win);
-void	ui_draw_rend(ui_win *win);
+void				ui_event_update_mouse(t_mouse *mouse);
 
-void	ui_event_update_mouse(ui_mouse *mouse);
+void				ui_update_buttons(t_win *win);
+	void		    ui_display_simple(t_win *win,
+										t_simple_button *simple_button,
+										const t_rect *rect);
+void            	ui_display_text_entry(t_win *win, t_text_entry_button *text_entry_button, const t_rect *rect);
+void				ui_display_buttons(t_win *win, t_button *buttons);
 
-void	ui_update_buttons(ui_win *win);
-void	ui_display_buttons(ui_win *win, ui_button *buttons);
+void				ui_resolve_buttons_event(t_win *win);
+void				ui_update_buttons_rect(t_win *win, SDL_bool force_update);
+void				ui_update_ui(t_win *win);
 
-void	ui_resolve_buttons_event(ui_win *win);
-void	ui_update_buttons_rect(ui_win *win, SDL_bool force_update);
-void	ui_update_ui(ui_win *win);
-
-
-#endif	//	UI_WIN_H
+#endif
