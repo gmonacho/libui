@@ -5,13 +5,13 @@ typedef struct	s_dot
 {
 	int			x;
 	int			y;
-}				ui_dot;
+}				t_dot;
 
 typedef struct	s_line
 {
-	ui_dot		d1;
-	ui_dot		d2;
-}				ui_line;
+	t_dot		d1;
+	t_dot		d2;
+}				t_line;
 
 typedef struct	s_rect
 {
@@ -19,7 +19,7 @@ typedef struct	s_rect
 	int			y;
 	int			w;
 	int			h;
-}				ui_rect;
+}				t_rect;
 
 typedef struct	s_frect
 {
@@ -27,9 +27,9 @@ typedef struct	s_frect
 	double		y;
 	double		w;
 	double		h;
-}				ui_frect;
+}				t_frect;
 
 
-int		ui_is_dot_in_rect(ui_dot dot, ui_rect rect);
+int				ui_is_dot_in_rect(t_dot dot, t_rect rect);
 
 #endif
