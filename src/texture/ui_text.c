@@ -37,12 +37,12 @@ int				ui_get_text_width(TTF_Font *font, const char *text, int height)
 	return (width);
 }
 
-void			ui_draw_text(SDL_Renderer *rend, const ui_text *text)
+void			ui_draw_text(SDL_Renderer *rend, const t_text *text)
 {
 	char		**text_tab;
 	SDL_Texture	*texture;
 	int			i;
-	ui_dot		pos;
+	t_dot		pos;
 
 	pos = text->pos;
 	text_tab = ft_strsplit(text->text, '\n');
@@ -62,7 +62,7 @@ void			ui_draw_text(SDL_Renderer *rend, const ui_text *text)
 	}
 }
 
-static int		ui_get_x_alignment(ui_rect rect, ui_text_align aligment, int text_width)
+static int		ui_get_x_alignment(t_rect rect, t_text_align aligment, int text_width)
 {	
 	if (aligment & TEXT_ALIGN_CENTER)
 		return (rect.x + rect.w / 2 - text_width / 2);
@@ -163,7 +163,7 @@ static int		ui_count_words(char *str, char c)
 	return (i_words);
 }
 
-static int		ui_draw_line_in_rect(SDL_Renderer *rend, ui_text *ui_text, ui_rect rect, ui_draw_text_flag flags)
+static int		ui_draw_line_in_rect(SDL_Renderer *rend, t_text *ui_text, t_rect rect, t_draw_text_flag flags)
 {
 	int			width;
 	char		*text;
@@ -172,7 +172,7 @@ static int		ui_draw_line_in_rect(SDL_Renderer *rend, ui_text *ui_text, ui_rect r
 	int			nb_words;
 	SDL_Rect	src_rect;
 	SDL_Rect	dst_rect;
-	ui_dot		texture_size;
+	t_dot		texture_size;
 
 	text = ft_strdup(ui_text->text);
 	nb_words = 0;
@@ -225,7 +225,7 @@ static int		ui_draw_line_in_rect(SDL_Renderer *rend, ui_text *ui_text, ui_rect r
 	return (rect.y);
 }
 
-void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rect, ui_draw_text_flag flags)
+void			ui_draw_text_in_rect(SDL_Renderer *rend, const t_text *text, t_rect rect, t_draw_text_flag flags)
 {
 	char		**text_tab;
 	int			i;
@@ -237,7 +237,7 @@ void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rec
 		i = 0;
 		while (text_tab[i])
 		{
-			y = ui_draw_line_in_rect(rend, &(ui_text){text_tab[i], text->height, text->font, text->color, text->pos, text->alignment}, rect, flags);
+			y = ui_draw_line_in_rect(rend, &(t_text){text_tab[i], text->height, text->font, text->color, text->pos, text->alignment}, rect, flags);
 			rect.h -= y - rect.y;
 			rect.y = y;
 			i++;

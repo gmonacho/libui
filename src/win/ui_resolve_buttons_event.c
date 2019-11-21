@@ -1,13 +1,13 @@
 #include "ui_win.h"
 #include "libft.h"
 
-static void	ui_resolve_simple_button(ui_win *win, ui_simple_button *simple_button)
+static void	ui_resolve_simple_button(t_win *win, t_simple_button *simple_button)
 {
 	if (simple_button->clicked_condition & win->mouse.releasing)
 		simple_button->f(simple_button->argurment);
 }
 
-static void	ui_resolve_text_entry_button(ui_win *win, ui_text_entry_button *text_entry_button)
+static void	ui_resolve_text_entry_button(t_win *win, t_text_entry_button *text_entry_button)
 {
 	int		nb;
 	char	tmp[text_entry_button->max_text_size + 1];
@@ -71,14 +71,14 @@ static void	ui_resolve_text_entry_button(ui_win *win, ui_text_entry_button *text
 	}
 }
 
-static void	ui_call_text_entry_function(ui_text_entry_button *text_entry_button)
+static void	ui_call_text_entry_function(t_text_entry_button *text_entry_button)
 {
 	text_entry_button->f(text_entry_button->argument, text_entry_button->text);
 }
 
-void		ui_resolve_buttons_event(ui_win *win)
+void		ui_resolve_buttons_event(t_win *win)
 {
-	ui_button			*b;
+	t_button			*b;
 
 	if (win->mouse.releasing)
 	{
@@ -95,8 +95,8 @@ void		ui_resolve_buttons_event(ui_win *win)
 		if ((win->mouse.clicking && win->ui.on_mouse_button != win->ui.clicked_button) || win->event.key.keysym.scancode == SDL_SCANCODE_RETURN)
 		{
 			SDL_StopTextInput();
-			ft_strcpy(((ui_text_entry_button*)win->ui.clicked_button->data)->text, ((ui_text_entry_button*)win->ui.clicked_button->data)->new_text);
-			ft_bzero(((ui_text_entry_button*)win->ui.clicked_button->data)->new_text, ((ui_text_entry_button*)win->ui.clicked_button->data)->max_text_size);
+			ft_strcpy(((t_text_entry_button*)win->ui.clicked_button->data)->text, ((t_text_entry_button*)win->ui.clicked_button->data)->new_text);
+			ft_bzero(((t_text_entry_button*)win->ui.clicked_button->data)->new_text, ((t_text_entry_button*)win->ui.clicked_button->data)->max_text_size);
 			ui_call_text_entry_function(win->ui.clicked_button->data);
 			win->ui.clicked_button = NULL;
 			win->ui.cursor_position = 0;
@@ -116,8 +116,8 @@ void		ui_resolve_buttons_event(ui_win *win)
 				if (win->ui.clicked_button->type == UI_BUTTON_TEXT_ENTRY)
 				{
 					SDL_StartTextInput();
-					ft_strcpy(((ui_text_entry_button*)win->ui.clicked_button->data)->new_text, ((ui_text_entry_button*)win->ui.clicked_button->data)->text);
-					win->ui.cursor_position = ft_strlen(((ui_text_entry_button*)win->ui.clicked_button->data)->new_text);
+					ft_strcpy(((t_text_entry_button*)win->ui.clicked_button->data)->new_text, ((t_text_entry_button*)win->ui.clicked_button->data)->text);
+					win->ui.cursor_position = ft_strlen(((t_text_entry_button*)win->ui.clicked_button->data)->new_text);
 				}
 			}
 			win->ui.on_mouse_button = b;

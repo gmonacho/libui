@@ -31,7 +31,7 @@ static void		ui_draw_cursor(t_win *win, char *text, const t_rect *rect)
 
 static t_rect	ui_get_name_rect(t_win *win,
 									t_text_entry_button *text_entry_button,
-									t_rect *rect)
+									const t_rect *rect)
 {
 	int			text_width;
 	int			text_height;
@@ -61,7 +61,7 @@ static t_rect	ui_get_name_rect(t_win *win,
 
 static t_rect	ui_get_texture_rect(t_win *win,
 									t_text_entry_button *text_entry_button,
-									t_rect *rect)
+									const t_rect *rect)
 {
 	int			text_width;
 	int			text_height;
@@ -164,11 +164,6 @@ void			ui_display_text_entry(t_win *win,
 										t_text_entry_button *text_entry_button,
 										const t_rect *rect)
 {
-	SDL_Texture	*text_texture;
-	t_rect		name_rect;
-	t_rect		texture_rect;
-	t_rect		display_rect;
-	char		*text_entry;
 
 	if (text_entry_button->textures.current_box_texture)
 		SDL_RenderCopy(win->rend,

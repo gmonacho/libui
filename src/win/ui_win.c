@@ -3,11 +3,11 @@
 #include "libft.h"
 #include "ui_shape.h"
 
-ui_win		*ui_new_win(const char *title, ui_rect rect, Uint32 sdl_win_flags, Uint32 sdl_rend_flags)
+t_win		*ui_new_win(const char *title, t_rect rect, Uint32 sdl_win_flags, Uint32 sdl_rend_flags)
 {
-	ui_win	*win;
+	t_win	*win;
 
-	if (!(win = (ui_win*)ft_memalloc(sizeof(ui_win))))
+	if (!(win = (t_win*)ft_memalloc(sizeof(t_win))))
 		return (ui_ret_null_error("ui_create_win", "ui_win allocation failed", NULL));
 	if (!(win->ptr = SDL_CreateWindow(title, rect.x, rect.y, rect.w, rect.h, sdl_win_flags)))
 		return (ui_ret_null_error("ui_create_win", SDL_GetError(), NULL));
@@ -26,43 +26,43 @@ ui_win		*ui_new_win(const char *title, ui_rect rect, Uint32 sdl_win_flags, Uint3
 	return (win);
 }
 
-void		ui_set_win_size(ui_win *win, int w, int h)
+void		ui_set_win_size(t_win *win, int w, int h)
 {
 	SDL_SetWindowSize(win->ptr, w, h);
 }
 
-ui_dot		ui_get_win_size(ui_win *win)
+t_dot		ui_get_win_size(t_win *win)
 {
-	ui_dot	size;
+	t_dot	size;
 
 	SDL_GetWindowSize(win->ptr, &size.x, &size.y);
 	return (size);
 }
 
-void		ui_lock_win_size(ui_win *win)
+void		ui_lock_win_size(t_win *win)
 {
 	SDL_SetWindowResizable(win->ptr, SDL_FALSE);
 }
 
-void		ui_unlock_win_size(ui_win *win)
+void		ui_unlock_win_size(t_win *win)
 {
 	SDL_SetWindowResizable(win->ptr, SDL_TRUE);
 }
 
-void		ui_clear_win(ui_win *win)
+void		ui_clear_win(t_win *win)
 {
 	SDL_RenderClear(win->rend);
 }
 
-void		ui_draw_rend(ui_win *win)
+void		ui_draw_rend(t_win *win)
 {
 	SDL_RenderPresent(win->rend);
 }
 
-void		ui_event_update_mouse(ui_mouse *mouse)
+void		ui_event_update_mouse(t_mouse *mouse)
 {
 	Uint32			mouse_state;
-	ui_mouse_button	last_clicked;
+	t_mouse_button	last_clicked;
 
 	last_clicked = mouse->clicked;
 	mouse->clicked = UI_MOUSE_NONE;
@@ -91,7 +91,7 @@ void		ui_event_update_mouse(ui_mouse *mouse)
 
 // static void		ui_window_resize()
 
-static void		ui_event(ui_win *win)
+static void		ui_event(t_win *win)
 {
 	ui_event_update_mouse(&win->mouse);
 	if (win->event.type == SDL_KEYDOWN)
@@ -105,7 +105,7 @@ static void		ui_event(ui_win *win)
 			}
 			if (win->event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
 			{
-				if (win->ui.cursor_position < (int)ft_strlen(((ui_text_entry_button*)win->ui.buttons->data)->new_text))
+				if (win->ui.cursor_position < (int)ft_strlen(((t_text_entry_button*)win->ui.buttons->data)->new_text))
 					win->ui.cursor_position++;
 			}
 		}
@@ -119,7 +119,7 @@ static void		ui_event(ui_win *win)
 	// }
 }
 
-void		ui_update_ui(ui_win *win)
+void		ui_update_ui(t_win *win)
 {
 	ui_event(win);
 	ui_resolve_buttons_event(win);
