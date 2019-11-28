@@ -52,4 +52,3 @@ t_simple_button		*ui_new_simple_button(t_mouse_button clicked_condition,
 	new_simple->text = NULL;
 	return (new_simple);
 }
-

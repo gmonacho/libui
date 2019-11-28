@@ -80,5 +80,15 @@ void				ui_draw_text_in_rect(SDL_Renderer *rend,
 											const t_text *text,
 											t_rect rect,
 											t_draw_text_flag flags);
+int					ui_get_x_alignment(t_rect rect,
+										t_text_align aligment,
+										int text_width);
 
 #endif
+
+//
+//		texture_size.x | width
+//				?		 rect.w
+//    
+//
+//

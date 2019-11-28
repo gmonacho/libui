@@ -9,14 +9,15 @@
 
 typedef struct		s_ui
 {
-	t_button		*buttons;
-	t_button		*on_mouse_button;
-	t_button		*clicked_button;
-	TTF_Font		*button_font;
-	SDL_Color		button_text_color;
-	float			button_text_ratio;
-	int				cursor_position;
-	SDL_Color		cursor_color;
+	t_button			*buttons;
+	t_button			*on_mouse_button;
+	t_button			*clicked_button;
+	TTF_Font			*button_font;
+	SDL_Color			button_text_color;
+	float				button_text_ratio;
+	int					cursor_position;
+	t_draw_text_flag	text_enrty_flags;
+	SDL_Color			cursor_color;
 }					t_ui;
 
 typedef struct		s_win
@@ -44,9 +45,9 @@ void				ui_draw_rend(t_win *win);
 void				ui_event_update_mouse(t_mouse *mouse);
 
 void				ui_update_buttons(t_win *win);
-	void		    ui_display_simple(t_win *win,
-										t_simple_button *simple_button,
-										const t_rect *rect);
+void				ui_display_simple(t_win *win,
+								t_simple_button *simple_button,
+								const t_rect *rect);
 void            	ui_display_text_entry(t_win *win, t_text_entry_button *text_entry_button, const t_rect *rect);
 void				ui_display_buttons(t_win *win, t_button *buttons);
 

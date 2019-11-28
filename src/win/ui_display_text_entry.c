@@ -1,32 +1,32 @@
 #include "ui_win.h"
 #include "ui_draw.h"
 #include "ui_error.h"
+#include "libft.h"
 
-static void		ui_draw_cursor(t_win *win, char *text, const t_rect *rect)
+static void		ui_draw_cursor(t_win *win, char *text, const t_rect *rect, int text_height, int cursor_shift)
 {
-	int		i;
 	int		x_pos;
-	t_dot	size;
-	t_dot	min;
-	t_dot	max;
+	t_dot	text_size;
+	char	pre_cursor_text[ft_strlen(text) + 1];
 
-	i = 0;
-	x_pos = 0;
-	size.y = TTF_FontHeight(win->ui.button_font);
-	while (i < win->ui.cursor_position)
-	{
-		TTF_GlyphMetrics(win->ui.button_font, text[i],
-							&min.x, &max.x,
-							&min.y, &max.y,
-							&size.x);
-		ui_draw_rect(win->rend, rect);
-		x_pos += rect->h * size.x / size.y;
-		i++;
-	}
+	// printf("cursor_shift = %d\n", cursor_shift);
+	ft_bzero(pre_cursor_text, ft_strlen(text) + 1);
+	ft_strncpy(pre_cursor_text, text, win->ui.cursor_position);
+	TTF_SizeText(win->ui.button_font, pre_cursor_text, &text_size.x, &text_size.y);
+	x_pos = (rect->h * text_size.x) / text_size.y;
+	// ui_draw_rect(win->rend, rect);
 	ui_set_draw_color(win->rend, &win->ui.cursor_color);
+	if (ui_get_text_width(win->ui.button_font, text, text_height) >= rect->w)
+	{
+		x_pos = rect->x + x_pos - cursor_shift;
+	}
+	else if (win->ui.cursor_position == 0)
+		x_pos = rect->x;
+	else
+		x_pos = rect->x + x_pos;
 	ui_draw_line(win->rend,
-					&((t_line){(t_dot){rect->x + x_pos, rect->y},
-					(t_dot){rect->x + x_pos, rect->y + rect->h}}));
+		&((t_line){(t_dot){x_pos, rect->y},
+		(t_dot){x_pos, rect->y + rect->h}}));
 }
 
 static t_rect	ui_get_name_rect(t_win *win,
@@ -90,12 +90,21 @@ static void		ui_draw_text_side(t_win *win,
 									char *text_entry,
 									t_text_entry_button *text_entry_button)
 {
-	t_rect display_rect;
+	t_rect 				display_rect;
+	char				pre_cursor_text[ft_strlen(text_entry) + 1];
+	int					cursor_x;
+	t_dot				text_size;
+	// t_draw_text_flag	hide;
 
+	ft_bzero(pre_cursor_text, ft_strlen(text_entry) + 1);
+	ft_strncpy(pre_cursor_text, text_entry, win->ui.cursor_position);
+	TTF_SizeText(win->ui.button_font, pre_cursor_text, &text_size.x, &text_size.y);
+	cursor_x = (display_rect.h * text_size.x) / text_size.y;
 	display_rect = (t_rect){rect->x + rect->w / 20,
 				rect->y + (rect->h - rect->h * win->ui.button_text_ratio) / 2,
 				rect->w - rect->w / 10,
 				rect->h * win->ui.button_text_ratio};
+	// align = (cursor_x > display_rect.w) ? TEXT_ALIGN_RIGHT : TEXT_ALIGN_LEFT;
 	ui_draw_text_in_rect(win->rend,
 				&(t_text){text_entry,
 				rect->h * win->ui.button_text_ratio,
@@ -106,7 +115,10 @@ static void		ui_draw_text_side(t_win *win,
 				(win->ui.clicked_button
 				&& win->ui.clicked_button->data == text_entry_button) ?
 				UI_DRAW_TEXT_HIDE_LEFT : UI_DRAW_TEXT_HIDE_RIGHT);
-	ui_draw_cursor(win, text_entry, &display_rect);
+	ui_draw_cursor(win, text_entry,
+					&display_rect,
+					rect->h * win->ui.button_text_ratio,
+	ui_get_text_width(win->ui.button_font, text_entry, rect->h * win->ui.button_text_ratio) - rect->w + rect->w / 10);
 }
 
 static void		ui_draw_name_side(t_win *win,
@@ -164,7 +176,6 @@ void			ui_display_text_entry(t_win *win,
 										t_text_entry_button *text_entry_button,
 										const t_rect *rect)
 {
-
 	if (text_entry_button->textures.current_box_texture)
 		SDL_RenderCopy(win->rend,
 						text_entry_button->textures.current_box_texture,
