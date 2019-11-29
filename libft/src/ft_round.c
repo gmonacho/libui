@@ -16,8 +16,8 @@ int		ft_round(double nb)
 	int		rounded;
 
 	rounded = nb;
-	if (nb - (double)rounded < nb - ((double)rounded + 1.0))
-		return (rounded);
+	if (nb - (double)rounded > 0.5)
+		return (rounded + 1);
 	else
 		return (rounded);
 }

@@ -9,8 +9,8 @@ void				ui_set_rend_target(SDL_Renderer *rend,
 										SDL_Texture *texture);
 void				ui_draw_texture(SDL_Renderer *rend,
 									SDL_Texture	*texture,
-									const ui_rect *src_rect,
-									const ui_rect *dst_rect);
+									const t_rect *src_rect,
+									const t_rect *dst_rect);
 
 typedef struct		s_button_texture_set
 {
@@ -22,7 +22,7 @@ typedef struct		s_button_texture_set
 
 SDL_Texture			*ui_load_image(SDL_Renderer *rend, const char *file);
 void				ui_destroy_texture(SDL_Texture *texture);
-ui_simple_set		ui_create_simple_set(SDL_Texture *normal,
+t_simple_set		ui_create_simple_set(SDL_Texture *normal,
 											SDL_Texture *clicked,
 											SDL_Texture *on_mouse);
 
@@ -53,7 +53,7 @@ typedef struct		s_text_entry_texture_set
 	SDL_Texture		*current_box_texture;
 }					t_text_entry_set;
 
-ui_text_entry_set	ui_create_text_entry_set(SDL_Texture *name_side_texture,
+t_text_entry_set	ui_create_text_entry_set(SDL_Texture *name_side_texture,
 											SDL_Texture *normal_box_texture,
 											SDL_Texture *writting_box_texture);
 
@@ -63,8 +63,8 @@ typedef struct		s_text
 	int				height;
 	TTF_Font		*font;
 	SDL_Color		color;
-	ui_dot			pos;
-	ui_text_align	alignment;
+	t_dot			pos;
+	t_text_align	alignment;
 }					t_text;
 
 TTF_Font			*ui_load_font(const char *file, int pixel_height);
@@ -77,8 +77,18 @@ int					ui_get_text_width(TTF_Font *font,
 										int height);
 void				ui_draw_text(SDL_Renderer *rend, const t_text *text);
 void				ui_draw_text_in_rect(SDL_Renderer *rend,
-											const ui_text *text,
+											const t_text *text,
 											t_rect rect,
 											t_draw_text_flag flags);
+int					ui_get_x_alignment(t_rect rect,
+										t_text_align aligment,
+										int text_width);
 
 #endif
+
+//
+//		texture_size.x | width
+//				?		 rect.w
+//    
+//
+//

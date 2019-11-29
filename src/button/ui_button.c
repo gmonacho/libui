@@ -2,14 +2,14 @@
 #include "libft.h"
 #include "ui_error.h"
 
-ui_button				*ui_new_button(ui_button_type type,
-										ui_resize_type resize_type,
-										ui_frect ratio,
+t_button				*ui_new_button(t_button_type type,
+										t_resize_type resize_type,
+										t_frect ratio,
 										void *data)
 {
-	ui_button	*new_button;
+	t_button	*new_button;
 
-	if (!(new_button = (ui_button*)ft_memalloc(sizeof(ui_button))))
+	if (!(new_button = (t_button*)ft_memalloc(sizeof(t_button))))
 		return (ui_ret_null_error("ui_new_button",
 									"new_button allocation failed",
 									NULL));
@@ -21,8 +21,8 @@ ui_button				*ui_new_button(ui_button_type type,
 	return (new_button);
 }
 
-void					ui_add_button(ui_button **buttons,
-										ui_button *new_button)
+void					ui_add_button(t_button **buttons,
+										t_button *new_button)
 {
 	if (new_button)
 	{
@@ -33,15 +33,15 @@ void					ui_add_button(ui_button **buttons,
 		ui_ret_error("ui_add_button", "new_button is NULL", 0);
 }
 
-ui_simple_button		*ui_new_simple_button(ui_mouse_button clicked_condition,
+t_simple_button		*ui_new_simple_button(t_mouse_button clicked_condition,
 												void (*f)(void *argument),
 												void *argument,
-												ui_simple_set textures)
+												t_simple_set textures)
 {
-	ui_simple_button	*new_simple;
+	t_simple_button	*new_simple;
 
-	if (!(new_simple = (ui_simple_button*)ft_memalloc(
-						sizeof(ui_simple_button))))
+	if (!(new_simple = (t_simple_button*)ft_memalloc(
+						sizeof(t_simple_button))))
 		return (ui_ret_null_error("ui_new_simple_button",
 									"new_simple allocation_failed",
 									NULL));
@@ -52,4 +52,3 @@ ui_simple_button		*ui_new_simple_button(ui_mouse_button clicked_condition,
 	new_simple->text = NULL;
 	return (new_simple);
 }
-

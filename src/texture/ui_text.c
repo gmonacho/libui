@@ -11,7 +11,10 @@ TTF_Font		*ui_load_font(const char *file, int pixel_height)
 	return (new_font);
 }
 
-SDL_Texture		*ui_new_text(SDL_Renderer *rend, TTF_Font *font, const char *text, const SDL_Color *color)
+SDL_Texture		*ui_new_text(SDL_Renderer *rend,
+								TTF_Font *font,
+								const char *text,
+								const SDL_Color *color)
 {
 	SDL_Surface	*surface;
 	SDL_Texture	*texture;
@@ -37,12 +40,12 @@ int				ui_get_text_width(TTF_Font *font, const char *text, int height)
 	return (width);
 }
 
-void			ui_draw_text(SDL_Renderer *rend, const ui_text *text)
+void			ui_draw_text(SDL_Renderer *rend, const t_text *text)
 {
 	char		**text_tab;
 	SDL_Texture	*texture;
 	int			i;
-	ui_dot		pos;
+	t_dot		pos;
 
 	pos = text->pos;
 	text_tab = ft_strsplit(text->text, '\n');
@@ -51,9 +54,12 @@ void			ui_draw_text(SDL_Renderer *rend, const ui_text *text)
 		i = 0;
 		while (text_tab[i])
 		{
-			if ((texture = ui_new_text(rend, text->font, text_tab[i], &text->color)))
+			if ((texture = ui_new_text(rend, text->font, text_tab[i],
+														&text->color)))
 			{
-				SDL_RenderCopy(rend, texture, NULL, &(SDL_Rect){pos.x, pos.y, ui_get_text_width(text->font, text_tab[i], text->height), text->height});
+				SDL_RenderCopy(rend, texture, NULL, &(SDL_Rect){pos.x, pos.y,
+					ui_get_text_width(text->font, text_tab[i],
+									text->height), text->height});
 				SDL_DestroyTexture(texture);
 			}
 			pos.y += text->height;
@@ -62,8 +68,8 @@ void			ui_draw_text(SDL_Renderer *rend, const ui_text *text)
 	}
 }
 
-static int		ui_get_x_alignment(ui_rect rect, ui_text_align aligment, int text_width)
-{	
+int		ui_get_x_alignment(t_rect rect, t_text_align aligment, int text_width)
+{
 	if (aligment & TEXT_ALIGN_CENTER)
 		return (rect.x + rect.w / 2 - text_width / 2);
 	else if (aligment & TEXT_ALIGN_RIGHT)
@@ -79,7 +85,10 @@ static char		*ui_remove_last_word(const char *text, char c)
 	int			i;
 
 	if (!(new_text = ft_strrev(text)))
-		return (ui_ret_null_error("ui_remove_last_word", "ft_strrev [0] failed", NULL));
+	{
+		return (ui_ret_null_error("ui_remove_last_word",
+			"ft_strrev [0] failed", NULL));
+	}
 	i = 0;
 	while (new_text[i] && new_text[i] != c)
 		i++;
@@ -87,31 +96,20 @@ static char		*ui_remove_last_word(const char *text, char c)
 		i++;
 	tmp = (void*)new_text;
 	if (!(new_text = ft_strdup(&new_text[i])))
-		return (ui_ret_null_error("ui_remove_last_word", "ft_strdup failed", NULL));
+	{
+		return (ui_ret_null_error("ui_remove_last_word",
+									"ft_strdup failed", NULL));
+	}
 	ft_strdel((char**)&tmp);
 	tmp = (void*)new_text;
 	if (!(new_text = ft_strrev(new_text)))
-		return (ui_ret_null_error("ui_remove_last_word", "ft_strrev [1] failed", NULL));
+	{
+		return (ui_ret_null_error("ui_remove_last_word",
+								"ft_strrev [1] failed", NULL));
+	}
 	ft_strdel((char**)&tmp);
 	return (new_text);
 }
-
-// static char		*ui_remove_last_letter(const char *text)
-// {
-// 	char	*new_text;
-// 	void	*tmp;
-
-// 	if (!(new_text = ft_strrev(text)))
-// 		return (ui_ret_null_error("ui_remove_last_letter", "ft_strrev [0] failed", NULL));
-// 	tmp = (void*)new_text;
-// 	if (!(new_text = ft_strdup(&new_text[1])))
-// 		return(ui_ret_null_error("ui_remoce_last_letter", "ft_strdup", NULL));
-// 	ft_strdel((char**)&tmp);
-// 	if (!(new_text = ft_strrev(new_text)))
-// 		return (ui_ret_null_error("ui_remove_last_letter", "ft_strrev [2] failed", NULL));
-// 	ft_strdel((char**)&tmp);
-// 	return (new_text);
-// }
 
 static char		*ui_jump_words(char *str, int nb_words)
 {
@@ -163,7 +161,7 @@ static int		ui_count_words(char *str, char c)
 	return (i_words);
 }
 
-static int		ui_draw_line_in_rect(SDL_Renderer *rend, ui_text *ui_text, ui_rect rect, ui_draw_text_flag flags)
+static int		ui_draw_line_in_rect(SDL_Renderer *rend, t_text *ui_text, t_rect rect, t_draw_text_flag flags)
 {
 	int			width;
 	char		*text;
@@ -172,7 +170,7 @@ static int		ui_draw_line_in_rect(SDL_Renderer *rend, ui_text *ui_text, ui_rect r
 	int			nb_words;
 	SDL_Rect	src_rect;
 	SDL_Rect	dst_rect;
-	ui_dot		texture_size;
+	t_dot		texture_size;
 
 	text = ft_strdup(ui_text->text);
 	nb_words = 0;
@@ -225,7 +223,7 @@ static int		ui_draw_line_in_rect(SDL_Renderer *rend, ui_text *ui_text, ui_rect r
 	return (rect.y);
 }
 
-void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rect, ui_draw_text_flag flags)
+void			ui_draw_text_in_rect(SDL_Renderer *rend, const t_text *text, t_rect rect, t_draw_text_flag flags)
 {
 	char		**text_tab;
 	int			i;
@@ -237,7 +235,7 @@ void			ui_draw_text_in_rect(SDL_Renderer *rend, const ui_text *text, ui_rect rec
 		i = 0;
 		while (text_tab[i])
 		{
-			y = ui_draw_line_in_rect(rend, &(ui_text){text_tab[i], text->height, text->font, text->color, text->pos, text->alignment}, rect, flags);
+			y = ui_draw_line_in_rect(rend, &(t_text){text_tab[i], text->height, text->font, text->color, text->pos, text->alignment}, rect, flags);
 			rect.h -= y - rect.y;
 			rect.y = y;
 			i++;

@@ -15,8 +15,8 @@ typedef enum			e_simple_state
 typedef struct			s_simple_button
 {
 	char				*text;
-	ui_simple_set		textures;
-	ui_mouse_button		clicked_condition;
+	t_simple_set		textures;
+	t_mouse_button		clicked_condition;
 	void				(*f)(void *argument);
 	void				*argurment;
 }						t_simple_button;
@@ -44,14 +44,14 @@ typedef struct			s_text_entry_button
 	int					max_int;
 	int					min_int;
 	char				*new_text;
-	ui_text_side		text_side;
-	ui_text_type		text_type;
-	ui_text_entry_set	textures;
+	t_text_side		text_side;
+	t_text_type		text_type;
+	t_text_entry_set	textures;
 	void				(*f)(void *argument, char *button_output);
 	void				*argument;
 }						t_text_entry_button;
 
-ui_text_entry_button	*ui_new_text_entry_button(char *name,
+t_text_entry_button	*ui_new_text_entry_button(char *name,
 													void (*f)(void *argument,
 													char *button_output),
 													void *argument,
@@ -81,18 +81,18 @@ typedef enum			e_resize_type
 typedef struct			s_button
 {
 	void				*data;
-	ui_button_type		type;
-	ui_resize_type		resize_type;
-	ui_rect				rect;
-	ui_frect			ratio;
+	t_button_type		type;
+	t_resize_type		resize_type;
+	t_rect				rect;
+	t_frect			ratio;
 	struct s_button		*next;
 }						t_button;
 
-ui_button				*ui_new_button(t_button_type type,
+t_button				*ui_new_button(t_button_type type,
 										t_resize_type resize_type,
 										t_frect ratio,
 										void *data);
-ui_simple_button		*ui_new_simple_button(t_mouse_button clicked_condition,
+t_simple_button		*ui_new_simple_button(t_mouse_button clicked_condition,
 												void (*f)(void *argument),
 												void *argument,
 												t_simple_set textures);

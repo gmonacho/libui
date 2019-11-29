@@ -20,7 +20,7 @@ void 	assign_char_value(void *dst, char *value)
 
 int		main()
 {
-	ui_win		*win;
+	t_win		*win;
 	int			loop;
 
 	if (ui_init(SDL_INIT_VIDEO) < 0)
@@ -31,7 +31,7 @@ int		main()
 	/////////////////////////////////////////////////////////
 
 	if (!(win = ui_new_win("libui",
-							(ui_rect){SDL_WINDOWPOS_CENTERED,
+							(t_rect){SDL_WINDOWPOS_CENTERED,
 							SDL_WINDOWPOS_CENTERED,
 							900,
 							900},
@@ -56,29 +56,29 @@ int		main()
 
 	int					value = 0;
 	char				*text_entry_value = NULL;
-	ui_simple_set		simple_set;
-	ui_text_entry_set	text_entry_set;
+	t_simple_set		simple_set;
+	t_text_entry_set	text_entry_set;
 
 	simple_set.normal = ui_load_image(win->rend, "textures/ui_normal_button.png");
 	simple_set.clicked = ui_load_image(win->rend, "textures/ui_clicked_button.png");
 	simple_set.on_mouse = ui_load_image(win->rend, "textures/ui_on_mouse_button.png");
 	ui_add_button(&win->ui.buttons,
 				  ui_new_button(UI_BUTTON_SIMPLE, UI_RESIZE_ALL_LINEAR,
-				  (ui_frect){0.1, 0.1, 0.09, 0.03},
+				  (t_frect){0.1, 0.1, 0.09, 0.03},
 				  ui_new_simple_button(UI_MOUSE_LEFT,
 				  					   &incre_value,
 									   &value,
 									   simple_set)));
-	((ui_simple_button*)win->ui.buttons->data)->text = "button";
+	((t_simple_button*)win->ui.buttons->data)->text = "button";
 
 	ui_add_button(&win->ui.buttons,
 				  ui_new_button(UI_BUTTON_SIMPLE, UI_RESIZE_ALL_LINEAR,
-				  (ui_frect){0.1, 0.3, 0.09, 0.03},
+				  (t_frect){0.1, 0.3, 0.09, 0.03},
 				  ui_new_simple_button(UI_MOUSE_LEFT,
 				  					   &incre_value,
 									   &value,
 									   simple_set)));
-	((ui_simple_button*)win->ui.buttons->data)->text = "button";
+	((t_simple_button*)win->ui.buttons->data)->text = "button";
 
 	text_entry_set.name_side_texture = NULL;
 	text_entry_set.normal_box_texture = ui_load_image(win->rend, "textures/ui_text_entry_button_normal.png");
@@ -87,9 +87,9 @@ int		main()
 	ui_add_button(&win->ui.buttons,
 				  ui_new_button(UI_BUTTON_TEXT_ENTRY,
 				  UI_RESIZE_ALL_LINEAR,
-				  (ui_frect){0.4, 0.1, 0.09, 0.03},
+				  (t_frect){0.4, 0.1, 0.09, 0.03},
 				  ui_new_text_entry_button("nom", &assign_char_value, &text_entry_value, 15)));
-	((ui_text_entry_button*)win->ui.buttons->data)->textures = text_entry_set;
+	((t_text_entry_button*)win->ui.buttons->data)->textures = text_entry_set;
 	// ((ui_text_entry_button*)win->ui.buttons->data)->text_type = UI_TEXT_TYPE_DIGITAL;
 	ui_update_buttons_rect(win, SDL_TRUE);
 
@@ -113,14 +113,14 @@ int		main()
 		// 										&(SDL_Color){200, 200, 255, 255},
 		// 										(ui_dot){200, 200}, TEXT_ALIGN_LEFT});
 		ui_set_draw_color(win->rend, &(SDL_Color){255, 0, 0, 255});
-		ui_draw_rect(win->rend, &(ui_rect){400, 200, 200, 25});
-		ui_draw_text_in_rect(win->rend, &(ui_text){"1111111111111111122222222222",
+		ui_draw_rect(win->rend, &(t_rect){400, 200, 200, 25});
+		ui_draw_text_in_rect(win->rend, &(t_text){"1111111111111111122222222222",
 												20,
 												win->ui.button_font,
 												(SDL_Color){200, 200, 200, 255},
-												(ui_dot){200, 200},
+												(t_dot){200, 200},
 												TEXT_ALIGN_LEFT | TEXT_ALIGN_V_MIDDLE},
-												(ui_rect){400, 200, 200, 25}, UI_DRAW_TEXT_HIDE_RIGHT);
+												(t_rect){400, 200, 200, 25}, UI_DRAW_TEXT_HIDE_RIGHT);
 		ui_draw_rend(win);
 		ui_wait_event(&win->event);
 		ui_update_ui(win);

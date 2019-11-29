@@ -3,14 +3,17 @@
 #include "ui_error.h"
 
 static void			ui_init_new_text_entry_button(
-						t_text_entry_button *new_text_entry)
+						t_text_entry_button *new_text_entry,
+						char *name,
+						void (*f)(void *argument,
+								char *button_output),
+						void *argument)
 {
 	new_text_entry->name = name;
-	new_text_entry->max_text_size = max_text_size;
 	new_text_entry->max_int = 2147483647;
 	new_text_entry->min_int = -2147483648;
-	new_text_entry->text[max_text_size] = '\0';
-	new_text_entry->new_text[max_text_size] = '\0';
+	new_text_entry->text[new_text_entry->max_text_size] = '\0';
+	new_text_entry->new_text[new_text_entry->max_text_size] = '\0';
 	new_text_entry->f = f;
 	new_text_entry->argument = argument;
 	new_text_entry->text_side = UI_TEXT_SIDE_LEFT;
@@ -42,6 +45,7 @@ t_text_entry_button	*ui_new_text_entry_button(char *name,
 									"new_text_entry->new_text\
 									allocation failed",
 									NULL));
-    ui_init_new_text_entry_button(new_text_entry);
+	new_text_entry->max_text_size = max_text_size;
+    ui_init_new_text_entry_button(new_text_entry, name, f, argument);
 	return (new_text_entry);
 }
