@@ -5,7 +5,7 @@ frame
     ratio : 0.4 0.1 0.09 0.03
     button
     {
-        ratio : 0.0 0.0 0.025 1.0
+        type : 
         text : +
         flags : 16896
         gflags : 0
