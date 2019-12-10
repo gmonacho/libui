@@ -2,6 +2,7 @@
 # define UI_WIN_H
 
 # include "ui_button.h"
+# include "ui_frame.h"
 # include "ui_event.h"
 # include "ui_shape.h"
 # include "ui_texture.h"
@@ -9,7 +10,7 @@
 
 typedef struct		s_ui
 {
-	t_button			*buttons;
+	t_frame				*frames;
 	t_button			*on_mouse_button;
 	t_button			*clicked_button;
 	TTF_Font			*button_font;
@@ -45,13 +46,18 @@ void				ui_draw_rend(t_win *win);
 void				ui_event_update_mouse(t_mouse *mouse);
 
 void				ui_update_buttons(t_win *win);
+
 void				ui_display_simple(t_win *win,
 								t_simple_button *simple_button,
 								const t_rect *rect);
 void            	ui_display_text_entry(t_win *win, t_text_entry_button *text_entry_button, const t_rect *rect);
 void				ui_display_buttons(t_win *win, t_button *buttons);
+void				ui_update_buttons_textures(t_win *win, t_button *on_mouse_button, t_button *clicked_button);
+void				ui_display_frames(t_win *win, t_frame *frames);
+void				ui_display_simple_frame(t_win *win, t_simple_frame *simple_frame, const t_rect *rect);
 
 void				ui_resolve_buttons_event(t_win *win);
+void				ui_update_frames(t_win *win);
 void				ui_update_buttons_rect(t_win *win, SDL_bool force_update);
 void				ui_update_ui(t_win *win);
 

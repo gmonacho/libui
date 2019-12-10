@@ -3,6 +3,7 @@
 
 # include <stdio.h>
 # include "ui_win.h"
+# include "ui_frame.h"
 # include "ui_draw.h"
 # include "libft.h"
 # include "SDL.h"

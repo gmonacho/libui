@@ -1,0 +1,17 @@
+frame
+{
+    type : UI_FRAME_SIMPLE
+    resize_type : UI_RESIZE_ALL_LINEAR
+    ratio : 0.4 0.1 0.09 0.03
+    button
+    {
+        ratio : 0.0 0.0 0.025 1.0
+        text : +
+        flags : 16896
+        gflags : 0
+        data :
+        {
+            name : +
+        }
+    }
+}

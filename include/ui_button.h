@@ -84,7 +84,7 @@ typedef struct			s_button
 	t_button_type		type;
 	t_resize_type		resize_type;
 	t_rect				rect;
-	t_frect			ratio;
+	t_frect				ratio;
 	struct s_button		*next;
 }						t_button;
 

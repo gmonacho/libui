@@ -32,45 +32,56 @@ static void		ui_update_text_entry(t_text_entry_button *text_entry_button, t_butt
 void			ui_update_buttons_rect(t_win *win, SDL_bool force_update)
 {
 	t_button	*b;
+	t_frame		*f;
 	t_dot		win_size;
 
 	SDL_GetWindowSize(win->ptr, &win_size.x, &win_size.y);
-	b = win->ui.buttons;
-	while (b)
+	f = win->ui.frames;
+	while (f)
 	{
-		if (!(b->resize_type & UI_RESIZE_LOCK_RATIO) || force_update)
+		b = f->buttons;
+		while (b)
 		{
-			if (b->resize_type & UI_RESIZE_W || force_update)
-				b->rect.w = b->ratio.w * win_size.x;
-			if (b->resize_type & UI_RESIZE_H || force_update)
-				b->rect.h = b->ratio.h * win_size.y;
-			if (b->resize_type & UI_RESIZE_X || force_update)
-				b->rect.x = b->ratio.x * win_size.x;
-			if (b->resize_type & UI_RESIZE_Y || force_update)
-				b->rect.y = b->ratio.y * win_size.y;
+			if (!(b->resize_type & UI_RESIZE_LOCK_RATIO) || force_update)
+			{
+				if (b->resize_type & UI_RESIZE_W || force_update)
+					b->rect.w = b->ratio.w * win_size.x;
+				if (b->resize_type & UI_RESIZE_H || force_update)
+					b->rect.h = b->ratio.h * win_size.y;
+				if (b->resize_type & UI_RESIZE_X || force_update)
+					b->rect.x = b->ratio.x * win_size.x;
+				if (b->resize_type & UI_RESIZE_Y || force_update)
+					b->rect.y = b->ratio.y * win_size.y;
+			}
+			b = b->next;
 		}
-		b = b->next;
-	}	
+		f = f->next;
+	}
 }
 
-static void			ui_update_buttons_textures(t_button **buttons, t_button *on_mouse_button, t_button *clicked_button)
+void			ui_update_buttons_textures(t_win *win, t_button *on_mouse_button, t_button *clicked_button)
 {
+	t_frame		*f;
 	t_button	*b;
 
-	b = *buttons;
-	while (b)
+	f = win->ui.frames;
+	while (f)
 	{
-		if (b->type == UI_BUTTON_SIMPLE)
-			ui_update_simple_button((t_simple_button*)b->data, b, on_mouse_button, clicked_button);
-		else if (b->type == UI_BUTTON_TEXT_ENTRY)
-			ui_update_text_entry((t_text_entry_button*)b->data, b, clicked_button);
-		b = b->next;
+		b = f->buttons;
+		while (b)
+		{
+			if (b->type == UI_BUTTON_SIMPLE)
+				ui_update_simple_button((t_simple_button*)b->data, b, on_mouse_button, clicked_button);
+			else if (b->type == UI_BUTTON_TEXT_ENTRY)
+				ui_update_text_entry((t_text_entry_button*)b->data, b, clicked_button);
+			b = b->next;
+		}
+		f = f->next;
 	}
 }
 
 void			ui_update_buttons(t_win *win)
 {
 	ui_update_buttons_rect(win, SDL_FALSE);
-	ui_update_buttons_textures(&win->ui.buttons, win->ui.on_mouse_button, win->ui.clicked_button);
+	ui_update_buttons_textures(win, win->ui.on_mouse_button, win->ui.clicked_button);
 }
-
