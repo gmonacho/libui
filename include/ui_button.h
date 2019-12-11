@@ -14,6 +14,7 @@ typedef enum			e_simple_state
 
 typedef struct			s_simple_button
 {
+	int					id;
 	char				*text;
 	t_simple_set		textures;
 	t_mouse_button		clicked_condition;
@@ -44,8 +45,8 @@ typedef struct			s_text_entry_button
 	int					max_int;
 	int					min_int;
 	char				*new_text;
-	t_text_side		text_side;
-	t_text_type		text_type;
+	t_text_side			text_side;
+	t_text_type			text_type;
 	t_text_entry_set	textures;
 	void				(*f)(void *argument, char *button_output);
 	void				*argument;
