@@ -30,8 +30,6 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	str[len] = '\0';
 	while (i < len && s[start])
-	{
 		str[i++] = s[is++];
-	}
 	return (str);
 }

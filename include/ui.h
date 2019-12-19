@@ -9,5 +9,6 @@
 # include "SDL.h"
 
 int		ui_init(Uint32 sdl_flags);
+int     ui_load(const char *path, t_win *win);
 
 #endif

@@ -8,6 +8,7 @@ SRCS_PATH_4 =   button
 SRCS_PATH_5 =   texture
 SRCS_PATH_6 =   draw
 SRCS_PATH_7 =   frame
+SRCS_PATH_8 =   load_ui
 
 #Pas le droit aux wildcards
 SRCS =      $(wildcard $(SRCS_PATH)/*.c)\
@@ -17,7 +18,8 @@ SRCS =      $(wildcard $(SRCS_PATH)/*.c)\
             $(wildcard $(SRCS_PATH)/$(SRCS_PATH_4)/*.c)\
             $(wildcard $(SRCS_PATH)/$(SRCS_PATH_5)/*.c)\
             $(wildcard $(SRCS_PATH)/$(SRCS_PATH_6)/*.c)\
-            $(wildcard $(SRCS_PATH)/$(SRCS_PATH_7)/*.c)
+            $(wildcard $(SRCS_PATH)/$(SRCS_PATH_7)/*.c)\
+            $(wildcard $(SRCS_PATH)/$(SRCS_PATH_8)/*.c)
 
 OBJS_PATH = ./objs
 OBJS = $(patsubst $(SRCS_PATH)/%.c , $(OBJS_PATH)/%.o , $(SRCS))
@@ -62,11 +64,20 @@ $(OBJS_PATH)/$(SRCS_PATH_6)/%.o : $(SRCS_PATH)/$(SRCS_PATH_6)/%.c
 		$(CC) $(CFLAGS) -c $< -o $@
 $(OBJS_PATH)/$(SRCS_PATH_7)/%.o : $(SRCS_PATH)/$(SRCS_PATH_7)/%.c
 		$(CC) $(CFLAGS) -c $< -o $@
+$(OBJS_PATH)/$(SRCS_PATH_8)/%.o : $(SRCS_PATH)/$(SRCS_PATH_8)/%.c
+		$(CC) $(CFLAGS) -c $< -o $@
 
 
 directory:
 		@mkdir $(OBJS_PATH) 2> /dev/null || true
 		@mkdir $(OBJS_PATH)/$(SRCS_PATH_1) 2> /dev/null || true
+		@mkdir $(OBJS_PATH)/$(SRCS_PATH_2) 2> /dev/null || true
+		@mkdir $(OBJS_PATH)/$(SRCS_PATH_3) 2> /dev/null || true
+		@mkdir $(OBJS_PATH)/$(SRCS_PATH_4) 2> /dev/null || true
+		@mkdir $(OBJS_PATH)/$(SRCS_PATH_5) 2> /dev/null || true
+		@mkdir $(OBJS_PATH)/$(SRCS_PATH_6) 2> /dev/null || true
+		@mkdir $(OBJS_PATH)/$(SRCS_PATH_7) 2> /dev/null || true
+		@mkdir $(OBJS_PATH)/$(SRCS_PATH_8) 2> /dev/null || true
 
 clean:
 		rm -rf $(OBJS_PATH)
