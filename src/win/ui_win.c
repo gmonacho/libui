@@ -1,4 +1,5 @@
 #include "ui_win.h"
+#include "ui_frame.h"
 #include "ui_error.h"
 #include "libft.h"
 #include "ui_shape.h"
@@ -15,7 +16,7 @@ t_win		*ui_new_win(const char *title, t_rect rect, Uint32 sdl_win_flags, Uint32 
 		return (ui_ret_null_error("ui_create_win", SDL_GetError(), NULL));
 	SDL_PollEvent(&win->event);
 	ui_event_update_mouse(&win->mouse);
-	win->ui.buttons = NULL;
+	win->ui.frames = NULL;
 	win->ui.on_mouse_button = NULL;
 	win->ui.clicked_button = NULL;
 	win->ui.button_font = NULL;
@@ -105,7 +106,7 @@ static void		ui_event(t_win *win)
 			}
 			if (win->event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
 			{
-				if (win->ui.cursor_position < (int)ft_strlen(((t_text_entry_button*)win->ui.buttons->data)->new_text))
+				if (win->ui.cursor_position < (int)ft_strlen(((t_text_entry_button*)win->ui.clicked_button->data)->new_text))
 					win->ui.cursor_position++;
 			}
 		}
@@ -123,5 +124,5 @@ void		ui_update_ui(t_win *win)
 {
 	ui_event(win);
 	ui_resolve_buttons_event(win);
-	ui_update_buttons(win);
+	ui_update_frames(win);
 }

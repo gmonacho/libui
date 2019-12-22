@@ -1,0 +1,25 @@
+frame
+{
+    type : UI_FRAME_SIMPLE
+    resize_type : UI_RESIZE_ALL_LINEAR | UI_RESIZE_X
+    ratio : 0.4 0.1 0.09 0.03
+    data
+    {
+        texture : textures/ui_frame.png∂
+    }
+    button
+    {
+        id : "btruc"
+        type : UI_BUTTON_SIMPLE
+        resize_type : UI_RESIZE_ALL_LINEAR
+        ratio : 0.2 0.2 0.4 0.1
+        data
+        {
+            text : "button text"
+            texture_normal : textures/ui_normal_button.png
+            texture_clicked : textures/ui_clicked_button.png
+            texture_on_mouse : textures/ui_on_mouse_button.png
+            clicked_condition : UI_SIMPLE_CLICKED
+        }
+    }
+}

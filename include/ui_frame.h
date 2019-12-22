@@ -1,3 +1,38 @@
 #ifndef UI_FRAME_H
 # define UI_FRAME_H
+
+# include "ui_button.h"
+
+typedef enum    s_frame_type
+{
+    UI_FRAME_NONE = 0,
+    UI_FRAME_SIMPLE = 1
+}               t_frame_type;
+
+typedef struct  		s_frame
+{
+	void				*data;
+	t_frame_type		type;
+	t_resize_type		resize_type;
+	t_rect				rect;
+	t_frect			    ratio;
+    t_button            *buttons;
+	struct s_frame		*next;
+}               		t_frame;
+
+typedef struct 			s_simple_frame
+{
+	char				*text;
+	t_frect				text_ratio;
+	SDL_Texture			*texture;
+	SDL_Texture			*text_background;
+}						t_simple_frame;
+
+t_frame     	*ui_new_frame(t_frame_type type, t_resize_type resize_type, t_frect ratio, void *data);
+void			ui_add_frame(t_frame **frames, t_frame *new_frame);
+t_simple_frame	*ui_new_simple_frame(char *text,
+										t_frect text_ratio,
+										SDL_Texture *texture,
+										SDL_Texture *text_background);
+
 #endif
