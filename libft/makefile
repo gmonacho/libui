@@ -16,6 +16,7 @@ NAME = libft.a
 CC = gcc
 
 SRCS = ./src/ft_atoi.c\
+	./src/ft_atof.c\
 	./src/ft_abs.c\
 	./src/ft_bzero.c\
 	./src/ft_isalnum.c\

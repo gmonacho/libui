@@ -1,7 +1,7 @@
 frame
 {
     type : UI_FRAME_SIMPLE
-    resize_type : UI_RESIZE_ALL_LINEAR | UI_RESIZE_X
+    resize_type : UI_RESIZE_ALL_LINEAR
     ratio : 0.4 0.1 0.09 0.03
     data
     {

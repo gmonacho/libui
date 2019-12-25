@@ -94,6 +94,7 @@ size_t				ft_tablen(void **tab);
 
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_atoi(const char *str);
+float				ft_atof(const char *str);
 double				ft_abs(double n);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);

@@ -81,9 +81,33 @@ CMakeFiles/e_libui.dir/src/button/ui_button.c.o.provides: CMakeFiles/e_libui.dir
 CMakeFiles/e_libui.dir/src/button/ui_button.c.o.provides.build: CMakeFiles/e_libui.dir/src/button/ui_button.c.o
 
 
+CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o: CMakeFiles/e_libui.dir/flags.make
+CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o: src/button/ui_text_entry_button.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o   -c /home/gael/Documents/libui/src/button/ui_text_entry_button.c
+
+CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gael/Documents/libui/src/button/ui_text_entry_button.c > CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.i
+
+CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gael/Documents/libui/src/button/ui_text_entry_button.c -o CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.s
+
+CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o.requires:
+
+.PHONY : CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o.requires
+
+CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o.provides: CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o.requires
+	$(MAKE) -f CMakeFiles/e_libui.dir/build.make CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o.provides.build
+.PHONY : CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o.provides
+
+CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o.provides.build: CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o
+
+
 CMakeFiles/e_libui.dir/src/draw/draw_shape.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/draw/draw_shape.c.o: src/draw/draw_shape.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/e_libui.dir/src/draw/draw_shape.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/e_libui.dir/src/draw/draw_shape.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/draw/draw_shape.c.o   -c /home/gael/Documents/libui/src/draw/draw_shape.c
 
 CMakeFiles/e_libui.dir/src/draw/draw_shape.c.i: cmake_force
@@ -107,7 +131,7 @@ CMakeFiles/e_libui.dir/src/draw/draw_shape.c.o.provides.build: CMakeFiles/e_libu
 
 CMakeFiles/e_libui.dir/src/draw/draw.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/draw/draw.c.o: src/draw/draw.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/e_libui.dir/src/draw/draw.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/e_libui.dir/src/draw/draw.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/draw/draw.c.o   -c /home/gael/Documents/libui/src/draw/draw.c
 
 CMakeFiles/e_libui.dir/src/draw/draw.c.i: cmake_force
@@ -131,7 +155,7 @@ CMakeFiles/e_libui.dir/src/draw/draw.c.o.provides.build: CMakeFiles/e_libui.dir/
 
 CMakeFiles/e_libui.dir/src/event/ui_event.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/event/ui_event.c.o: src/event/ui_event.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/e_libui.dir/src/event/ui_event.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/e_libui.dir/src/event/ui_event.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/event/ui_event.c.o   -c /home/gael/Documents/libui/src/event/ui_event.c
 
 CMakeFiles/e_libui.dir/src/event/ui_event.c.i: cmake_force
@@ -155,7 +179,7 @@ CMakeFiles/e_libui.dir/src/event/ui_event.c.o.provides.build: CMakeFiles/e_libui
 
 CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o: src/shape/ui_rect.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o   -c /home/gael/Documents/libui/src/shape/ui_rect.c
 
 CMakeFiles/e_libui.dir/src/shape/ui_rect.c.i: cmake_force
@@ -177,9 +201,57 @@ CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o.provides: CMakeFiles/e_libui.dir/sr
 CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o.provides.build: CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o
 
 
+CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o: CMakeFiles/e_libui.dir/flags.make
+CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o: src/load_ui/ui_load.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o   -c /home/gael/Documents/libui/src/load_ui/ui_load.c
+
+CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gael/Documents/libui/src/load_ui/ui_load.c > CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.i
+
+CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gael/Documents/libui/src/load_ui/ui_load.c -o CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.s
+
+CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o.requires:
+
+.PHONY : CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o.requires
+
+CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o.provides: CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o.requires
+	$(MAKE) -f CMakeFiles/e_libui.dir/build.make CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o.provides.build
+.PHONY : CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o.provides
+
+CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o.provides.build: CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o
+
+
+CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o: CMakeFiles/e_libui.dir/flags.make
+CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o: src/texture/ui_renderer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o   -c /home/gael/Documents/libui/src/texture/ui_renderer.c
+
+CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gael/Documents/libui/src/texture/ui_renderer.c > CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.i
+
+CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gael/Documents/libui/src/texture/ui_renderer.c -o CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.s
+
+CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o.requires:
+
+.PHONY : CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o.requires
+
+CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o.provides: CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o.requires
+	$(MAKE) -f CMakeFiles/e_libui.dir/build.make CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o.provides.build
+.PHONY : CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o.provides
+
+CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o.provides.build: CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o
+
+
 CMakeFiles/e_libui.dir/src/texture/ui_text.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/texture/ui_text.c.o: src/texture/ui_text.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/e_libui.dir/src/texture/ui_text.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/e_libui.dir/src/texture/ui_text.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/texture/ui_text.c.o   -c /home/gael/Documents/libui/src/texture/ui_text.c
 
 CMakeFiles/e_libui.dir/src/texture/ui_text.c.i: cmake_force
@@ -203,7 +275,7 @@ CMakeFiles/e_libui.dir/src/texture/ui_text.c.o.provides.build: CMakeFiles/e_libu
 
 CMakeFiles/e_libui.dir/src/texture/ui_texture.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/texture/ui_texture.c.o: src/texture/ui_texture.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/e_libui.dir/src/texture/ui_texture.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/e_libui.dir/src/texture/ui_texture.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/texture/ui_texture.c.o   -c /home/gael/Documents/libui/src/texture/ui_texture.c
 
 CMakeFiles/e_libui.dir/src/texture/ui_texture.c.i: cmake_force
@@ -227,7 +299,7 @@ CMakeFiles/e_libui.dir/src/texture/ui_texture.c.o.provides.build: CMakeFiles/e_l
 
 CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o: src/win/ui_display_buttons.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o   -c /home/gael/Documents/libui/src/win/ui_display_buttons.c
 
 CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.i: cmake_force
@@ -249,9 +321,105 @@ CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o.provides: CMakeFiles/e_lib
 CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o.provides.build: CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o
 
 
+CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o: CMakeFiles/e_libui.dir/flags.make
+CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o: src/win/ui_display_frames.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o   -c /home/gael/Documents/libui/src/win/ui_display_frames.c
+
+CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gael/Documents/libui/src/win/ui_display_frames.c > CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.i
+
+CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gael/Documents/libui/src/win/ui_display_frames.c -o CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.s
+
+CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o.requires:
+
+.PHONY : CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o.requires
+
+CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o.provides: CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o.requires
+	$(MAKE) -f CMakeFiles/e_libui.dir/build.make CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o.provides.build
+.PHONY : CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o.provides
+
+CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o.provides.build: CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o
+
+
+CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o: CMakeFiles/e_libui.dir/flags.make
+CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o: src/win/ui_display_simple.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o   -c /home/gael/Documents/libui/src/win/ui_display_simple.c
+
+CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gael/Documents/libui/src/win/ui_display_simple.c > CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.i
+
+CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gael/Documents/libui/src/win/ui_display_simple.c -o CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.s
+
+CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o.requires:
+
+.PHONY : CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o.requires
+
+CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o.provides: CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o.requires
+	$(MAKE) -f CMakeFiles/e_libui.dir/build.make CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o.provides.build
+.PHONY : CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o.provides
+
+CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o.provides.build: CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o
+
+
+CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o: CMakeFiles/e_libui.dir/flags.make
+CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o: src/frame/ui_frame.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o   -c /home/gael/Documents/libui/src/frame/ui_frame.c
+
+CMakeFiles/e_libui.dir/src/frame/ui_frame.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/e_libui.dir/src/frame/ui_frame.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gael/Documents/libui/src/frame/ui_frame.c > CMakeFiles/e_libui.dir/src/frame/ui_frame.c.i
+
+CMakeFiles/e_libui.dir/src/frame/ui_frame.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/e_libui.dir/src/frame/ui_frame.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gael/Documents/libui/src/frame/ui_frame.c -o CMakeFiles/e_libui.dir/src/frame/ui_frame.c.s
+
+CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o.requires:
+
+.PHONY : CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o.requires
+
+CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o.provides: CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o.requires
+	$(MAKE) -f CMakeFiles/e_libui.dir/build.make CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o.provides.build
+.PHONY : CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o.provides
+
+CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o.provides.build: CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o
+
+
+CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o: CMakeFiles/e_libui.dir/flags.make
+CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o: src/win/ui_display_text_entry.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o   -c /home/gael/Documents/libui/src/win/ui_display_text_entry.c
+
+CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gael/Documents/libui/src/win/ui_display_text_entry.c > CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.i
+
+CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gael/Documents/libui/src/win/ui_display_text_entry.c -o CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.s
+
+CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o.requires:
+
+.PHONY : CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o.requires
+
+CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o.provides: CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o.requires
+	$(MAKE) -f CMakeFiles/e_libui.dir/build.make CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o.provides.build
+.PHONY : CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o.provides
+
+CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o.provides.build: CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o
+
+
 CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.o: src/win/ui_resolve_buttons_event.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.o   -c /home/gael/Documents/libui/src/win/ui_resolve_buttons_event.c
 
 CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.i: cmake_force
@@ -275,7 +443,7 @@ CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.o.provides.build: CMak
 
 CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o: src/win/ui_update_buttons.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o   -c /home/gael/Documents/libui/src/win/ui_update_buttons.c
 
 CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.i: cmake_force
@@ -297,9 +465,33 @@ CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o.provides: CMakeFiles/e_libu
 CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o.provides.build: CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o
 
 
+CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o: CMakeFiles/e_libui.dir/flags.make
+CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o: src/win/ui_update_frames.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o   -c /home/gael/Documents/libui/src/win/ui_update_frames.c
+
+CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gael/Documents/libui/src/win/ui_update_frames.c > CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.i
+
+CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gael/Documents/libui/src/win/ui_update_frames.c -o CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.s
+
+CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o.requires:
+
+.PHONY : CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o.requires
+
+CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o.provides: CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o.requires
+	$(MAKE) -f CMakeFiles/e_libui.dir/build.make CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o.provides.build
+.PHONY : CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o.provides
+
+CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o.provides.build: CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o
+
+
 CMakeFiles/e_libui.dir/src/win/ui_win.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/win/ui_win.c.o: src/win/ui_win.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/e_libui.dir/src/win/ui_win.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/e_libui.dir/src/win/ui_win.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/win/ui_win.c.o   -c /home/gael/Documents/libui/src/win/ui_win.c
 
 CMakeFiles/e_libui.dir/src/win/ui_win.c.i: cmake_force
@@ -323,7 +515,7 @@ CMakeFiles/e_libui.dir/src/win/ui_win.c.o.provides.build: CMakeFiles/e_libui.dir
 
 CMakeFiles/e_libui.dir/src/main.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/main.c.o: src/main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/e_libui.dir/src/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/e_libui.dir/src/main.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/main.c.o   -c /home/gael/Documents/libui/src/main.c
 
 CMakeFiles/e_libui.dir/src/main.c.i: cmake_force
@@ -347,7 +539,7 @@ CMakeFiles/e_libui.dir/src/main.c.o.provides.build: CMakeFiles/e_libui.dir/src/m
 
 CMakeFiles/e_libui.dir/src/ui_error.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/ui_error.c.o: src/ui_error.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/e_libui.dir/src/ui_error.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/e_libui.dir/src/ui_error.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/ui_error.c.o   -c /home/gael/Documents/libui/src/ui_error.c
 
 CMakeFiles/e_libui.dir/src/ui_error.c.i: cmake_force
@@ -371,7 +563,7 @@ CMakeFiles/e_libui.dir/src/ui_error.c.o.provides.build: CMakeFiles/e_libui.dir/s
 
 CMakeFiles/e_libui.dir/src/ui_init.c.o: CMakeFiles/e_libui.dir/flags.make
 CMakeFiles/e_libui.dir/src/ui_init.c.o: src/ui_init.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/e_libui.dir/src/ui_init.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/e_libui.dir/src/ui_init.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/e_libui.dir/src/ui_init.c.o   -c /home/gael/Documents/libui/src/ui_init.c
 
 CMakeFiles/e_libui.dir/src/ui_init.c.i: cmake_force
@@ -396,15 +588,23 @@ CMakeFiles/e_libui.dir/src/ui_init.c.o.provides.build: CMakeFiles/e_libui.dir/sr
 # Object files for target e_libui
 e_libui_OBJECTS = \
 "CMakeFiles/e_libui.dir/src/button/ui_button.c.o" \
+"CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o" \
 "CMakeFiles/e_libui.dir/src/draw/draw_shape.c.o" \
 "CMakeFiles/e_libui.dir/src/draw/draw.c.o" \
 "CMakeFiles/e_libui.dir/src/event/ui_event.c.o" \
 "CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o" \
+"CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o" \
+"CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o" \
 "CMakeFiles/e_libui.dir/src/texture/ui_text.c.o" \
 "CMakeFiles/e_libui.dir/src/texture/ui_texture.c.o" \
 "CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o" \
+"CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o" \
+"CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o" \
+"CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o" \
+"CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o" \
 "CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.o" \
 "CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o" \
+"CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o" \
 "CMakeFiles/e_libui.dir/src/win/ui_win.c.o" \
 "CMakeFiles/e_libui.dir/src/main.c.o" \
 "CMakeFiles/e_libui.dir/src/ui_error.c.o" \
@@ -414,15 +614,23 @@ e_libui_OBJECTS = \
 e_libui_EXTERNAL_OBJECTS =
 
 e_libui: CMakeFiles/e_libui.dir/src/button/ui_button.c.o
+e_libui: CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o
 e_libui: CMakeFiles/e_libui.dir/src/draw/draw_shape.c.o
 e_libui: CMakeFiles/e_libui.dir/src/draw/draw.c.o
 e_libui: CMakeFiles/e_libui.dir/src/event/ui_event.c.o
 e_libui: CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o
+e_libui: CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o
+e_libui: CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o
 e_libui: CMakeFiles/e_libui.dir/src/texture/ui_text.c.o
 e_libui: CMakeFiles/e_libui.dir/src/texture/ui_texture.c.o
 e_libui: CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o
+e_libui: CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o
+e_libui: CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o
+e_libui: CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o
+e_libui: CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o
 e_libui: CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.o
 e_libui: CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o
+e_libui: CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o
 e_libui: CMakeFiles/e_libui.dir/src/win/ui_win.c.o
 e_libui: CMakeFiles/e_libui.dir/src/main.c.o
 e_libui: CMakeFiles/e_libui.dir/src/ui_error.c.o
@@ -433,7 +641,7 @@ e_libui: /usr/lib/x86_64-linux-gnu/libSDL2.so
 e_libui: /usr/lib/x86_64-linux-gnu/libSDL2_image.so
 e_libui: /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so
 e_libui: CMakeFiles/e_libui.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking C executable e_libui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gael/Documents/libui/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking C executable e_libui"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/e_libui.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -442,15 +650,23 @@ CMakeFiles/e_libui.dir/build: e_libui
 .PHONY : CMakeFiles/e_libui.dir/build
 
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/button/ui_button.c.o.requires
+CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/button/ui_text_entry_button.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/draw/draw_shape.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/draw/draw.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/event/ui_event.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/shape/ui_rect.c.o.requires
+CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/load_ui/ui_load.c.o.requires
+CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/texture/ui_renderer.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/texture/ui_text.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/texture/ui_texture.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/win/ui_display_buttons.c.o.requires
+CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/win/ui_display_frames.c.o.requires
+CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/win/ui_display_simple.c.o.requires
+CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/frame/ui_frame.c.o.requires
+CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/win/ui_display_text_entry.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/win/ui_resolve_buttons_event.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/win/ui_update_buttons.c.o.requires
+CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/win/ui_update_frames.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/win/ui_win.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/main.c.o.requires
 CMakeFiles/e_libui.dir/requires: CMakeFiles/e_libui.dir/src/ui_error.c.o.requires

@@ -3,6 +3,46 @@
 #include "ui_error.h"
 #include "libft.h"
 
+static int	get_float(char *str, double *fnb_ptr)
+{	
+	double	fnb;
+	int		i;
+
+	i = 0;
+	while (!(ft_isprint(str[i]) && str[i]))
+		i++;
+	fnb = ft_atof(str);
+	while (ft_isdigit(str[i]))
+		i++;
+	if (str[i] == '.' || str[i] == ',')
+	{
+		i++;
+		while (ft_isdigit(str[i]))
+			i++;
+	}
+	*fnb_ptr = fnb;
+	return (i);
+}
+
+static int	get_ratio(const char *line, t_frect *ratio_ptr)
+{
+	printf("\n..... get_ratio .....\n");
+	char	*ratio_str;
+	void	*ptr;
+
+	ptr = ratio_ptr;
+
+	if (!(ratio_str = ft_strstr(line, " : ")))
+		return (ui_ret_error("get_ratio", "\" : \" not found", 0));
+	ratio_str += 3;
+	ratio_str += get_float(ratio_str, &ratio_ptr->x);
+	ratio_str += get_float(ratio_str, &ratio_ptr->y);
+	ratio_str += get_float(ratio_str, &ratio_ptr->w);
+	ratio_str += get_float(ratio_str, &ratio_ptr->h);
+	printf("ratio .x = %f, .y = %f, w = %f, h = %f\n", (*ratio_ptr).x, (*ratio_ptr).y, (*ratio_ptr).w, (*ratio_ptr).h);
+	return (1);
+}
+
 static char		*get_next_flag(const char *flags)
 {
 	char	*flag;
@@ -154,6 +194,10 @@ static int		parse_frame(t_win *win, char **text, int *i)
 		(*i)++;
 		if (!check_line_name(text[index], "resize_type") || (f->resize_type = get_resize_type(text[index])) <= 0)
 			return (ui_ret_error("parse_frame", "\"resize_type : <t_resize_type>\" expected", 0));
+		index++;
+		(*i)++;
+		if (!check_line_name(text[index], "ratio") || !get_ratio((const char*)text[index], &f->ratio))
+			return (ui_ret_error("parse_frame", "\"ratio : <t_frect>\" expected", 0));
 		index++;
 		(*i)++;
 	}

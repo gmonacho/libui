@@ -177,9 +177,12 @@ void			ui_display_text_entry(t_win *win,
 										const t_rect *rect)
 {
 	if (text_entry_button->textures.current_box_texture)
+	{
+		printf("win->rend = %p, current_text = %p normal = %p\n", win->rend, text_entry_button->textures.current_box_texture, text_entry_button->textures.normal_box_texture);
 		SDL_RenderCopy(win->rend,
 						text_entry_button->textures.current_box_texture,
 						NULL, (SDL_Rect*)rect);
+	}
 	else
 	{
 		ui_set_draw_color(win->rend, &(SDL_Color){200, 200, 200, 255});
