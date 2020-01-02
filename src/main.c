@@ -136,32 +136,32 @@ int		main()
 	/////////////////////////////////////////////////////////
 
 	loop = 1;
-	// while (loop)
-	// {
-	// 	ui_set_draw_color(win->rend, &(SDL_Color){50, 50, 50, 255});
-	// 	ui_clear_win(win);
-	// 	ui_display_frames(win, win->ui.frames);
-	// 	// SDL_RenderCopy(win->rend, texture, NULL, NULL);
-	// 	// ui_draw_text(win->rend, font, &(ui_text){"voilatrucmuch on s'ammuse\ngrosse ambiance putain\nCordialement\n",
-	// 	// 										20,
-	// 	// 										&(SDL_Color){200, 200, 255, 255},
-	// 	// 										(ui_dot){200, 200}, TEXT_ALIGN_LEFT});
-	// 	ui_set_draw_color(win->rend, &(SDL_Color){255, 0, 0, 255});
-	// 	// ui_draw_rect(win->rend, &(t_rect){400, 200, 200, 25});
-	// 	// ui_draw_text_in_rect(win->rend, &(t_text){"1111111111111111122222222222",
-	// 	// 										20,
-	// 	// 										win->ui.button_font,
-	// 	// 										(SDL_Color){200, 200, 200, 255},
-	// 	// 										(t_dot){200, 200},
-	// 	// 										TEXT_ALIGN_LEFT | TEXT_ALIGN_V_MIDDLE},
-	// 	// 										(t_rect){400, 200, 200, 25}, UI_DRAW_TEXT_HIDE_RIGHT);
-	// 	ui_draw_rend(win);
-	// 	ui_wait_event(&win->event);
-	// 	ui_update_ui(win);
-	// 	// printf("text_entry_value = %s\n", text_entry_value);
-	// 	if (win->event.type == SDL_QUIT)
-	// 		loop = 0;
-	// }
+	while (loop)
+	{
+		ui_set_draw_color(win->rend, &(SDL_Color){50, 50, 50, 255});
+		ui_clear_win(win);
+		ui_display_frames(win, win->ui.frames);
+		// SDL_RenderCopy(win->rend, texture, NULL, NULL);
+		// ui_draw_text(win->rend, font, &(ui_text){"voilatrucmuch on s'ammuse\ngrosse ambiance putain\nCordialement\n",
+		// 										20,
+		// 										&(SDL_Color){200, 200, 255, 255},
+		// 										(ui_dot){200, 200}, TEXT_ALIGN_LEFT});
+		ui_set_draw_color(win->rend, &(SDL_Color){255, 0, 0, 255});
+		// ui_draw_rect(win->rend, &(t_rect){400, 200, 200, 25});
+		// ui_draw_text_in_rect(win->rend, &(t_text){"1111111111111111122222222222",
+		// 										20,
+		// 										win->ui.button_font,
+		// 										(SDL_Color){200, 200, 200, 255},
+		// 										(t_dot){200, 200},
+		// 										TEXT_ALIGN_LEFT | TEXT_ALIGN_V_MIDDLE},
+		// 										(t_rect){400, 200, 200, 25}, UI_DRAW_TEXT_HIDE_RIGHT);
+		ui_draw_rend(win);
+		ui_wait_event(&win->event);
+		ui_update_ui(win);
+		// printf("text_entry_value = %s\n", text_entry_value);
+		if (win->event.type == SDL_QUIT)
+			loop = 0;
+	}
 
 	/////////////////////////////////////////////////////////
 	///---------------------------------------------------///
