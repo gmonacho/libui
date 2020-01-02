@@ -10,6 +10,7 @@ float	ft_atof(const char *str)
 
 	is_neg = 1;
 	nb = 0;
+	fnb = 0;
 	zero_count = 0;
 	if (str)
 	{

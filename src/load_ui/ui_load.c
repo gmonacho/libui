@@ -175,6 +175,55 @@ static int		check_line_name(const char *line, const char *expected)
 		return (1);
 }
 
+static int		get_button_type(const char *line)
+{
+	char	*type;
+
+	printf("\n..... get_button_type .....\n");
+	if (!(type = ft_strstr(line, " : ")))
+		return (ui_ret_error("get_button_type", "\" : \" not found", -1));
+	type += 3;
+	printf("type = %s\n", type);
+	if (ft_strcmp(type, "UI_BUTTON_SIMPLE") == 0)
+		return (UI_BUTTON_SIMPLE);
+	else if (ft_strcmp(type, "UI_BUTTON_TEXT_ENTRY") == 0)
+		return (UI_BUTTON_TEXT_ENTRY);
+	else
+		return (ui_ret_error("get_button_type", "invalid button type", -1));
+}
+
+static int		parse_button(char **text, int *i)
+{
+	printf("\n''''' parse_button '''''\n");
+	t_button	*b;
+	int			index;
+
+	if (!(b = (t_button*)ft_memalloc(sizeof(t_button))))
+		return (ui_ret_error("parse_button", "b allocation failed", 0));
+	index = 0;
+	if (!check_line_name((const char *)text[index], "id")) // string a parser
+		return (ui_ret_error("parse_button", "\"id : <str>\" expected", 0));
+	index++;
+	(*i)++;
+	if (!check_line_name((const char *)text[index], "type") || (b->type = get_button_type((const char*)text[index])) <= 0)
+		return (ui_ret_error("parse_button", "\"type : <t_button_type>\" expected", 0));
+	printf("button->type = %d\n", b->type);
+	index++;
+	(*i)++;
+	if (!check_line_name((const char *)text[index], "resize_type") || (b->resize_type = get_resize_type((const char*)text[index])) <= 0)
+		return (ui_ret_error("parse_button", "\"resize_type : <t_resize_type>\" expected", 0));
+	index++;
+	(*i)++;
+	if (!check_line_name((const char *)text[index], "ratio") || !get_ratio((const char*)text[index], &b->ratio))
+		return (ui_ret_error("parse_button", "\"ratio : <t_frect>\" expected", 0));
+	return (1);
+}
+
+// static int		parse_buttons()
+// {
+// 	t_
+// }
+
 static int		parse_frame(t_win *win, char **text, int *i)
 {
 	printf("\n''''' parse_frame '''''\n");
@@ -200,6 +249,11 @@ static int		parse_frame(t_win *win, char **text, int *i)
 			return (ui_ret_error("parse_frame", "\"ratio : <t_frect>\" expected", 0));
 		index++;
 		(*i)++;
+		while (text[index] && ft_strcmp(text[index], "    button") != 0)
+			index++;
+		index += 2;
+		(*i) += 2;
+		parse_button(&text[index], i);
 	}
 	return (1);
 }
