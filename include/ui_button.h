@@ -81,6 +81,7 @@ typedef enum			e_resize_type
 
 typedef struct			s_button
 {
+	char				*id;
 	void				*data;
 	t_button_type		type;
 	t_resize_type		resize_type;

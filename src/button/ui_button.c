@@ -13,6 +13,7 @@ t_button				*ui_new_button(t_button_type type,
 		return (ui_ret_null_error("ui_new_button",
 									"new_button allocation failed",
 									NULL));
+	new_button->id = NULL;
 	new_button->data = data;
 	new_button->type = type;
 	new_button->resize_type = resize_type;

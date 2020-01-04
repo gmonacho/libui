@@ -1,7 +1,7 @@
 #include "ui.h"
 #include "ui_error.h"
 
-static char	*get_next_flag(const char *flags)
+char	*get_next_flag(const char *flags)
 {
 	char	*flag;
 	int		i;

@@ -3,6 +3,32 @@
 #include "ui_error.h"
 #include "libft.h"
 
+char	**skip_next_block(char **str)
+{
+	int 	j;
+	int		loop;
+	int		nb_bracket;
+
+	j = 0;
+	loop = 1;
+	nb_bracket = 0;
+	while (str[j] && !ft_strchr(str[j], '{'))
+		j++;
+	if (str[j])
+		j++;
+	while (str[j] && loop)
+	{
+		if (ft_strchr(str[j], '}') && nb_bracket == 0)
+			loop = 0;
+		if (ft_strchr(str[j], '{'))
+			nb_bracket++;
+		else if (ft_strchr(str[j], '}'))
+			nb_bracket--;
+		j++;
+	}
+	return (&str[j]);
+}
+
 int		check_line_name(const char *line, const char *expected)
 {
 	printf("\n..... check_line_name .....\n");
@@ -23,71 +49,6 @@ int		check_line_name(const char *line, const char *expected)
 		return (ui_ret_error("check_line_name", "bad line name", 0));
 	else 
 		return (1);
-}
-
-static char				*parse_str(char *str)
-{
-	char	*new_str;
-	int		len;
-	int		i;
-	int		start;
-
-	len = -1;
-	i = 0;
-	while (str[i] != '\"' && str[i])
-		i++;
-	if (str[i] != '\"')
-		return (ui_ret_null_error("parse_str", "no <\"str\"> found", NULL));
-	start = i;
-	i++;
-	len = 0;
-	while (str[i] != '\"' && str[i])
-	{
-		i++;
-		len++;
-	}
-	if (str[i] != '\"')
-		return (ui_ret_null_error("parse_str", "bad <\"str\"> format", NULL));
-	if (!(new_str = (char*)ft_memalloc(sizeof(char) * (len + 1))))
-		return (ui_ret_null_error("parse_str", "new_str allocation failed", NULL));
-	i = start + 1;
-	while (str[i] != '\"' && str[i])
-	{
-		new_str[i - start - 1] = str[i];
-		i++;
-	}
-	new_str[i - start - 1] = '\0';
-	return (new_str);
-}
-
-static t_simple_frame	*parse_simple_frame(SDL_Renderer *rend, char **str, int *i)
-{
-	t_simple_frame	*simple_frame;
-	char			*path;
-
-	if (!(simple_frame = ft_memalloc(sizeof(t_simple_frame))))
-		return (ui_ret_null_error("parse_simple_frame", "simple_frame allocation failed", NULL));
-	if (!(check_line_name(str[0], "texture")) || !(path = parse_str(str[0])))
-		return (ui_ret_null_error("parse_simple_frame", "\"texture : \"path\"\" expected", NULL));
-	*i++;
-	printf("path = %s\n", path);
-	simple_frame->text = NULL;
-	simple_frame->text_background = NULL;
-	simple_frame->text_ratio = (t_frect){0, 0, 0, 0};
-	if (!(simple_frame->texture = ui_load_image(rend, path)))
-		return (ui_ret_null_error("parse_simple_frame", "ui_load_image failed", NULL));
-	*i++;
-	return (simple_frame); 
-}
-
-static void	*parse_frame_data(SDL_Renderer *rend, char **str, t_frame_type frame_type, int *i)
-{
-	printf("\n..... get_frame_data .....\n");
-	void	*data;
-
-	if (frame_type == UI_FRAME_SIMPLE)
-		data = parse_simple_frame(rend, str, i);
-	return (data);
 }
 
 static char		**read_ui(const char *path) 
@@ -134,10 +95,11 @@ int				ui_load(const char *path, t_win *win)
 		return (ui_ret_error("ui_load", "read_ui failed", 0));
 	ft_2dputendl((const char**)text);
 	printf("--------- Debut Parsing ---------\n");
-	while (text[i])
+	while (text[i] && !ft_strchr(text[i], '}'))
 	{
+		printf("text[i] = %s\n", text[i]);
 		if (ft_strcmp(text[i], "frame") != 0)
-			return (ui_load_error("ui_load :", "frame expected", 0, i + 1));
+			return (ui_load_error("ui_load", "frame expected", 0, i + 1));
 		i += 2;
 		parse_frame(win, &text[i], &i);
 	}

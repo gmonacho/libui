@@ -15,7 +15,7 @@ typedef enum		e_mouse_button
 typedef struct		s_mouse
 {
 	t_dot			pos;
-	t_mouse_button clicked;
+	t_mouse_button	clicked;
 	t_mouse_button	clicking;
 	t_mouse_button	releasing;
 }					t_mouse;

@@ -20,9 +20,9 @@ void			ui_display_frames(t_win *win, t_frame *frames)
 void			ui_display_simple_frame(t_win *win, t_simple_frame *simple_frame, const t_rect *rect)
 {
 	// SDL_Texture	*text_texture;
-	t_frect		text_ratio;
+	// t_frect		text_ratio;
 
-	text_ratio = simple_frame->text_ratio;
+	// text_ratio = simple_frame->text_ratio;
 	if (simple_frame->texture)
 		SDL_RenderCopy(win->rend, simple_frame->texture,
 						NULL, (SDL_Rect*)rect);

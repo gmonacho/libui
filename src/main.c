@@ -51,71 +51,71 @@ int		main()
 	///---------------------------------------------------///
 	/////////////////////////////////////////////////////////
 
-	/////////////////////////////////////////////////////////
-	////////////////////// ADD_FRAMES ///////////////////////
-	/////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////
+	// ////////////////////// ADD_FRAMES ///////////////////////
+	// /////////////////////////////////////////////////////////
 
-	SDL_Texture		*frame_texture;
+	// SDL_Texture		*frame_texture;
 
-	frame_texture = ui_load_image(win->rend, "textures/ui_frame.png");
+	// frame_texture = ui_load_image(win->rend, "textures/ui_frame.png");
 
-	ui_add_frame(&win->ui.frames, 
-					ui_new_frame(UI_FRAME_SIMPLE, 
-									UI_RESIZE_ALL_LINEAR, 
-									(t_frect){0.05, 0.05, 0.7, 0.5},
-									ui_new_simple_frame("frame",
-														(t_frect){0.1, 0.1, 0.09, 0.03},
-														frame_texture,
-														NULL)));
+	// ui_add_frame(&win->ui.frames, 
+	// 				ui_new_frame(UI_FRAME_SIMPLE, 
+	// 								UI_RESIZE_ALL_LINEAR, 
+	// 								(t_frect){0.05, 0.05, 0.7, 0.5},
+	// 								ui_new_simple_frame("frame",
+	// 													(t_frect){0.1, 0.1, 0.09, 0.03},
+	// 													frame_texture,
+	// 													NULL)));
 
-	/////////////////////////////////////////////////////////
-	///---------------------------------------------------///
-	/////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////
+	// ///---------------------------------------------------///
+	// /////////////////////////////////////////////////////////
 
-	/////////////////////////////////////////////////////////
-	////////////////////// ADD_BUTTONS //////////////////////
-	/////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////
+	// ////////////////////// ADD_BUTTONS //////////////////////
+	// /////////////////////////////////////////////////////////
 
-	int					value = 0;
-	char				*text_entry_value = NULL;
-	t_simple_set		simple_set;
-	t_text_entry_set	text_entry_set;
+	// int					value = 0;
+	// char				*text_entry_value = NULL;
+	// t_simple_set		simple_set;
+	// t_text_entry_set	text_entry_set;
 
-	simple_set.normal = ui_load_image(win->rend, "textures/ui_normal_button.png");
-	simple_set.clicked = ui_load_image(win->rend, "textures/ui_clicked_button.png");
-	simple_set.on_mouse = ui_load_image(win->rend, "textures/ui_on_mouse_button.png");
-	ui_add_button(&win->ui.frames->buttons,
-				  ui_new_button(UI_BUTTON_SIMPLE, UI_RESIZE_ALL_LINEAR,
-				  (t_frect){0.1, 0.1, 0.09, 0.03},
-				  ui_new_simple_button(UI_MOUSE_LEFT,
-				  					   &incre_value,
-									   &value,
-									   simple_set)));
-	((t_simple_button*)win->ui.frames->buttons->data)->text = "button";
+	// simple_set.normal = ui_load_image(win->rend, "textures/ui_normal_button.png");
+	// simple_set.clicked = ui_load_image(win->rend, "textures/ui_clicked_button.png");
+	// simple_set.on_mouse = ui_load_image(win->rend, "textures/ui_on_mouse_button.png");
+	// ui_add_button(&win->ui.frames->buttons,
+	// 			  ui_new_button(UI_BUTTON_SIMPLE, UI_RESIZE_ALL_LINEAR,
+	// 			  (t_frect){0.1, 0.1, 0.09, 0.03},
+	// 			  ui_new_simple_button(UI_MOUSE_LEFT,
+	// 			  					   &incre_value,
+	// 								   &value,
+	// 								   simple_set)));
+	// ((t_simple_button*)win->ui.frames->buttons->data)->text = "button";
 
-	ui_add_button(&win->ui.frames->buttons,
-				  ui_new_button(UI_BUTTON_SIMPLE, UI_RESIZE_ALL_LINEAR,
-				  (t_frect){0.1, 0.3, 0.09, 0.03},
-				  ui_new_simple_button(UI_MOUSE_LEFT,
-				  					   &incre_value,
-									   &value,
-									   simple_set)));
-	((t_simple_button*)win->ui.frames->buttons->data)->text = "button";
+	// ui_add_button(&win->ui.frames->buttons,
+	// 			  ui_new_button(UI_BUTTON_SIMPLE, UI_RESIZE_ALL_LINEAR,
+	// 			  (t_frect){0.1, 0.3, 0.09, 0.03},
+	// 			  ui_new_simple_button(UI_MOUSE_LEFT,
+	// 			  					   &incre_value,
+	// 								   &value,
+	// 								   simple_set)));
+	// ((t_simple_button*)win->ui.frames->buttons->data)->text = "button";
 
-	text_entry_set.name_side_texture = NULL;
-	if (!(text_entry_set.normal_box_texture = ui_load_image(win->rend, "textures/ui_text_entry_button_normal.png")) ||
-		!(text_entry_set.writting_box_texture = ui_load_image(win->rend, "textures/ui_text_entry_button_writting.png")) ||
-		!(text_entry_set.name_side_texture = ui_load_image(win->rend, "textures/ui_text_entry_button_normal.png")))
-		return (ui_ret_error("main", SDL_GetError(), -1));
-	text_entry_set.current_box_texture = NULL;
-	ui_add_button(&win->ui.frames->buttons,
-				  ui_new_button(UI_BUTTON_TEXT_ENTRY,
-				  UI_RESIZE_ALL_LINEAR,
-				  (t_frect){0.4, 0.1, 0.09, 0.03},
-				  ui_new_text_entry_button("nom", &assign_char_value, &text_entry_value, 15)));
-	((t_text_entry_button*)win->ui.frames->buttons->data)->textures = text_entry_set;
-	// ((ui_text_entry_button*)win->ui.buttons->data)->text_type = UI_TEXT_TYPE_DIGITAL;
-	ui_update_buttons_rect(win, SDL_TRUE);
+	// text_entry_set.name_side_texture = NULL;
+	// if (!(text_entry_set.normal_box_texture = ui_load_image(win->rend, "textures/ui_text_entry_button_normal.png")) ||
+	// 	!(text_entry_set.writting_box_texture = ui_load_image(win->rend, "textures/ui_text_entry_button_writting.png")) ||
+	// 	!(text_entry_set.name_side_texture = ui_load_image(win->rend, "textures/ui_text_entry_button_normal.png")))
+	// 	return (ui_ret_error("main", SDL_GetError(), -1));
+	// text_entry_set.current_box_texture = NULL;
+	// ui_add_button(&win->ui.frames->buttons,
+	// 			  ui_new_button(UI_BUTTON_TEXT_ENTRY,
+	// 			  UI_RESIZE_ALL_LINEAR,
+	// 			  (t_frect){0.4, 0.1, 0.09, 0.03},
+	// 			  ui_new_text_entry_button("nom", &assign_char_value, &text_entry_value, 15)));
+	// ((t_text_entry_button*)win->ui.frames->buttons->data)->textures = text_entry_set;
+	// // ((ui_text_entry_button*)win->ui.buttons->data)->text_type = UI_TEXT_TYPE_DIGITAL;
+	// ui_update_buttons_rect(win, SDL_TRUE);
 
 	/////////////////////////////////////////////////////////
 	///---------------------------------------------------///
