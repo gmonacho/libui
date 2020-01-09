@@ -1,6 +1,22 @@
 #include "ui.h"
 #include "ui_error.h"
 
+int					parse_int(const char *str, int *n)
+{
+	int		i;
+	char	*tmp;
+
+	if (!(tmp = ft_strchr(str, ':')))
+		return (ui_ret_error("parse_int", "no \":\" found, 0 returned", 0));
+	i = 0;
+	while (tmp[i] && !ft_isdigit(tmp[i]))
+		i++;
+	if (!tmp[i])
+		return (ui_ret_error("parse_int", "no <int> found in str", 0));
+	*n = ft_atoi(&tmp[i]);
+	return (1);
+}
+
 char				*parse_str(char *str)
 {
 	char	*new_str;

@@ -58,6 +58,7 @@ void				ui_display_simple_frame(t_win *win, t_simple_frame *simple_frame, const 
 
 void				ui_resolve_buttons_event(t_win *win);
 void				ui_update_frames(t_win *win);
+void				ui_update_frames_rect(t_win *win, SDL_bool force_update);
 void				ui_update_buttons_rect(t_win *win, SDL_bool force_update);
 void				ui_update_ui(t_win *win);
 

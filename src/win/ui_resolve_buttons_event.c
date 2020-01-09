@@ -89,7 +89,8 @@ static void	ui_resolve_text_entry_button(t_win *win,
 
 static void	ui_call_text_entry_function(t_text_entry_button *text_entry_button)
 {
-	text_entry_button->f(text_entry_button->argument, text_entry_button->text);
+	if (text_entry_button->f)
+		text_entry_button->f(text_entry_button->argument, text_entry_button->text);
 }
 
 static void	ui_mouse_releasing(t_win *win)
@@ -136,6 +137,8 @@ static void	ui_check_text_entry_button(t_win *win)
 static void	ui_start_text_input(t_win *win)
 {
 	SDL_StartTextInput();
+	printf("new_text = %s text = %s\n", ((t_text_entry_button*)win->ui.clicked_button->data)->new_text,
+										((t_text_entry_button*)win->ui.clicked_button->data)->text);
 	ft_strcpy(((t_text_entry_button*)
 				win->ui.clicked_button->data)->new_text,
 				((t_text_entry_button*)

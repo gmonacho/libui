@@ -103,5 +103,7 @@ int				ui_load(const char *path, t_win *win)
 		i += 2;
 		parse_frame(win, &text[i], &i);
 	}
+	ui_update_frames_rect(win, SDL_TRUE);
+	ui_update_buttons_rect(win, SDL_TRUE);
 	return (1);
 }

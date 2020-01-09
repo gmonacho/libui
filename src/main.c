@@ -135,6 +135,22 @@ int		main()
 	///////////////////////// LOOP. /////////////////////////
 	/////////////////////////////////////////////////////////
 
+	t_frame		*f;
+	// t_button	*b;
+
+	f = win->ui.frames;
+	// while (f)
+	// {
+	// 	printf("f = %p\n", f);
+	// 	b = f->buttons;
+	// 	while (b)
+	// 	{
+	// 		printf("b = %p\ntext = %s\n", b, b->id);
+	// 		b = b->next;
+	// 	}
+	// 	f = f->next;
+	// }
+	// printf("f->ratio = %f, %f, %f, %f\n", f->ratio.x, f->ratio.y, f->ratio.w, f->ratio.h);
 	loop = 1;
 	while (loop)
 	{

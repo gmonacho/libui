@@ -13,6 +13,7 @@ int			ui_init(Uint32 sdl_flags);
 char	    **skip_next_block(char **str);
 
 char		*parse_str(char *str);
+int			parse_int(const char *str, int *n);
 
 int			get_resize_type(const char *line);
 
@@ -24,6 +25,8 @@ int			get_float(char *str, double *fnb_ptr);
 
 int			get_frame_type(const char *line);
 int			get_button_type(const char *line);
+int			get_text_side(const char *line);
+int			get_text_type(const char *line);
 
 int			parse_frame(t_win *win, char **text, int *i);
 

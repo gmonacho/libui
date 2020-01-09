@@ -20,7 +20,7 @@ char	*ft_strcpy(char *dst, const char *src)
 	int		i;
 
 	i = 0;
-	if (src)
+	if (src && dst)
 	{
 		while (src[i])
 		{
