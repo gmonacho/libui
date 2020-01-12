@@ -49,6 +49,7 @@ int		parse_frame(t_win *win, char **text, int *i)
 
 	if (!(f = ui_new_frame(0, 0, (t_frect){0, 0, 0, 0}, NULL)))
 		return (ui_ret_error("parse_frame", "f allocation failed", 0));
+	ui_add_frame(&win->ui.frames, f);
 	if (win && i)
 	{
 		index = 0;
@@ -68,9 +69,8 @@ int		parse_frame(t_win *win, char **text, int *i)
 		if (!(text = skip_next_block(&text[index])))
 			return (ui_ret_error("parse_frame", "invalid data block {} syntax", 0));
 		index = 0;
-		parse_buttons(win->rend, f, &text[index], i);
+		parse_buttons(win, &text[index], i);
 	}
 	f->next = NULL;
-	ui_add_frame(&win->ui.frames, f);
 	return (1);
 }

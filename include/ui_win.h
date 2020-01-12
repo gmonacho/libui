@@ -8,6 +8,13 @@
 # include "ui_texture.h"
 # include "SDL.h"
 
+typedef struct			s_texture
+{
+	char				*id;
+	SDL_Texture			*sdl_ptr;
+	struct s_texture	*next;
+}						t_texture;
+
 typedef struct		s_ui
 {
 	t_frame				*frames;
@@ -19,6 +26,7 @@ typedef struct		s_ui
 	int					cursor_position;
 	t_draw_text_flag	text_enrty_flags;
 	SDL_Color			cursor_color;
+	t_texture			*textures;
 }					t_ui;
 
 typedef struct		s_win

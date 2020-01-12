@@ -28,9 +28,14 @@ int			get_button_type(const char *line);
 int			get_text_side(const char *line);
 int			get_text_type(const char *line);
 
+void			add_texture(t_texture **textures, t_texture *new_texture);
+t_texture		*new_texture(char *id, SDL_Texture *sdl_ptr);
+SDL_Texture		*get_texture_ptr(t_texture *textures, const char *id);
+SDL_Texture		*parse_texture(SDL_Renderer *rend, t_texture **textures, const char *expected_name, char *line);
+
 int			parse_frame(t_win *win, char **text, int *i);
 
-int		    parse_buttons(SDL_Renderer *rend, t_frame *frame, char **text, int *i);
+int		parse_buttons(t_win *win, char **text, int *i);
 
 int			check_line_name(const char *line, const char *expected);
 int			ui_load(const char *path, t_win *win);
