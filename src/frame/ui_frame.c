@@ -26,18 +26,37 @@ void		ui_add_frame(t_frame **frames, t_frame *new_frame)
 	}
 }
 
-t_simple_frame	*ui_new_simple_frame(char *text,
-										t_frect text_ratio,
-										SDL_Texture *texture,
-										SDL_Texture *text_background)
+void		ui_free_frame(t_frame **frame)
 {
-	t_simple_frame	*simple_frame;
+	t_frame	*f;
 
-	if (!(simple_frame = (t_simple_frame*)ft_memalloc(sizeof(t_simple_frame))))
-		return (ui_ret_null_error("ui_new_simple_frame", "simple_frame allocation frame failed", NULL));
-	simple_frame->text = text;
-	simple_frame->text_ratio = text_ratio;
-	simple_frame->texture = texture;
-	simple_frame->text_background = text_background;
-	return (simple_frame);
+	f = *frame;
+	if (f)
+	{
+		if (f->buttons)
+			ui_free_buttons(&f->buttons);
+		if (f->data)
+		{
+			if (f->type == UI_FRAME_SIMPLE)
+				ui_free_simple_frame((t_simple_frame**)&f->data);
+		}
+		f->next = NULL;
+		free(f);
+	}
+	*frame = NULL;
 }
+
+void		ui_free_frames(t_frame **frames)
+{
+	t_frame	*f;
+	t_frame *next;
+
+	f = *frames;
+	while (f)
+	{
+		next = f->next;
+		ui_free_frame(&f);
+		f = next;
+	}
+	*frames = NULL;
+}		

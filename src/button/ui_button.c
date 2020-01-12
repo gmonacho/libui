@@ -34,23 +34,37 @@ void					ui_add_button(t_button **buttons,
 		ui_ret_error("ui_add_button", "new_button is NULL", 0);
 }
 
-t_simple_button		*ui_new_simple_button(t_mouse_button clicked_condition,
-												void (*f)(void *argument),
-												void *argument,
-												t_simple_set textures)
-{
-	t_simple_button	*new_simple;
 
-	if (!(new_simple = (t_simple_button*)ft_memalloc(
-						sizeof(t_simple_button))))
-		return (ui_ret_null_error("ui_new_simple_button",
-									"new_simple allocation_failed",
-									NULL));
-	new_simple->id = -1;
-	new_simple->textures = textures;
-	new_simple->clicked_condition = clicked_condition;
-	new_simple->f = f;
-	new_simple->argurment = argument;
-	new_simple->text = NULL;
-	return (new_simple);
+void				ui_free_button(t_button **button)
+{
+	t_button	*b;
+
+	b = *button;
+	if (b->id)
+		ft_strdel(&b->id);
+	if (b->data)
+	{
+		if (b->type == UI_BUTTON_SIMPLE)
+			ui_free_simple_button((t_simple_button**)&b->data);
+		else if (b->type == UI_BUTTON_TEXT_ENTRY)
+			ui_free_text_entry_button((t_text_entry_button**)&b->data);
+	}
+	b->next = NULL;
+	free(b);
+	*button = NULL;
+}
+
+void				ui_free_buttons(t_button **buttons)
+{
+	t_button	*b;
+	t_button	*next;
+
+	b = *buttons;
+	while (b)
+	{
+		next = b->next;
+		ui_free_button(&b);
+		b = next;
+	}
+	*buttons = NULL;
 }

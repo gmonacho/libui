@@ -29,6 +29,8 @@ typedef struct		s_ui
 	t_texture			*textures;
 }					t_ui;
 
+void	ui_free_ui(t_ui *ui);
+
 typedef struct		s_win
 {
 	SDL_Window		*ptr;
@@ -42,6 +44,7 @@ t_win				*ui_new_win(const char *title,
 								t_rect rect,
 								Uint32 sdl_win_flags,
 								Uint32 sdl_rend_flags);
+void				ui_free_win(t_win **win);
 
 void				ui_set_win_size(t_win *win, int w, int h);
 t_dot				ui_get_win_size(t_win *win);
@@ -70,4 +73,5 @@ void				ui_update_frames_rect(t_win *win, SDL_bool force_update);
 void				ui_update_buttons_rect(t_win *win, SDL_bool force_update);
 void				ui_update_ui(t_win *win);
 
+void				ui_quit();
 #endif

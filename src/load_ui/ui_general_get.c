@@ -20,7 +20,7 @@ char	*get_next_flag(const char *flags)
 	}
 	if (!(flag = ft_strsub(flags, start, len)))
 		return (ui_ret_null_error("get_next_flag", "flag <- ft_strsub failed", NULL));
-	printf("get_next_flag = %s\n", flag);
+	//printf("get_next_flag = %s\n", flag);
 	return (flag);
 }
 
@@ -76,7 +76,7 @@ int			get_float(char *str, double *fnb_ptr)
 
 int			get_ratio(const char *line, t_frect *ratio_ptr)
 {
-	printf("\n..... get_ratio .....\n");
+	//printf("\n..... get_ratio .....\n");
 	char	*ratio_str;
 	void	*ptr;
 
@@ -89,6 +89,6 @@ int			get_ratio(const char *line, t_frect *ratio_ptr)
 	ratio_str += get_float(ratio_str, &ratio_ptr->y);
 	ratio_str += get_float(ratio_str, &ratio_ptr->w);
 	ratio_str += get_float(ratio_str, &ratio_ptr->h);
-	printf("ratio .x = %f, .y = %f, w = %f, h = %f\n", (*ratio_ptr).x, (*ratio_ptr).y, (*ratio_ptr).w, (*ratio_ptr).h);
+	//printf("ratio .x = %f, .y = %f, w = %f, h = %f\n", (*ratio_ptr).x, (*ratio_ptr).y, (*ratio_ptr).w, (*ratio_ptr).h);
 	return (1);
 }

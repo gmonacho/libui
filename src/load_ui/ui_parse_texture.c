@@ -50,3 +50,35 @@ SDL_Texture		*parse_texture(SDL_Renderer *rend, t_texture **textures, const char
 	add_texture(textures, new_texture(path, texture));
 	return (texture);
 }
+
+void			ui_free_texture(t_texture **texture)
+{
+	t_texture	*t;
+
+	t = *texture;
+	if (t)
+	{
+		if (t->id)
+			ft_strdel(&t->id);
+		if (t->sdl_ptr)
+			SDL_DestroyTexture(t->sdl_ptr);
+		t->next = NULL;
+		free(t);
+	}
+	*texture = NULL;
+}
+
+void			ui_free_textures(t_texture **textures)
+{
+	t_texture	*t;
+	t_texture	*next;
+
+	t = *textures;
+	while (t)
+	{
+		next = t->next;
+		ui_free_texture(&t);
+		t = next;
+	}
+	*textures = NULL;
+}

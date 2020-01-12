@@ -49,3 +49,18 @@ t_text_entry_button	*ui_new_text_entry_button(char *name,
     ui_init_new_text_entry_button(new_text_entry, name, f, argument);
 	return (new_text_entry);
 }
+
+void		ui_free_text_entry_button(t_text_entry_button **text_entry)
+{
+	t_text_entry_button *b;
+
+	b = *text_entry;
+	if (b->name)
+		ft_strdel(&b->name);
+	if (b->text)
+		ft_strdel(&b->text);
+	if (b->new_text)
+		ft_strdel(&b->new_text);
+	ui_free_text_entry_set(b->textures);
+	*text_entry = NULL;
+}

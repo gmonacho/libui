@@ -17,18 +17,18 @@ static t_simple_frame	*parse_simple_frame(SDL_Renderer *rend, char **str, int *i
 	if (!(check_line_name(str[0], "texture")) || !(path = parse_str(str[0])))
 		return (ui_ret_null_error("parse_simple_frame", "\"texture : \"path\"\" expected", NULL));
 	(*i)++;
-	printf("path = %s\n", path);
+	//printf("path = %s\n", path);
 	simple_frame->text = NULL;
 	simple_frame->text_background = NULL;
 	simple_frame->text_ratio = (t_frect){0, 0, 0, 0};
 	if (!(simple_frame->texture = ui_load_image(rend, path)))
 		return (ui_ret_null_error("parse_simple_frame", "ui_load_image failed", NULL));
-	return (simple_frame); 
+	return (simple_frame);
 }
 
 static void	*parse_frame_data(SDL_Renderer *rend, char **str, t_frame_type frame_type, int *i)
 {
-	printf("\n..... get_frame_data .....\n");
+	//printf("\n..... get_frame_data .....\n");
 	void	*data;
 
 	data = NULL;
@@ -41,9 +41,24 @@ static void	*parse_frame_data(SDL_Renderer *rend, char **str, t_frame_type frame
 	return (data);
 }
 
+static int		ui_ret_error_f(t_ui *ui, const char *function, const char *error_msg, int ret_value)
+{
+	t_frame *f;
+	t_frame *next;
+
+	f = ui->frames;
+	if (f)
+	{
+		next = f->next;
+		ui_free_frame(&f);
+		ui->frames = next;
+	}
+	return (ui_ret_error(function, error_msg, ret_value));
+}
+
 int		parse_frame(t_win *win, char **text, int *i)
 {
-	printf("\n''''' parse_frame '''''\n");
+	//printf("\n''''' parse_frame '''''\n");
 	t_frame	*f;
 	int		index;
 
@@ -53,23 +68,24 @@ int		parse_frame(t_win *win, char **text, int *i)
 	if (win && i)
 	{
 		index = 0;
-		printf("parse_frame : text[index] = %s\n", text[index]);
+		//printf("parse_frame : text[index] = %s\n", text[index]);
 		if (!check_line_name((const char*)text[index], "type") || (f->type = get_frame_type(text[index])) <= 0)
-			return (ui_ret_error("parse_frame", "\"type : <t_type_frame>\" expected", 0));
-		printf("f->type = %d\n", f->type);
+			return (ui_ret_error_f(&win->ui, "parse_frame", "\"type : <t_type_frame>\" expected", 0));
+		//printf("f->type = %d\n", f->type);
 		incre_double_int(&index, i, 1);
 		if (!check_line_name(text[index], "resize_type") || (f->resize_type = get_resize_type(text[index])) <= 0)
-			return (ui_ret_error("parse_frame", "\"resize_type : <t_resize_type>\" expected", 0));
+			return (ui_ret_error_f(&win->ui, "parse_frame", "\"resize_type : <t_resize_type>\" expected", 0));
 		incre_double_int(&index, i, 1);
 		if (!check_line_name(text[index], "ratio") || !get_ratio((const char*)text[index], &f->ratio))
-			return (ui_ret_error("parse_frame", "\"ratio : <t_frect>\" expected", 0));
+			return (ui_ret_error_f(&win->ui, "parse_frame", "\"ratio : <t_frect>\" expected", 0));
 		incre_double_int(&index, i, 1);
 		if (!(f->data = parse_frame_data(win->rend, &text[index], f->type, i)))
-			return (ui_ret_error("parse_frame", "frame data block expected", 0));
+			return (ui_ret_error_f(&win->ui, "parse_frame", "frame data block expected", 0));
 		if (!(text = skip_next_block(&text[index])))
-			return (ui_ret_error("parse_frame", "invalid data block {} syntax", 0));
+			return (ui_ret_error_f(&win->ui, "parse_frame", "invalid data block {} syntax", 0));
 		index = 0;
-		parse_buttons(win, &text[index], i);
+		if (!parse_buttons(win, &text[index], i))
+			return (ui_ret_error_f(&win->ui, "parse_frame", "parse_buttons", 0));
 	}
 	f->next = NULL;
 	return (1);

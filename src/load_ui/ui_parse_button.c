@@ -11,7 +11,7 @@ static void	incre_double_int(int *a, int *b, int value)
 
 static t_simple_button	*parse_simple_button(SDL_Renderer *rend, t_texture **textures, char **text, int *i)
 {
-	printf("\n''''' parse_simple_button '''''\n");
+	//printf("\n''''' parse_simple_button '''''\n");
 	t_simple_button *simple_button;
 	int				index;
 
@@ -20,7 +20,7 @@ static t_simple_button	*parse_simple_button(SDL_Renderer *rend, t_texture **text
 		return (ui_ret_null_error("parse_simple_button", "simple_button allocation failed", NULL));
 	if (!check_line_name(text[index], "text") || !(simple_button->text = parse_str(text[index])))
 		return (ui_ret_null_error("parse_simple_button", "\"text : <str>\" expected", NULL));
-	printf("simple_button->text = %s\n", simple_button->text);
+	//printf("simple_button->text = %s\n", simple_button->text);
 	incre_double_int(&index, i, 1);
 	if (!(simple_button->textures.normal = parse_texture(rend, textures, "texture_normal", text[index])))
 		return (ui_ret_null_error("parse_simple_button", "parse_texture failed (expected line_name : \"texture_normal\")", NULL));
@@ -39,7 +39,7 @@ static t_simple_button	*parse_simple_button(SDL_Renderer *rend, t_texture **text
 
 static t_text_entry_button	*parse_text_entry_button(SDL_Renderer *rend, char **text, int *i)
 {
-	printf("\n''''' parse_text_entry_button '''''\n");
+	//printf("\n''''' parse_text_entry_button '''''\n");
 	t_text_entry_button	*text_entry_button;
 	int					index;
 	char				*tmp;
@@ -101,7 +101,7 @@ static t_text_entry_button	*parse_text_entry_button(SDL_Renderer *rend, char **t
 	incre_double_int(&index, i, 1);
 	if (!check_line_name(text[index], "text_type") || (int)(text_entry_button->text_type = get_text_type(text[index])) == -1)
 		return (ui_ret_null_error("parse_text_entry_button", "\"text_type : \" expected", NULL));
-	printf("text_entry_button->text_type = %d\n", text_entry_button->text_type);
+	//printf("text_entry_button->text_type = %d\n", text_entry_button->text_type);
 	return (text_entry_button);
 }
 
@@ -110,7 +110,7 @@ static void	*parse_button_data(t_win *win, char **text, t_button_type button_typ
 	void	*data;
 
 	data = NULL;
-	printf ("text[0] = %s\n", text[0]);
+	//printf ("text[0] = %s\n", text[0]);
 	if (!ft_strstr(text[0], "data"))
 		return (ui_ret_null_error("parse_button_data", "\"data\" (button) is missing", NULL));
 	(*i) += 2;
@@ -124,7 +124,7 @@ static void	*parse_button_data(t_win *win, char **text, t_button_type button_typ
 
 static t_button	*parse_button(t_win *win, char **text, int *i)
 {
-	printf("\n''''' parse_button '''''\n");
+	//printf("\n''''' parse_button '''''\n");
 	t_button	*b;
 	int			index;
 
@@ -133,11 +133,11 @@ static t_button	*parse_button(t_win *win, char **text, int *i)
 	index = 0;
 	if (!check_line_name((const char *)text[index], "id") || !(b->id = parse_str(text[index])))
 		return (ui_ret_null_error("parse_button", "\"id : <str>\" expected", NULL));
-	printf("button->id = %s\n", b->id);
+	//printf("button->id = %s\n", b->id);
 	incre_double_int(&index, i, 1);
 	if (!check_line_name((const char *)text[index], "type") || (b->type = get_button_type((const char*)text[index])) <= 0)
 		return (ui_ret_null_error("parse_button", "\"type : <t_button_type>\" expected", NULL));
-	printf("button->type = %d\n", b->type);
+	//printf("button->type = %d\n", b->type);
 	incre_double_int(&index, i, 1);
 	if (!check_line_name((const char *)text[index], "resize_type") || (b->resize_type = get_resize_type((const char*)text[index])) <= 0)
 		return (ui_ret_null_error("parse_button", "\"resize_type : <t_resize_type>\" expected", NULL));
@@ -152,7 +152,7 @@ static t_button	*parse_button(t_win *win, char **text, int *i)
 
 int		parse_buttons(t_win *win, char **text, int *i)
 {
-	printf("\n''''' parse_buttons '''''\n");
+	//printf("\n''''' parse_buttons '''''\n");
 	t_button	*b;
 	int			index;
 	t_frame		*frame;

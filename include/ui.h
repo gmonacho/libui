@@ -32,6 +32,8 @@ void			add_texture(t_texture **textures, t_texture *new_texture);
 t_texture		*new_texture(char *id, SDL_Texture *sdl_ptr);
 SDL_Texture		*get_texture_ptr(t_texture *textures, const char *id);
 SDL_Texture		*parse_texture(SDL_Renderer *rend, t_texture **textures, const char *expected_name, char *line);
+void			ui_free_texture(t_texture **texture);
+void			ui_free_textures(t_texture **textures);
 
 int			parse_frame(t_win *win, char **text, int *i);
 

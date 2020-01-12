@@ -25,6 +25,7 @@ void				ui_destroy_texture(SDL_Texture *texture);
 t_simple_set		ui_create_simple_set(SDL_Texture *normal,
 											SDL_Texture *clicked,
 											SDL_Texture *on_mouse);
+void				ui_free_simple_set(t_simple_set	simple_set);
 
 typedef enum		e_text_align
 {
@@ -56,6 +57,7 @@ typedef struct		s_text_entry_texture_set
 t_text_entry_set	ui_create_text_entry_set(SDL_Texture *name_side_texture,
 											SDL_Texture *normal_box_texture,
 											SDL_Texture *writting_box_texture);
+void				ui_free_text_entry_set(t_text_entry_set text_entry_set);
 
 typedef struct		s_text
 {

@@ -3,19 +3,19 @@
 
 int		get_resize_type(const char *line)
 {
-	printf("\n..... get_resize_type .....\n");
+	//printf("\n..... get_resize_type .....\n");
 	char			*all_flags;
 	char			**flags;
 	int				i;
 	t_resize_type	resize_type;
 
-	printf("line = %s\n", line);
+	//printf("line = %s\n", line);
 	if (!(all_flags = ft_strstr(line, " : ")))
 		return (ui_ret_error("get_resize_type", "\" : \" not found", -1));
 	all_flags += 3;
-	printf("all_flags = %s\n", all_flags);
+	//printf("all_flags = %s\n", all_flags);
 	flags = get_flags_tab(all_flags);
-	ft_2dputendl((const char**)flags);
+	// ft_2dputendl((const char**)flags);
 	i = 0;
 	resize_type = 0;
 	while (flags[i])

@@ -126,3 +126,24 @@ void		ui_update_ui(t_win *win)
 	ui_resolve_buttons_event(win);
 	ui_update_frames(win);
 }
+
+void		ui_free_win(t_win **win)
+{
+	t_win	*w;
+
+	w = *win;
+	if (w)
+	{
+		if (w->rend)
+			SDL_DestroyRenderer(w->rend);
+		if (w->ptr)
+			SDL_DestroyWindow(w->ptr);
+	}
+	ui_free_ui(&w->ui);
+	*win = NULL;
+}
+
+void		ui_quit()
+{
+	SDL_Quit();
+}

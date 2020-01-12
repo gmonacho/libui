@@ -31,7 +31,7 @@ char	**skip_next_block(char **str)
 
 int		check_line_name(const char *line, const char *expected)
 {
-	printf("\n..... check_line_name .....\n");
+	//printf("\n..... check_line_name .....\n");
 	int		i;
 	int		il;
 	char	name[ft_strlen(expected) + 1];
@@ -44,7 +44,7 @@ int		check_line_name(const char *line, const char *expected)
 	while (line && ft_isprint(line[il]) && i < (int)ft_strlen(expected))
 		name[i++] = line[il++];
 	name[i] = '\0';
-	printf("line name = %s\n", name);
+	//printf("line name = %s\n", name);
 	if (ft_strcmp(name, expected) != 0)
 		return (ui_ret_error("check_line_name", "bad line name", 0));
 	else 
@@ -93,15 +93,19 @@ int				ui_load(const char *path, t_win *win)
 	i = 0;
 	if ((text = read_ui(path)) == NULL)
 		return (ui_ret_error("ui_load", "read_ui failed", 0));
-	ft_2dputendl((const char**)text);
-	printf("--------- Debut Parsing ---------\n");
+	// ft_2dputendl((const char**)text);
+	//printf("--------- Debut Parsing ---------\n");
 	while (text[i] && !ft_strchr(text[i], '}'))
 	{
-		printf("text[i] = %s\n", text[i]);
+		//printf("text[i] = %s\n", text[i]);
 		if (ft_strcmp(text[i], "frame") != 0)
+		{
+			ft_2dstrdel((char***)&text);
 			return (ui_load_error("ui_load", "frame expected", 0, i + 1));
+		}
 		i += 2;
-		parse_frame(win, &text[i], &i);
+		if (!parse_frame(win, &text[i], &i))
+			return (ui_load_error("ui_load", "parse_frame failed", 0, i + 1));
 	}
 	ui_update_frames_rect(win, SDL_TRUE);
 	ui_update_buttons_rect(win, SDL_TRUE);
