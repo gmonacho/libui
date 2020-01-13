@@ -68,7 +68,6 @@ int		parse_frame(t_win *win, char **text, int *i)
 	if (!(f = ui_new_frame(0, 0, (t_frect){0, 0, 0, 0}, NULL)))
 		return (ui_ret_error("parse_frame", "f allocation failed", 0));
 	ui_add_frame(&win->ui.frames, f);
-	printf("add frame : win->ui.frames = %p win->ui.frames->next = %p\n", win->ui.frames, win->ui.frames->next);
 	if (win && i)
 	{
 		index = 0;

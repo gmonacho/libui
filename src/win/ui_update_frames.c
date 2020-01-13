@@ -21,6 +21,7 @@ void		ui_update_frames_rect(t_win *win, SDL_bool force_update)
 			if (f->resize_type & UI_RESIZE_Y || force_update)
 				f->rect.y = f->ratio.y * win_size.y;
 		}
+		// printf("f->ratio.x = %f, f->x = %d\n", f->ratio.x, f->rect.x);
 		f = f->next;
 	}
 }

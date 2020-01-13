@@ -161,7 +161,6 @@ static t_button	*parse_button(t_win *win, char **text, int *i)
 	if ((!(b->data = parse_button_data(win, &text[index], b->type, i))))
 		return (ui_ret_null_error_b(&b, "parse_button", "invalid button data block", NULL));
 	(*i)++;
-	printf("i = %d\n", *i);
 	return (b);
 }
 

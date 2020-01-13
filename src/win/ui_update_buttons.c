@@ -51,7 +51,7 @@ void			ui_update_buttons_rect(t_win *win, SDL_bool force_update)
 				if (b->resize_type & UI_RESIZE_X || force_update)
 					b->rect.x = f->rect.x + b->ratio.x * f->rect.w;
 				if (b->resize_type & UI_RESIZE_Y || force_update)
-					b->rect.y = f->rect.x + b->ratio.y * f->rect.h;
+					b->rect.y = f->rect.y + b->ratio.y * f->rect.h;
 			}
 			b = b->next;
 		}
