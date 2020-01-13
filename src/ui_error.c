@@ -15,7 +15,7 @@ int		ui_ret_error(const char *function, const char *error_msg, int ret_value)
 	return (ret_value);
 }
 
-void	*ui_ret_null_error(const char *function, const char *error_msg, void	*return_value)
+void	*ui_ret_null_error(const char *function, const char *error_msg, void *return_value)
 {
 	char	*str;
 

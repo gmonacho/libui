@@ -103,5 +103,6 @@ t_button				*ui_new_button(t_button_type type,
 										void *data);
 void					ui_add_button(t_button **buttons, t_button *new_button);
 void					ui_free_buttons(t_button **buttons);
+void					ui_free_button(t_button **button);
 
 #endif

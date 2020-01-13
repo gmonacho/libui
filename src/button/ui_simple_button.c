@@ -28,8 +28,11 @@ void				ui_free_simple_button(t_simple_button **simple_button)
 	t_simple_button	*b;
 
 	b = *simple_button;
-	if (b->text)
-		ft_strdel(&b->text);
-	ui_free_simple_set(b->textures);
+	if (b)
+	{
+		if (b->text)
+			ft_strdel(&b->text);
+		ui_free_simple_set(b->textures);
+	}
 	*simple_button = NULL;
 }

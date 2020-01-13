@@ -23,11 +23,14 @@ void			ui_free_simple_frame(t_simple_frame **simple_frame)
 	t_simple_frame	*f;
 
 	f = *simple_frame;
-	if (f->text)
-		ft_strdel(&f->text);
-	if (f->texture)
-		SDL_DestroyTexture(f->texture);
-	if (f->text_background)
-		SDL_DestroyTexture(f->text_background);
+	if (f)
+	{
+		if (f->text)
+			ft_strdel(&f->text);
+		if (f->texture)
+			SDL_DestroyTexture(f->texture);
+		if (f->text_background)
+			SDL_DestroyTexture(f->text_background);
+	}
 	*simple_frame = NULL;
 }

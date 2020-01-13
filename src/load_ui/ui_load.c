@@ -95,7 +95,7 @@ int				ui_load(const char *path, t_win *win)
 		return (ui_ret_error("ui_load", "read_ui failed", 0));
 	// ft_2dputendl((const char**)text);
 	//printf("--------- Debut Parsing ---------\n");
-	while (text[i] && !ft_strchr(text[i], '}'))
+	while (text[i])
 	{
 		//printf("text[i] = %s\n", text[i]);
 		if (ft_strcmp(text[i], "frame") != 0)
@@ -106,6 +106,15 @@ int				ui_load(const char *path, t_win *win)
 		i += 2;
 		if (!parse_frame(win, &text[i], &i))
 			return (ui_load_error("ui_load", "parse_frame failed", 0, i + 1));
+		printf("win->ui.frames = %p win->ui.frames->next = %p\n", win->ui.frames, win->ui.frames->next);
+		printf("1) text[%d] = %s\n", i, text[i]);
+		if (text[i])
+		{
+			if (ft_strcmp(text[i], "}") != 0)
+				return (ui_load_error("ui_load", "frame is not correctly closed (!!only '}' expected!!)", 0, i + 1));
+			i++;
+		}
+		printf("2) text[%d] = %s\n", i, text[i]);
 	}
 	ui_update_frames_rect(win, SDL_TRUE);
 	ui_update_buttons_rect(win, SDL_TRUE);

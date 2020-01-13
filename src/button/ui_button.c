@@ -40,17 +40,20 @@ void				ui_free_button(t_button **button)
 	t_button	*b;
 
 	b = *button;
-	if (b->id)
-		ft_strdel(&b->id);
-	if (b->data)
+	if (b)
 	{
-		if (b->type == UI_BUTTON_SIMPLE)
-			ui_free_simple_button((t_simple_button**)&b->data);
-		else if (b->type == UI_BUTTON_TEXT_ENTRY)
-			ui_free_text_entry_button((t_text_entry_button**)&b->data);
+		if (b->id)
+			ft_strdel(&b->id);
+		if (b->data)
+		{
+			if (b->type == UI_BUTTON_SIMPLE)
+				ui_free_simple_button((t_simple_button**)&b->data);
+			else if (b->type == UI_BUTTON_TEXT_ENTRY)
+				ui_free_text_entry_button((t_text_entry_button**)&b->data);
+		}
+		b->next = NULL;
+		free(b);
 	}
-	b->next = NULL;
-	free(b);
 	*button = NULL;
 }
 
