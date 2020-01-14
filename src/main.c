@@ -27,6 +27,7 @@ int		main()
 	if (ui_init(SDL_INIT_VIDEO) < 0)
 		return (1);
 
+
 	/////////////////////////////////////////////////////////
 	//////////////////////// WINDOW. ////////////////////////
 	/////////////////////////////////////////////////////////
@@ -40,12 +41,23 @@ int		main()
 							SDL_RENDERER_ACCELERATED)))
 		return (1);
 
+
 	SDL_Texture	*texture;
 	
 	if (!(win->ui.button_font = ui_load_font("font/Raleway-Regular.ttf", 100)))
 		return (1);
 	if (!(texture = ui_new_text(win->rend, win->ui.button_font, "button", &(SDL_Color){255, 255, 255, 255})))
 		return (1);
+
+	/////////////////////////////////////////////////////////
+	///---------------------------------------------------///
+	/////////////////////////////////////////////////////////
+
+	/////////////////////////////////////////////////////////
+	/////////////////////// UI_LOAD /////////////////////////
+	/////////////////////////////////////////////////////////
+
+	ui_load("test_ui/ui.txt", win);
 
 	/////////////////////////////////////////////////////////
 	///---------------------------------------------------///
@@ -121,15 +133,6 @@ int		main()
 	///---------------------------------------------------///
 	/////////////////////////////////////////////////////////
 	
-	/////////////////////////////////////////////////////////
-	/////////////////////// UI_LOAD /////////////////////////
-	/////////////////////////////////////////////////////////
-
-	ui_load("test_ui/ui.txt", win);
-
-	/////////////////////////////////////////////////////////
-	///---------------------------------------------------///
-	/////////////////////////////////////////////////////////
 
 	/////////////////////////////////////////////////////////
 	///////////////////////// LOOP. /////////////////////////
@@ -181,3 +184,56 @@ int		main()
 	/////////////////////////////////////////////////////////
 	return (0);
 }
+
+
+    // button
+    // {
+    //     id : "button1"
+    //     type : UI_BUTTON_SIMPLE
+    //     resize_type : UI_RESIZE_ALL_LINEAR
+    //     ratio : 0.1 0.1 0.15 0.05
+    //     data
+    //     {
+    //         text : "puet"
+    //         texture_normal : "textures/ui_normal_button.png"
+    //         texture_clicked : "textures/ui_clicked_button.png"
+    //         texture_on_mouse : "textures/ui_on_mouse_button.png"
+    //         clicked_condition : UI_MOUSE_LEFT
+    //     }
+    // }
+
+    // button
+    // {
+    //     id : "button2"
+    //     type : UI_BUTTON_SIMPLE
+    //     resize_type : UI_RESIZE_ALL_LINEAR
+    //     ratio : 0.4 0.1 0.09 0.03
+    //     data
+    //     {
+    //         text : "puet"
+    //         texture_normal : "textures/ui_normal_button.png"
+    //         texture_clicked : "textures/ui_clicked_button.png"
+    //         texture_on_mouse : "textures/ui_on_mouse_button.png"
+    //         clicked_condition : UI_MOUSE_LEFT
+    //     }
+    // }
+    // button
+    // {
+    //     id : "button3"
+    //     type : UI_BUTTON_TEXT_ENTRY
+    //     resize_type : UI_RESIZE_ALL_LINEAR
+    //     ratio : 0.7 0.3 0.15 0.05
+    //     data
+    //     {
+    //         name : "puet"
+    //         text : ""
+    //         max_text_size : 4
+    //         min_int : 0
+    //         max_int : 9000
+    //         name_side_texture : "textures/ui_text_entry_button_normal.png"
+    //         normal_box_texture : "textures/ui_text_entry_button_normal.png"
+    //         writting_box_texture : "textures/ui_text_entry_button_writting.png"
+    //         text_side : UI_TEXT_SIDE_LEFT
+    //         text_type : UI_TEXT_TYPE_DIGITAL
+    //     }
+    // }

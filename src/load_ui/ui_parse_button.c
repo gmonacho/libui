@@ -161,7 +161,7 @@ static t_button	*parse_button(t_win *win, char **text, int *i)
 	if (!check_line_name((const char *)text[index], "resize_type") || (b->resize_type = get_resize_type((const char*)text[index])) <= 0)
 		return (ui_ret_null_error_b(&b, "parse_button", "\"resize_type : <t_resize_type>\" expected", NULL));
 	incre_double_int(&index, i, 1);
-	if (!check_line_name((const char *)text[index], "ratio") || !get_ratio((const char*)text[index], &b->ratio))
+	if (!check_line_name((const char *)text[index], "ratio") || !get_ratio((char*)text[index], &b->ratio))
 		return (ui_ret_null_error_b(&b, "parse_button", "\"ratio : <t_frect>\" expected", NULL));
 	incre_double_int(&index, i, 1);
 	if ((!(b->data = parse_button_data(win, &text[index], b->type, i))))

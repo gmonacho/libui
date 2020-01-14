@@ -44,10 +44,17 @@ SDL_Texture		*parse_texture(SDL_Renderer *rend, t_texture **textures, const char
 	if (!check_line_name(line, expected_name) || !(path = parse_str(line)))
 		return (ui_ret_null_error("parse_texture", "\"<?> : <path>\" expected", NULL));
 	if ((texture = get_texture_ptr(*textures, path)))
+	{
+		ft_strdel(&path);
 		return (texture);
+	}
 	if (!(texture = ui_load_image(rend, path)))
+	{
+		ft_strdel(&path);
 		return (ui_ret_null_error("parse_texture", "ui_load_image failed", NULL));
+	}
 	add_texture(textures, new_texture(path, texture));
+	ft_strdel(&path);
 	return (texture);
 }
 

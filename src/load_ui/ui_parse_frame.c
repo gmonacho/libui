@@ -72,7 +72,7 @@ int		parse_frame(t_win *win, char **text, int *i)
 	{
 		index = 0;
 		// printf("parse_frame : text[index] = %s\n", text[index]);
-		if (!check_line_name((const char*)text[index], "type") || (f->type = get_frame_type(text[index])) <= 0)
+		if (!check_line_name(text[index], "type") || (f->type = get_frame_type(text[index])) <= 0)
 			return (ui_ret_error_f(&win->ui, "parse_frame", "\"type : <t_type_frame>\" expected", 0));
 		// printf("f->type = %d\n", f->type);
 		incre_double_int(&index, i, 1);
@@ -80,7 +80,7 @@ int		parse_frame(t_win *win, char **text, int *i)
 			return (ui_ret_error_f(&win->ui, "parse_frame", "\"resize_type : <t_resize_type>\" expected", 0));
 		// printf("f->resize_type = %d\n", f->resize_type);
 		incre_double_int(&index, i, 1);
-		if (!check_line_name(text[index], "ratio") || !get_ratio((const char*)text[index], &f->ratio))
+		if (!check_line_name(text[index], "ratio") || !get_ratio(text[index], &f->ratio))
 			return (ui_ret_error_f(&win->ui, "parse_frame", "\"ratio : <t_frect>\" expected", 0));
 		incre_double_int(&index, i, 1);
 		if (!(f->data = parse_frame_data(win, &text[index], f->type, i)))

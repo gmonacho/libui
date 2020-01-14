@@ -63,7 +63,7 @@ void    			ft_2dputendl(const char **str);
 void				ft_2dintdel(int ***atab, int len);
 void				ft_2dputint(int **tab, int ilen, int jlen);
 int					**ft_2dintpushback(int **tab, int size_i, int size_j, int *line);
-char				**ft_2dstrpushback(char **tab, int size_i, char *line);
+char				**ft_2dstrpushback(char **tab, int size_i, const char *line);
 int     			ft_2dstrlen(char **tab);
 
 char				*ft_strdup(const char *s1);
