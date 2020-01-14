@@ -39,6 +39,7 @@ int		get_resize_type(const char *line)
 			resize_type |= UI_RESIZE_ALL_LINEAR;
 		i++;
 	}
+	ft_2dstrdel(&flags);
 	// printf("1) resize_type = %d\n", resize_type);
 	if (resize_type)
 		return (resize_type);

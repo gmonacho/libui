@@ -70,13 +70,10 @@ static char		**read_ui(const char *path)
 		tmp = text;
 		if (!(text = ft_2dstrpushback(text, i, line)))
 			return (ui_ret_null_error("read_ui", "ft_2dstrpushback failed", NULL));
-		// printf("line =  %p = %s\n", line, line);
-		printf("text[%d] %p = %s\n", i, text[i], text[i]);
 		ft_2dstrdel((char***)(&tmp));
 		ft_strdel(&line);
 		i++;
 	}
-	SDL_Delay(5000);
 	return (text);
 }
 
@@ -89,6 +86,7 @@ static int		ui_load_error(const char *function, const char *error_msg, int ret_v
 	str = ft_strjoin("read error line : ", number);
 	ft_putendl_fd(str, 2);
 	ft_strdel(&str);
+	ft_strdel(&number);
 	return (ui_ret_error(function, error_msg, ret_value));
 }
 

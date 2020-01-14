@@ -12,6 +12,7 @@ SDL_Texture			*ui_load_image(SDL_Renderer *rend, const char *file)
 		return (ui_ret_null_error("ui_load_image", IMG_GetError(), NULL));
 	if (!(texture = SDL_CreateTextureFromSurface(rend, surface)))
 		return (ui_ret_null_error("ui_load_image", SDL_GetError(), NULL));
+	SDL_FreeSurface(surface);
 	return (texture);
 }
 

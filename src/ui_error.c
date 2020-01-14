@@ -4,14 +4,30 @@
 int		ui_ret_error(const char *function, const char *error_msg, int ret_value)
 {
 	char	*str;
+	char	*str_value;
+	int		len;
 
-	str = ft_strjoin(function,
-		  ft_strjoin(" : ",
-		  ft_strjoin(error_msg,
-		  ft_strjoin(" (code error : ",
-		  ft_strjoin(ft_itoa(ret_value), ").")))));
+	str_value = ft_itoa(ret_value);
+
+	len = 0;
+	len += ft_strlen(function);
+	len += ft_strlen(error_msg);
+	len += ft_strlen(str_value);
+	len += 20;
+	if (!(str = (char*)ft_memalloc(sizeof(char) * (len + 1))))
+		return (ret_value);
+	ft_strcat(str, function);
+	ft_strcat(str, " : ");
+	ft_strcat(str, error_msg);
+	ft_strcat(str, " (code error : ");
+	ft_strcat(str, str_value);
+	ft_strcat(str, ").");
+	printf("str = %s\n", str);
 	ft_putendl_fd(str, 2);
-	ft_strdel(&str);
+	if (str_value)
+		ft_strdel(&str_value);
+	if (str)
+		ft_strdel(&str);
 	return (ret_value);
 }
 

@@ -240,5 +240,6 @@ void			ui_draw_text_in_rect(SDL_Renderer *rend, const t_text *text, t_rect rect,
 			rect.y = y;
 			i++;
 		}
+		ft_2dstrdel(&text_tab);
 	}
 }

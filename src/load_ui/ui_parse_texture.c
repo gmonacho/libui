@@ -16,7 +16,7 @@ t_texture		*new_texture(char *id, SDL_Texture *sdl_ptr)
 
 	if (!(texture = (t_texture*)ft_memalloc(sizeof(t_texture))))
 		return (ui_ret_null_error("new_texture", "texture allocation failed", NULL));
-	texture->id = id;
+	texture->id = ft_strdup(id);
 	texture->sdl_ptr = sdl_ptr;
 	texture->next = NULL;
 	return (texture);

@@ -1,4 +1,4 @@
-frame
+fram
 {
     type : UI_FRAME_SIMPLE
     resize_type : UI_RESIZE_ALL_LINEAR
@@ -6,5 +6,20 @@ frame
     data
     {
         texture : "textures/ui_frame.png"
+    }
+    button
+    {
+        id : "button1"
+        type : UI_BUTTON_SIMPLE
+        resize_type : UI_RESIZE_ALL_LINEAR
+        ratio : 0.1 0.1 0.15 0.05
+        data
+        {
+            text : "puet"
+            texture_normal : "textures/ui_normal_button.png"
+            texture_clicked : "textures/ui_clicked_button.png"
+            texture_on_mouse : "textures/ui_on_mouse_button.png"
+            clicked_condition : UI_MOUSE_LEFT
+        }
     }
 }
