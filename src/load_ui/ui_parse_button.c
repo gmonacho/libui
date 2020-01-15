@@ -24,11 +24,11 @@ static void	*parse_button_data(t_win *win,
 	}
 	(*i) += 2;
 	if (button_type == UI_BUTTON_SIMPLE)
-		data = parse_simple_button(win->rend, &win->ui.textures, &text[2], i);
+		data = parse_simple_button(win, &text[2], i);
 	else if (button_type == UI_BUTTON_TEXT_ENTRY)
 	{
-		data = parse_text_entry_button(win->rend, &win->ui.textures,
-													&text[2], i);
+		data = parse_text_entry_button(win,
+								&text[2], i);
 	}
 	(*i)++;
 	return (data);

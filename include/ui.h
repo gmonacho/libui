@@ -50,8 +50,16 @@ void	incre_double_int(int *a, int *b, int value);
 
 t_button			*parse_button(t_win *win, char **text, int *i);
 int					parse_buttons(t_win *win, char **text, int *i);
-t_simple_button		*parse_simple_button(SDL_Renderer *rend, t_texture **textures, char **text, int *i);
-t_text_entry_button	*parse_text_entry_button(SDL_Renderer *rend, t_texture **textures, char **text, int *i);
+t_simple_button	*parse_simple_button(t_win *win,
+										char **text,
+										int *i);
+t_text_entry_button	*parse_text_entry_button(t_win *win,
+											char **text,
+											int *i);
+int					parse_cut(t_win *win,
+						char **text,
+						int *i,
+						t_text_entry_button *b);
 
 int			check_line_name(const char *line, const char *expected);
 int			ui_load(const char *path, t_win *win);

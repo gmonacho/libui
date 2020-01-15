@@ -10,10 +10,10 @@ static t_simple_frame	*ui_ret_null_error_sf(t_simple_frame **simple_frame,
 	return (ui_ret_null_error(function, error_msg, return_value));
 }
 
-t_simple_frame	*parse_simple_frame(SDL_Renderer *rend,
-									t_texture **textures,
-									char **str,
-									int *i)
+t_simple_frame			*parse_simple_frame(SDL_Renderer *rend,
+											t_texture **textures,
+											char **str,
+											int *i)
 {
 	t_simple_frame	*simple_frame;
 
