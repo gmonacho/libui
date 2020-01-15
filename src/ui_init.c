@@ -13,3 +13,10 @@ int		ui_init(Uint32 sdl_flags)
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "2");
 	return (1);
 }
+
+void		ui_quit(Uint32 flags)
+{
+	TTF_Quit();
+	SDL_QuitSubSystem(flags);
+	SDL_Quit();
+}

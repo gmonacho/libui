@@ -11,9 +11,11 @@ t_simple_button		*ui_new_simple_button(t_mouse_button clicked_condition,
 
 	if (!(new_simple = (t_simple_button*)ft_memalloc(
 						sizeof(t_simple_button))))
+	{
 		return (ui_ret_null_error("ui_new_simple_button",
 									"new_simple allocation_failed",
 									NULL));
+	}
 	new_simple->id = -1;
 	new_simple->textures = textures;
 	new_simple->clicked_condition = clicked_condition;
@@ -33,6 +35,7 @@ void				ui_free_simple_button(t_simple_button **simple_button)
 		if (b->text)
 			ft_strdel(&b->text);
 		ui_free_simple_set(b->textures);
+		free(b);
 	}
 	*simple_button = NULL;
 }

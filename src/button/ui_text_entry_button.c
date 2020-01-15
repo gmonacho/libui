@@ -31,42 +31,44 @@ t_text_entry_button	*ui_new_text_entry_button(char *name,
 
 	if (!(new_text_entry = (t_text_entry_button*)ft_memalloc(
 							sizeof(t_text_entry_button))))
+	{
 		return (ui_ret_null_error("ui_new_text_entry_button",
-									"new_text_entry allocation failed",
-									NULL));
+									"new_text_entry allocation failed", NULL));
+	}
 	if (!(new_text_entry->text = (char*)ft_memalloc(
 									sizeof(char) * (max_text_size + 1))))
+	{
 		return (ui_ret_null_error("ui_new_text_entry_button",
 									"new_text_entry->text allocation failed",
 									NULL));
+	}
 	if (!(new_text_entry->new_text = (char*)ft_memalloc(
 										sizeof(char) * (max_text_size + 1))))
+	{
 		return (ui_ret_null_error("ui_new_text_entry_button",
 									"new_text_entry->new_text\
-									allocation failed",
-									NULL));
+									allocation failed", NULL));
+	}
 	new_text_entry->max_text_size = max_text_size;
-    ui_init_new_text_entry_button(new_text_entry, name, f, argument);
+	ui_init_new_text_entry_button(new_text_entry, name, f, argument);
 	return (new_text_entry);
 }
 
-void		ui_free_text_entry_button(t_text_entry_button **text_entry)
+void				ui_free_text_entry_button(t_text_entry_button **text_entry)
 {
 	t_text_entry_button *b;
 
-	if (text_entry)
+	b = *text_entry;
+	if (b)
 	{
-		b = *text_entry;
-		if (b)
-		{
-			if (b->name)
-				ft_strdel(&b->name);
-			if (b->text)
-				ft_strdel(&b->text);
-			if (b->new_text)
-				ft_strdel(&b->new_text);
-			ui_free_text_entry_set(b->textures);
-		}
+		if (b->name)
+			ft_strdel(&b->name);
+		if (b->text)
+			ft_strdel(&b->text);
+		if (b->new_text)
+			ft_strdel(&b->new_text);
+		ui_free_text_entry_set(b->textures);
+		free(b);
 		*text_entry = NULL;
 	}
 }

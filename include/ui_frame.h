@@ -19,8 +19,8 @@ void			ui_free_simple_frame(t_simple_frame **simple_frame);
 
 typedef enum    s_frame_type
 {
-    UI_FRAME_NONE = 0,
-    UI_FRAME_SIMPLE = 1
+	UI_FRAME_NONE = 0,
+	UI_FRAME_SIMPLE = 1
 }               t_frame_type;
 
 typedef struct  		s_frame

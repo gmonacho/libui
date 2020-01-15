@@ -24,6 +24,7 @@ t_win		*ui_new_win(const char *title, t_rect rect, Uint32 sdl_win_flags, Uint32 
 	win->ui.button_text_ratio = 0.7;
 	win->ui.cursor_position = 0;
 	win->ui.cursor_color = (SDL_Color){255, 255, 255, 255};
+	win->ui.textures = NULL;
 	return (win);
 }
 
@@ -138,12 +139,8 @@ void		ui_free_win(t_win **win)
 			SDL_DestroyRenderer(w->rend);
 		if (w->ptr)
 			SDL_DestroyWindow(w->ptr);
+		ui_free_ui(&w->ui);
+		free(w);
+		*win = NULL;
 	}
-	ui_free_ui(&w->ui);
-	*win = NULL;
-}
-
-void		ui_quit()
-{
-	SDL_Quit();
 }

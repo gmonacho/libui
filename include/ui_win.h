@@ -73,5 +73,4 @@ void				ui_update_frames_rect(t_win *win, SDL_bool force_update);
 void				ui_update_buttons_rect(t_win *win, SDL_bool force_update);
 void				ui_update_ui(t_win *win);
 
-void				ui_quit();
 #endif

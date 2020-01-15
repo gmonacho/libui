@@ -4,9 +4,9 @@
 #include "ui_error.h"
 #include "libft.h"
 
-char	**skip_next_block(char **str)
+char			**skip_next_block(char **str)
 {
-	int 	j;
+	int		j;
 	int		loop;
 	int		nb_bracket;
 
@@ -30,29 +30,7 @@ char	**skip_next_block(char **str)
 	return (&str[j]);
 }
 
-int		check_line_name(const char *line, const char *expected)
-{
-	//printf("\n..... check_line_name .....\n");
-	int		i;
-	int		il;
-	char	name[ft_strlen(expected) + 1];
-
-	name[ft_strlen(expected)] = '\0';
-	il = 0;
-	while (line && !ft_isprint(line[il]) && line[il])
-		il++;
-	i = 0;
-	while (line && ft_isprint(line[il]) && i < (int)ft_strlen(expected))
-		name[i++] = line[il++];
-	name[i] = '\0';
-	//printf("line name = %s\n", name);
-	if (ft_strcmp(name, expected) != 0)
-		return (ui_ret_error("check_line_name", "bad line name", 0));
-	else 
-		return (1);
-}
-
-static char		**read_ui(const char *path) 
+static char		**read_ui(const char *path)
 {
 	char	*line;
 	char	**text;
@@ -69,7 +47,10 @@ static char		**read_ui(const char *path)
 	{
 		tmp = text;
 		if (!(text = ft_2dstrpushback(text, i, line)))
-			return (ui_ret_null_error("read_ui", "ft_2dstrpushback failed", NULL));
+		{
+			return (ui_ret_null_error("read_ui",
+					"ft_2dstrpushback failed", NULL));
+		}
 		ft_2dstrdel((char***)(&tmp));
 		ft_strdel(&line);
 		i++;
@@ -77,7 +58,10 @@ static char		**read_ui(const char *path)
 	return (text);
 }
 
-static int		ui_load_error(const char *function, const char *error_msg, int ret_value, int line)
+static int		ui_load_error(const char *function,
+								const char *error_msg,
+								int ret_value,
+								int line)
 {
 	char	*str;
 	char	*number;
@@ -90,6 +74,32 @@ static int		ui_load_error(const char *function, const char *error_msg, int ret_v
 	return (ui_ret_error(function, error_msg, ret_value));
 }
 
+static int		ui_load_text(t_win *win, char **text)
+{
+	int		i;
+
+	i = 0;
+	while (text[i])
+	{
+		if (ft_strcmp(text[i], "frame") != 0)
+			return (ui_load_error("ui_load", "frame expected", 0, i + 1));
+		i += 2;
+		if (!parse_frame(win, &text[i], &i))
+			return (ui_load_error("ui_load", "parse_frame failed", 0, i + 1));
+		if (text[i])
+		{
+			if (ft_strcmp(text[i], "}") != 0)
+			{
+				return (ui_load_error("ui_load",
+						"frame is not correctly closed (!!only '}' expected!!)",
+						0, i + 1));
+			}
+			i++;
+		}
+	}
+	return (1);
+}
+
 int				ui_load(const char *path, t_win *win)
 {
 	int		i;
@@ -98,34 +108,10 @@ int				ui_load(const char *path, t_win *win)
 	i = 0;
 	if ((text = read_ui(path)) == NULL)
 		return (ui_ret_error("ui_load", "read_ui failed", 0));
-	// ft_2dputendl((const char**)text);
-	//printf("--------- Debut Parsing ---------\n");
-	while (text[i])
+	if (!ui_load_text(win, text))
 	{
-		//printf("text[i] = %s\n", text[i]);
-		if (ft_strcmp(text[i], "frame") != 0)
-		{
-			ft_2dstrdel((char***)&text);
-			return (ui_load_error("ui_load", "frame expected", 0, i + 1));
-		}
-		i += 2;
-		if (!parse_frame(win, &text[i], &i))
-		{
-			ft_2dstrdel((char***)&text);
-			return (ui_load_error("ui_load", "parse_frame failed", 0, i + 1));
-		}
-		printf("win->ui.frames = %p win->ui.frames->next = %p\n", win->ui.frames, win->ui.frames->next);
-		printf("1) text[%d] = %s\n", i, text[i]);
-		if (text[i])
-		{
-			if (ft_strcmp(text[i], "}") != 0)
-			{
-				ft_2dstrdel((char***)&text);
-				return (ui_load_error("ui_load", "frame is not correctly closed (!!only '}' expected!!)", 0, i + 1));
-			}
-			i++;
-		}
-		printf("2) text[%d] = %s\n", i, text[i]);
+		ft_2dstrdel(&text);
+		return (ui_ret_error("ui_load", "ui_load_text failed", 0));
 	}
 	ui_update_frames_rect(win, SDL_TRUE);
 	ui_update_buttons_rect(win, SDL_TRUE);

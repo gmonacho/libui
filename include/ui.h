@@ -9,6 +9,7 @@
 # include "SDL.h"
 
 int			ui_init(Uint32 sdl_flags);
+void		ui_quit(Uint32 flags);
 
 char	    **skip_next_block(char **str);
 
@@ -35,9 +36,22 @@ SDL_Texture		*parse_texture(SDL_Renderer *rend, t_texture **textures, const char
 void			ui_free_texture(t_texture **texture);
 void			ui_free_textures(t_texture **textures);
 
-int			parse_frame(t_win *win, char **text, int *i);
+int				parse_frame(t_win *win, char **text, int *i);
+void			*parse_frame_data(t_win *win,
+									char **str,
+									t_frame_type frame_type,
+									int *i);
+t_simple_frame	*parse_simple_frame(SDL_Renderer *rend,
+									t_texture **textures,
+									char **str,
+									int *i);
 
-int		parse_buttons(t_win *win, char **text, int *i);
+void	incre_double_int(int *a, int *b, int value);
+
+t_button			*parse_button(t_win *win, char **text, int *i);
+int					parse_buttons(t_win *win, char **text, int *i);
+t_simple_button		*parse_simple_button(SDL_Renderer *rend, t_texture **textures, char **text, int *i);
+t_text_entry_button	*parse_text_entry_button(SDL_Renderer *rend, t_texture **textures, char **text, int *i);
 
 int			check_line_name(const char *line, const char *expected);
 int			ui_load(const char *path, t_win *win);

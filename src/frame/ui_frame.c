@@ -2,19 +2,25 @@
 #include "libft.h"
 #include "ui_error.h"
 
-t_frame     *ui_new_frame(t_frame_type type, t_resize_type resize_type, t_frect ratio, void *data)
+t_frame		*ui_new_frame(t_frame_type type,
+							t_resize_type resize_type,
+							t_frect ratio,
+							void *data)
 {
-    t_frame	*frame;
+	t_frame	*frame;
 
 	if (!(frame = (t_frame*)ft_memalloc(sizeof(t_frame))))
-		return (ui_ret_null_error("ui_new_frame", "frame allocation failed", NULL));
+	{
+		return (ui_ret_null_error("ui_new_frame",
+				"frame allocation failed", NULL));
+	}
 	frame->type = type;
 	frame->resize_type = resize_type;
 	frame->ratio = ratio;
 	frame->data = data;
 	frame->next = NULL;
 	frame->buttons = NULL;
-    return (frame);
+	return (frame);
 }
 
 void		ui_add_frame(t_frame **frames, t_frame *new_frame)
@@ -42,8 +48,8 @@ void		ui_free_frame(t_frame **frame)
 		}
 		f->next = NULL;
 		free(f);
+		*frame = NULL;
 	}
-	*frame = NULL;
 }
 
 void		ui_free_frames(t_frame **frames)
@@ -58,5 +64,4 @@ void		ui_free_frames(t_frame **frames)
 		ui_free_frame(&f);
 		f = next;
 	}
-	*frames = NULL;
-}		
+}

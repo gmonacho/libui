@@ -2,17 +2,19 @@
 #include "libft.h"
 #include "ui_error.h"
 
-t_button				*ui_new_button(t_button_type type,
-										t_resize_type resize_type,
-										t_frect ratio,
-										void *data)
+t_button	*ui_new_button(t_button_type type,
+							t_resize_type resize_type,
+							t_frect ratio,
+							void *data)
 {
 	t_button	*new_button;
 
 	if (!(new_button = (t_button*)ft_memalloc(sizeof(t_button))))
+	{
 		return (ui_ret_null_error("ui_new_button",
-									"new_button allocation failed",
-									NULL));
+								"new_button allocation failed",
+								NULL));
+	}
 	new_button->id = NULL;
 	new_button->data = data;
 	new_button->type = type;
@@ -22,8 +24,8 @@ t_button				*ui_new_button(t_button_type type,
 	return (new_button);
 }
 
-void					ui_add_button(t_button **buttons,
-										t_button *new_button)
+void		ui_add_button(t_button **buttons,
+							t_button *new_button)
 {
 	if (new_button)
 	{
@@ -34,8 +36,7 @@ void					ui_add_button(t_button **buttons,
 		ui_ret_error("ui_add_button", "new_button is NULL", 0);
 }
 
-
-void				ui_free_button(t_button **button)
+void		ui_free_button(t_button **button)
 {
 	t_button	*b;
 
@@ -57,7 +58,7 @@ void				ui_free_button(t_button **button)
 	*button = NULL;
 }
 
-void				ui_free_buttons(t_button **buttons)
+void		ui_free_buttons(t_button **buttons)
 {
 	t_button	*b;
 	t_button	*next;
@@ -69,5 +70,4 @@ void				ui_free_buttons(t_button **buttons)
 		ui_free_button(&b);
 		b = next;
 	}
-	*buttons = NULL;
 }

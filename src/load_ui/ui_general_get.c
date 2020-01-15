@@ -1,7 +1,7 @@
 #include "ui.h"
 #include "ui_error.h"
 
-char	*get_next_flag(const char *flags)
+char		*get_next_flag(const char *flags)
 {
 	char	*flag;
 	int		i;
@@ -19,9 +19,21 @@ char	*get_next_flag(const char *flags)
 		len++;
 	}
 	if (!(flag = ft_strsub(flags, start, len)))
-		return (ui_ret_null_error("get_next_flag", "flag <- ft_strsub failed", NULL));
-	//printf("get_next_flag = %s\n", flag);
+	{
+		return (ui_ret_null_error("get_next_flag",
+				"flag <- ft_strsub failed", NULL));
+	}
 	return (flag);
+}
+
+static void	skip_char(const char **flags)
+{
+	while (!ft_isprint(**flags) && **flags)
+		(*flags)++;
+	while (ft_isprint(**flags))
+		(*flags)++;
+	while (!ft_isprint(**flags) && **flags)
+		(*flags)++;
 }
 
 char		**get_flags_tab(const char *flags)
@@ -36,17 +48,15 @@ char		**get_flags_tab(const char *flags)
 	while (*flags)
 	{
 		if (!(next_flag = get_next_flag(flags)))
-			return (ui_ret_null_error("get_flags_tab", "get_next_falg failed", NULL));
+		{
+			return (ui_ret_null_error("get_flags_tab",
+					"get_next_falg failed", NULL));
+		}
 		tmp = tab;
 		tab = ft_2dstrpushback(tab, i++, next_flag);
 		ft_strdel(&next_flag);
 		ft_2dstrdel((char***)&tmp);
-		while (!ft_isprint(*flags) && *flags)
-			flags++;
-		while (ft_isprint(*flags))
-			flags++;
-		while (!ft_isprint(*flags) && *flags)
-			flags++;
+		skip_char(&flags);
 		if (*flags == '|')
 			flags++;
 	}
@@ -54,7 +64,7 @@ char		**get_flags_tab(const char *flags)
 }
 
 int			get_float(char *str, double *fnb_ptr)
-{	
+{
 	double	fnb;
 	int		i;
 
@@ -76,12 +86,10 @@ int			get_float(char *str, double *fnb_ptr)
 
 int			get_ratio(const char *line, t_frect *ratio_ptr)
 {
-	//printf("\n..... get_ratio .....\n");
 	char	*ratio_str;
 	void	*ptr;
 
 	ptr = ratio_ptr;
-
 	if (!(ratio_str = ft_strstr(line, " : ")))
 		return (ui_ret_error("get_ratio", "\" : \" not found", 0));
 	ratio_str += 3;
@@ -89,6 +97,5 @@ int			get_ratio(const char *line, t_frect *ratio_ptr)
 	ratio_str += get_float(ratio_str, &ratio_ptr->y);
 	ratio_str += get_float(ratio_str, &ratio_ptr->w);
 	ratio_str += get_float(ratio_str, &ratio_ptr->h);
-	//printf("ratio .x = %f, .y = %f, w = %f, h = %f\n", (*ratio_ptr).x, (*ratio_ptr).y, (*ratio_ptr).w, (*ratio_ptr).h);
 	return (1);
 }

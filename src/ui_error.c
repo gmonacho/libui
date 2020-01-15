@@ -22,7 +22,6 @@ int		ui_ret_error(const char *function, const char *error_msg, int ret_value)
 	ft_strcat(str, " (code error : ");
 	ft_strcat(str, str_value);
 	ft_strcat(str, ").");
-	printf("str = %s\n", str);
 	ft_putendl_fd(str, 2);
 	if (str_value)
 		ft_strdel(&str_value);
@@ -34,9 +33,17 @@ int		ui_ret_error(const char *function, const char *error_msg, int ret_value)
 void	*ui_ret_null_error(const char *function, const char *error_msg, void *return_value)
 {
 	char	*str;
+	int		len;
 
-	str = ft_strjoin(function,
-		  ft_strjoin(" : ", error_msg));
+	len = 0;
+	len += ft_strlen(function);
+	len += ft_strlen(error_msg);
+	len += 3;
+	if (!(str = (char*)ft_memalloc(sizeof(char) * (len + 1))))
+		return (return_value);
+	ft_strcat(str, function);
+	ft_strcat(str, " : ");
+	ft_strcat(str, error_msg);
 	ft_putendl_fd(str, 2);
 	ft_strdel(&str);
 	return (return_value);
