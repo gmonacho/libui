@@ -62,13 +62,21 @@ int		main()
 			// 										(ui_dot){200, 200}, TEXT_ALIGN_LEFT});
 			ui_set_draw_color(win->rend, &(SDL_Color){255, 0, 0, 255});
 			// ui_draw_rect(win->rend, &(t_rect){400, 200, 200, 25});
-			// ui_draw_text_in_rect(win->rend, &(t_text){"1111111111111111122222222222",
+			// ui_draw_text_in_rect(win->rend, &(t_text){"11111111\n111111111222222222222awefafaefafs222\n22222222",
 			// 										20,
 			// 										win->ui.button_font,
 			// 										(SDL_Color){200, 200, 200, 255},
 			// 										(t_dot){200, 200},
 			// 										TEXT_ALIGN_LEFT | TEXT_ALIGN_V_MIDDLE},
-			// 										(t_rect){400, 200, 200, 25}, UI_DRAW_TEXT_HIDE_RIGHT);
+			// 										(t_rect){400, 200, 200, 500});
+			ui_draw_rect(win->rend, &(t_rect){100, 100, 200, 25});
+			ui_draw_text_line(win->rend,  &(t_text_line_kit){"test ui_draw_text_line",
+				(SDL_Color){255, 255, 255, 255},
+				(t_dot){300, 100},
+				300,
+				25,
+				win->ui.button_font,
+				TEXT_ALIGN_LEFT});
 			ui_draw_rend(win);
 			ui_wait_event(&win->event);
 			ui_update_ui(win);

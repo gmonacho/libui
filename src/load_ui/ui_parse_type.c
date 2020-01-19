@@ -17,6 +17,26 @@ int					parse_int(const char *str, int *n)
 	return (1);
 }
 
+static char			*get_new_str(char *str, int len, int start)
+{
+	int		i;
+	char	*new_str;
+
+	if (!(new_str = (char*)ft_memalloc(sizeof(char) * (len + 1))))
+	{
+		return (ui_ret_null_error("get_new_str",
+			"new_str allocation failed", NULL));
+	}
+	i = start + 1;
+	while (str[i] != '\"' && str[i])
+	{
+		new_str[i - start - 1] = str[i];
+		i++;
+	}
+	new_str[i - start - 1] = '\0';
+	return (new_str);
+}
+
 char				*parse_str(char *str)
 {
 	char	*new_str;
@@ -24,7 +44,6 @@ char				*parse_str(char *str)
 	int		i;
 	int		start;
 
-	len = -1;
 	i = 0;
 	while (str[i] != '\"' && str[i])
 		i++;
@@ -40,14 +59,7 @@ char				*parse_str(char *str)
 	}
 	if (str[i] != '\"')
 		return (ui_ret_null_error("parse_str", "bad <\"str\"> format", NULL));
-	if (!(new_str = (char*)ft_memalloc(sizeof(char) * (len + 1))))
-		return (ui_ret_null_error("parse_str", "new_str allocation failed", NULL));
-	i = start + 1;
-	while (str[i] != '\"' && str[i])
-	{
-		new_str[i - start - 1] = str[i];
-		i++;
-	}
-	new_str[i - start - 1] = '\0';
+	if (!(new_str = get_new_str(str, len, start)))
+		return (ui_ret_null_error("parse_str", "get_new_str failed", NULL));
 	return (new_str);
 }

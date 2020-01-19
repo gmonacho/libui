@@ -87,8 +87,7 @@ static t_rect	ui_get_texture_rect(t_win *win,
 
 static void		ui_draw_text_side(t_win *win,
 									const t_rect *rect,
-									char *text_entry,
-									t_text_entry_button *text_entry_button)
+									char *text_entry)
 {
 	t_rect 				display_rect;
 	char				pre_cursor_text[ft_strlen(text_entry) + 1];
@@ -105,16 +104,17 @@ static void		ui_draw_text_side(t_win *win,
 				rect->w - rect->w / 10,
 				rect->h * win->ui.button_text_ratio};
 	// align = (cursor_x > display_rect.w) ? TEXT_ALIGN_RIGHT : TEXT_ALIGN_LEFT;
-	ui_draw_text_in_rect(win->rend,
-				&(t_text){text_entry,
-				rect->h * win->ui.button_text_ratio,
-				win->ui.button_font, win->ui.button_text_color,
-				(t_dot){0, 0},
-				TEXT_ALIGN_LEFT},
-				display_rect,
-				(win->ui.clicked_button
-				&& win->ui.clicked_button->data == text_entry_button) ?
-				UI_DRAW_TEXT_HIDE_LEFT : UI_DRAW_TEXT_HIDE_RIGHT);
+	// ui_draw_text_in_rect(win->rend,
+	// 			&(t_text){text_entry,
+	// 			rect->h * win->ui.button_text_ratio,
+	// 			win->ui.button_font, win->ui.button_text_color,
+	// 			(t_dot){0, 0},
+	// 			TEXT_ALIGN_LEFT},
+	// 			display_rect);
+	// ,
+	// (win->ui.clicked_button
+	// && win->ui.clicked_button->data == text_entry_button) ?
+	// UI_DRAW_TEXT_HIDE_LEFT : UI_DRAW_TEXT_HIDE_RIGHT)
 	ui_draw_cursor(win, text_entry,
 					&display_rect,
 					rect->h * win->ui.button_text_ratio,
@@ -140,13 +140,13 @@ static void		ui_draw_name_side(t_win *win,
 				SDL_RenderCopy(win->rend,
 				text_entry_button->textures.name_side_texture,
 				NULL, (SDL_Rect*)&texture_rect);
-			ui_draw_text_in_rect(win->rend,
-								&(t_text){text_entry_button->name,
-								rect->h * win->ui.button_text_ratio,
-								win->ui.button_font, win->ui.button_text_color,
-								(t_dot){0, 0},
-								TEXT_ALIGN_CENTER},
-								name_rect, UI_DRAW_TEXT_NONE);
+			// ui_draw_text_in_rect(win->rend,
+			// 					&(t_text){text_entry_button->name,
+			// 					rect->h * win->ui.button_text_ratio,
+			// 					win->ui.button_font, win->ui.button_text_color,
+			// 					(t_dot){0, 0},
+			// 					TEXT_ALIGN_CENTER},
+			// 					name_rect);
 		}
 	}
 }
@@ -169,7 +169,7 @@ static void		ui_draw_text_entry_normally(t_win *win,
 										win->ui.button_font,
 										text_entry,
 										&win->ui.button_text_color)))
-		ui_draw_text_side(win, rect, text_entry, text_entry_button);
+		ui_draw_text_side(win, rect, text_entry);
 }
 
 void			ui_display_text_entry(t_win *win,

@@ -1,27 +1,6 @@
 #include "ui.h"
 #include "ui_error.h"
 
-void			add_texture(t_texture **textures, t_texture *new_texture)
-{
-	if (new_texture)
-	{
-		new_texture->next = *textures;
-		*textures = new_texture;
-	}
-}
-
-t_texture		*new_texture(char *id, SDL_Texture *sdl_ptr)
-{
-	t_texture	*texture;
-
-	if (!(texture = (t_texture*)ft_memalloc(sizeof(t_texture))))
-		return (ui_ret_null_error("new_texture", "texture allocation failed", NULL));
-	texture->id = ft_strdup(id);
-	texture->sdl_ptr = sdl_ptr;
-	texture->next = NULL;
-	return (texture);
-}
-
 SDL_Texture		*get_texture_ptr(t_texture *textures, const char *id)
 {
 	t_texture	*t;
@@ -36,13 +15,19 @@ SDL_Texture		*get_texture_ptr(t_texture *textures, const char *id)
 	return (NULL);
 }
 
-SDL_Texture		*parse_texture(SDL_Renderer *rend, t_texture **textures, const char *expected_name, char *line)
+SDL_Texture		*parse_texture(SDL_Renderer *rend,
+								t_texture **textures,
+								const char *expected_name,
+								char *line)
 {
 	char		*path;
 	SDL_Texture	*texture;
 
 	if (!check_line_name(line, expected_name) || !(path = parse_str(line)))
-		return (ui_ret_null_error("parse_texture", "\"<?> : <path>\" expected", NULL));
+	{
+		return (ui_ret_null_error("parse_texture", "\"<?> : \
+		<path>\" expected", NULL));
+	}
 	if ((texture = get_texture_ptr(*textures, path)))
 	{
 		ft_strdel(&path);
@@ -51,7 +36,8 @@ SDL_Texture		*parse_texture(SDL_Renderer *rend, t_texture **textures, const char
 	if (!(texture = ui_load_image(rend, path)))
 	{
 		ft_strdel(&path);
-		return (ui_ret_null_error("parse_texture", "ui_load_image failed", NULL));
+		return (ui_ret_null_error("parse_texture",
+		"ui_load_image failed", NULL));
 	}
 	add_texture(textures, new_texture(path, texture));
 	ft_strdel(&path);

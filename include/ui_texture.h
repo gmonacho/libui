@@ -59,13 +59,24 @@ t_text_entry_set	ui_create_text_entry_set(SDL_Texture *name_side_texture,
 											SDL_Texture *writting_box_texture);
 void				ui_free_text_entry_set(t_text_entry_set text_entry_set);
 
+typedef struct		s_text_line_kit
+{
+	char			*str;
+	SDL_Color		color;
+	t_dot			pos;
+	int				max_width;
+	int				height;
+	TTF_Font		*font;
+	t_text_align	alignment;
+}					t_text_line_kit;
+
 typedef struct		s_text
 {
 	char			*text;
+	t_rect			rect;
 	int				height;
 	TTF_Font		*font;
 	SDL_Color		color;
-	t_dot			pos;
 	t_text_align	alignment;
 }					t_text;
 
@@ -78,10 +89,11 @@ int					ui_get_text_width(TTF_Font *font,
 										const char *text,
 										int height);
 void				ui_draw_text(SDL_Renderer *rend, const t_text *text);
+int					ui_draw_text_line(SDL_Renderer *rend,
+									t_text_line_kit *text);
 void				ui_draw_text_in_rect(SDL_Renderer *rend,
 											const t_text *text,
-											t_rect rect,
-											t_draw_text_flag flags);
+											t_rect rect);
 int					ui_get_x_alignment(t_rect rect,
 										t_text_align aligment,
 										int text_width);
