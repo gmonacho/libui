@@ -70,6 +70,16 @@ typedef struct		s_text_line_kit
 	t_text_align	alignment;
 }					t_text_line_kit;
 
+typedef struct		s_text_rect_kit
+{
+	char			*str;
+	SDL_Color		color;
+	t_rect			rect;
+	int				height;
+	TTF_Font		*font;
+	t_text_align	alignment;
+}					t_text_rect_kit;
+
 typedef struct		s_text
 {
 	char			*text;
@@ -91,6 +101,8 @@ int					ui_get_text_width(TTF_Font *font,
 void				ui_draw_text(SDL_Renderer *rend, const t_text *text);
 int					ui_draw_text_line(SDL_Renderer *rend,
 									t_text_line_kit *text);
+int					ui_draw_text_line_return(SDL_Renderer *rend,
+								t_text_line_kit *text);
 void				ui_draw_text_in_rect(SDL_Renderer *rend,
 											const t_text *text,
 											t_rect rect);

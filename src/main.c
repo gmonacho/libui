@@ -70,13 +70,20 @@ int		main()
 			// 										TEXT_ALIGN_LEFT | TEXT_ALIGN_V_MIDDLE},
 			// 										(t_rect){400, 200, 200, 500});
 			ui_draw_rect(win->rend, &(t_rect){100, 100, 200, 25});
-			ui_draw_text_line(win->rend,  &(t_text_line_kit){"test ui_draw_text_line",
+			ui_draw_text_line(win->rend,  &(t_text_line_kit){"draw",
 				(SDL_Color){255, 255, 255, 255},
 				(t_dot){300, 100},
-				300,
+				40,
 				25,
 				win->ui.button_font,
 				TEXT_ALIGN_LEFT});
+			ui_draw_text_line_return(win->rend,  &(t_text_line_kit){"test ui draw text line",
+				(SDL_Color){255, 255, 255, 255},
+				(t_dot){300, 200},
+				70,
+				25,
+				win->ui.button_font,
+				TEXT_ALIGN_CENTER});
 			ui_draw_rend(win);
 			ui_wait_event(&win->event);
 			ui_update_ui(win);
