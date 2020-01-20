@@ -40,7 +40,7 @@ frame
         ratio : 0.1 0.1 0.15 0.05
         data
         {
-            text : "puet"
+            text : "button_1"
             texture_normal : "textures/ui_normal_button.png"
             texture_clicked : "textures/ui_clicked_button.png"
             texture_on_mouse : "textures/ui_on_mouse_button.png"
@@ -52,12 +52,12 @@ frame
         id : "button3"
         type : UI_BUTTON_TEXT_ENTRY
         resize_type : UI_RESIZE_ALL_LINEAR
-        ratio : 0.7 0.3 0.15 0.05
+        ratio : 0 0 0.3 0.05
         data
         {
             name : "puet"
             text : ""
-            max_text_size : 8
+            max_text_size : 20
             min_int : 0
             max_int : 9000
             name_side_texture : "textures/ui_text_entry_button_normal.png"

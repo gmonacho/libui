@@ -76,6 +76,16 @@ static t_rect	get_dst_rect(t_text_line_kit *text, int width)
 	}
 }
 
+static int		get_dst_y(t_text_line_kit *text)
+{
+	if (text->alignment & TEXT_ALIGN_V_MIDDLE)
+		return (text->pos.y - text->height / 2);
+	else if (text->alignment & TEXT_ALIGN_V_TOP)
+		return (text->pos.y - text->height);
+	else
+		return (text->pos.y);
+}
+
 int				ui_draw_text_line(SDL_Renderer *rend,
 							t_text_line_kit *text)
 {
@@ -95,6 +105,7 @@ int				ui_draw_text_line(SDL_Renderer *rend,
 					&texture_size.x, &texture_size.y);
 			src_rect = get_src_rect(text, texture_size, width);
 			dst_rect = get_dst_rect(text, width);
+			dst_rect.y = get_dst_y(text);
 			SDL_RenderCopy(rend, texture,
 			(SDL_Rect*)src_rect, (SDL_Rect*)&dst_rect);
 			SDL_DestroyTexture(texture);
