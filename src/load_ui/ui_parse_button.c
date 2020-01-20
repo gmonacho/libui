@@ -30,6 +30,8 @@ static void	*parse_button_data(t_win *win,
 		data = parse_text_entry_button(win,
 								&text[2], i);
 	}
+	else if (button_type == UI_BUTTON_TEXT_AREA)
+		data = parse_text_area(&text[2], i);
 	(*i)++;
 	return (data);
 }

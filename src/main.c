@@ -39,7 +39,6 @@ int		main()
 							SDL_WINDOW_RESIZABLE,
 							SDL_RENDERER_ACCELERATED)))
 		return (1);
-	win->ui.button_text_ratio = 0.7;
 
 	if (!(win->ui.button_font = ui_load_font("font/Raleway-Regular.ttf", 100)))
 		return (1);
@@ -81,7 +80,7 @@ int		main()
 			ui_draw_text_line_return(win->rend,  &(t_text_line_kit){"test ui draw text line return",
 				(SDL_Color){255, 255, 255, 255},
 				(t_dot){300, 200},
-				70,
+				150,
 				25,
 				win->ui.button_font,
 				TEXT_ALIGN_CENTER});

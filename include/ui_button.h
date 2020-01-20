@@ -65,11 +65,34 @@ t_text_entry_button	*ui_new_text_entry_button(char *name,
 													int max_text_size);
 void		ui_free_text_entry_button(t_text_entry_button **text_entry);
 
+typedef enum			e_resize_text
+{
+	UI_RESIZE_TEXT_NONE = 0,
+	UI_RESIZE_TEXT_LINEAR = 1
+}						t_resize_text;
+
+typedef struct			s_text_area
+{
+	char				*text;
+	t_resize_text		resize_text;
+	float				text_height;
+	t_text_align		text_align;
+	SDL_Color			text_color;
+}						t_text_area;
+
+t_text_area		*ui_new_text_area(const char *text,
+									float text_height,
+									t_text_align text_align,
+									t_resize_text resize_text);
+
+void			ui_free_text_area(t_text_area **text_area);
+
 typedef enum			e_button_type
 {
 	UI_BUTTON_NONE = 0,
 	UI_BUTTON_SIMPLE = 1,
-	UI_BUTTON_TEXT_ENTRY = 2
+	UI_BUTTON_TEXT_ENTRY = 2,
+	UI_BUTTON_TEXT_AREA = 3
 }						t_button_type;
 
 # define UI_RESIZE_POS_LINEAR 3

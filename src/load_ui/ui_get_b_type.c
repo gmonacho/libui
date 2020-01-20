@@ -42,5 +42,49 @@ int						get_resize_type(const char *line)
 	if (resize_type)
 		return (resize_type);
 	else
-		return (ui_ret_error("get_resize_type", "invalid frame type", -1));
+		return (ui_ret_error("get_resize_type",
+		"invalid resize_type type", -1));
+}
+
+int						get_resize_text(const char *line)
+{
+	char	*type;
+
+	if (!(type = ft_strstr(line, " : ")))
+		return (ui_ret_error("get_resize_type", "\" : \" not found", -1));
+	type += 3;
+	if (ft_strcmp(type, "UI_RESIZE_TEXT_NONE") == 0)
+		return (UI_RESIZE_TEXT_NONE);
+	else if (ft_strcmp(type, "UI_RESIZE_TEXT_LINEAR") == 0)
+		return (UI_RESIZE_TEXT_LINEAR);
+	else
+		return (ui_ret_error("get_resize_type", "invalid resize_type", -1));
+}
+
+int						parse_sdl_color(const char *line, SDL_Color *sdl_color)
+{
+	char		*str;
+
+	*sdl_color = (SDL_Color){255, 255, 255, 255};
+	if (!(str = ft_strstr(line, " : ")))
+		return (ui_ret_error("get_sdl_color", "\" : \" not found", -1));
+	while (*str && !ft_isprint(*str))
+		str++;
+	sdl_color->r = ft_atoi(str);
+	while (ft_isdigit(*str))
+		str++;
+	while (*str && !ft_isprint(*str))
+		str++;
+	sdl_color->g = ft_atoi(str);
+	while (ft_isdigit(*str))
+		str++;
+	while (*str && !ft_isprint(*str))
+		str++;
+	sdl_color->b = ft_atoi(str);
+	while (ft_isdigit(*str))
+		str++;
+	while (*str && !ft_isprint(*str))
+		str++;
+	sdl_color->a = ft_atoi(str);
+	return (1);
 }

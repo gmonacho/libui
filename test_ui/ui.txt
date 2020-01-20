@@ -52,7 +52,7 @@ frame
         id : "button3"
         type : UI_BUTTON_TEXT_ENTRY
         resize_type : UI_RESIZE_ALL_LINEAR
-        ratio : 0 0 0.3 0.05
+        ratio : 0.4 0.4 0.3 0.05
         data
         {
             name : "puet"
@@ -65,6 +65,21 @@ frame
             writting_box_texture : "textures/ui_text_entry_button_writting.png"
             text_side : UI_TEXT_SIDE_LEFT
             text_type : UI_TEXT_TYPE_NONE
+        }
+    }
+    button
+    {
+        id : "text_area"
+        type : UI_BUTTON_TEXT_AREA
+        resize_type : UI_RESIZE_ALL_LINEAR
+        ratio : 0.6 0.5 0.3 0.4
+        data
+        {
+            text : "text_qui_peut_etre_long_samere"
+            resize_text : UI_RESIZE_TEXT_NONE
+            text_height : 25
+            text_align : TEXT_ALIGN_CENTER
+            text_color : 255 255 255 255
         }
     }
 }
