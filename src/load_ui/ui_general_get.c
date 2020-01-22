@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_general_get.c                                 .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 17:34:18 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 17:34:19 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "ui.h"
 #include "ui_error.h"
 
@@ -50,7 +63,7 @@ char		**get_flags_tab(const char *flags)
 		if (!(next_flag = get_next_flag(flags)))
 		{
 			return (ui_ret_null_error("get_flags_tab",
-					"get_next_falg failed", NULL));
+					"get_next_flag failed", NULL));
 		}
 		tmp = tab;
 		tab = ft_2dstrpushback(tab, i++, next_flag);
@@ -69,7 +82,7 @@ int			get_float(char *str, double *fnb_ptr)
 	int		i;
 
 	i = 0;
-	while (!(ft_isprint(str[i]) && str[i]))
+	while (str[i] && !ft_isprint(str[i]))
 		i++;
 	fnb = ft_atof(str);
 	while (ft_isdigit(str[i]))

@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_text_area.c                                   .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 17:33:22 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 17:33:25 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "ui_button.h"
 #include "ui_error.h"
 #include "libft.h"
@@ -11,7 +24,7 @@ t_text_area		*ui_new_text_area(const char *text,
 
 	if (!(text_area = (t_text_area*)ft_memalloc(sizeof(t_text_area))))
 	{
-		return (ui_ret_null_error("ui_new_text_area", 
+		return (ui_ret_null_error("ui_new_text_area",
 				"text_area allocation failed", NULL));
 	}
 	text_area->text = ft_strdup(text);
@@ -25,7 +38,7 @@ t_text_area		*ui_new_text_area(const char *text,
 void			ui_free_text_area(t_text_area **text_area)
 {
 	t_text_area	*t;
-	
+
 	t = *text_area;
 	if (t)
 	{

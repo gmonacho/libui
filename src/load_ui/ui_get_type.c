@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_get_type.c                                    .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 17:34:31 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 17:34:32 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "ui.h"
 #include "ui_error.h"
 
-int		get_frame_type(const char *line)
+int					get_frame_type(const char *line)
 {
 	char	*type;
 
@@ -14,7 +27,7 @@ int		get_frame_type(const char *line)
 		return (ui_ret_error("get_frame_type", "invalid frame type", -1));
 }
 
-int		get_button_type(const char *line)
+int					get_button_type(const char *line)
 {
 	char	*type;
 
@@ -31,7 +44,7 @@ int		get_button_type(const char *line)
 		return (ui_ret_error("get_button_type", "invalid button type", -1));
 }
 
-int		get_clicked_condition(const char *line)
+int					get_clicked_condition(const char *line)
 {
 	char	*type;
 
@@ -51,7 +64,6 @@ int		get_clicked_condition(const char *line)
 	}
 }
 
-
 static t_text_align	convert_str_flag(const char *flag)
 {
 	if (ft_strcmp(flag, "TEXT_ALIGN_LEFT") == 0)
@@ -70,7 +82,7 @@ static t_text_align	convert_str_flag(const char *flag)
 		return (0);
 }
 
-int		get_text_align(const char *line)
+int					get_text_align(const char *line)
 {
 	char			**flags_tab;
 	char			*flags;

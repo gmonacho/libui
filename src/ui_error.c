@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_error.c                                       .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 17:37:47 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 17:37:49 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "ui_error.h"
 #include "libft.h"
 
@@ -8,7 +21,6 @@ int		ui_ret_error(const char *function, const char *error_msg, int ret_value)
 	int		len;
 
 	str_value = ft_itoa(ret_value);
-
 	len = 0;
 	len += ft_strlen(function);
 	len += ft_strlen(error_msg);
@@ -30,7 +42,9 @@ int		ui_ret_error(const char *function, const char *error_msg, int ret_value)
 	return (ret_value);
 }
 
-void	*ui_ret_null_error(const char *function, const char *error_msg, void *return_value)
+void	*ui_ret_null_error(const char *function,
+							const char *error_msg,
+							void *return_value)
 {
 	char	*str;
 	int		len;

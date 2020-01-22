@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_parse_text_area.c                             .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 17:35:01 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 17:35:02 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "ui.h"
 #include "ui_error.h"
 
@@ -16,7 +29,7 @@ static int		parse_text_area_first_step(char **text,
 	}
 	incre_double_int(&index, i, 1);
 	if (!check_line_name(text[index], "resize_text")
-	|| (text_area->resize_text = get_resize_text(text[index]) == -1))
+	|| (int)(text_area->resize_text = get_resize_text(text[index])) == -1)
 	{
 		return (ui_ret_error("parse_text_area_first_step",
 				"\"resize_text : <t_resize_text>\" expected", 0));
@@ -29,23 +42,24 @@ static int		parse_text_area_second_step(char **text,
 											int *i,
 											t_text_area *text_area)
 {
+	int		n;
+	double	d;
+
 	if (check_line_name(text[0], "text_height"))
 	{
 		if (text_area->resize_text == UI_RESIZE_TEXT_NONE)
 		{
-			if (!parse_int(text[0], (int*)&text_area->text_height))
+			if (!parse_int(text[0], &n))
 			{
 				return (ui_ret_error("parse_text_area_second_step",
 				"text_height : <int> expected", 0));
 			}
+			text_area->text_height = n;
 		}
 		else if (text_area->resize_text == UI_RESIZE_TEXT_LINEAR)
 		{
-			if (!get_float(text[0], (double*)&text_area->text_height))
-			{
-				return (ui_ret_error("parse_text_area_second_step",
-				"text_height : <float> expected", 0));
-			}
+			get_float(ft_strchr(text[0], ':') + 1, &d);
+			text_area->text_height = d;
 		}
 	}
 	else
@@ -68,12 +82,12 @@ static int		parse_text_area_third_step(char **text,
 		"\"text_align : <t_text_align>\" expected", 0));
 	}
 	incre_double_int(&index, i, 1);
-	if (!check_line_name(text[index], "text_color")
-	|| !parse_sdl_color(text[index], &text_area->text_color))
+	if (!check_line_name(text[index], "text_color"))
 	{
 		return (ui_ret_error("parse_text_area_third_step",
 		"\"text_color : <int> <int> <int> <int>\" expected", 0));
 	}
+	text_area->text_color = (SDL_Color){255, 255, 255, 255};
 	incre_double_int(&index, i, 1);
 	return (1);
 }
@@ -112,9 +126,6 @@ t_text_area		*parse_text_area(char **text,
 	}
 	index++;
 	if (!parse_text_area_third_step(&text[index], i, text_area))
-	{
-		return (ui_ret_null_error_ta(&text_area, "parse_text_area",
-		"parse_text_area_third_step failed", NULL));
-	}
+		return (ui_ret_null_error_ta(&text_area, "pta", "ptats failed", NULL));
 	return (text_area);
 }

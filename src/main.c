@@ -69,21 +69,21 @@ int		main()
 			// 										(t_dot){200, 200},
 			// 										TEXT_ALIGN_LEFT | TEXT_ALIGN_V_MIDDLE},
 			// 										(t_rect){400, 200, 200, 500});
-			ui_draw_rect(win->rend, &(t_rect){100, 100, 200, 25});
-			ui_draw_text_line(win->rend,  &(t_text_line_kit){"test ui draw text line",
-				(SDL_Color){255, 255, 255, 255},
-				(t_dot){100, 100},
-				200,
-				25,
-				win->ui.button_font,
-				TEXT_ALIGN_LEFT | TEXT_ALIGN_V_TOP});
-			ui_draw_text_line_return(win->rend,  &(t_text_line_kit){"test ui draw text line return",
-				(SDL_Color){255, 255, 255, 255},
-				(t_dot){300, 200},
-				150,
-				25,
-				win->ui.button_font,
-				TEXT_ALIGN_CENTER});
+			// ui_draw_rect(win->rend, &(t_rect){100, 100, 200, 25});
+			// ui_draw_text_line(win->rend,  &(t_text_line_kit){"test ui draw text line",
+			// 	(SDL_Color){255, 255, 255, 255},
+			// 	(t_dot){100, 100},
+			// 	200,
+			// 	25,
+			// 	win->ui.button_font,
+			// 	TEXT_ALIGN_LEFT | TEXT_ALIGN_V_TOP});
+			// ui_draw_text_line_return(win->rend,  &(t_text_line_kit){"test ui draw text line return",
+			// 	(SDL_Color){255, 255, 255, 255},
+			// 	(t_dot){300, 200},
+			// 	150,
+			// 	25,
+			// 	win->ui.button_font,
+			// 	TEXT_ALIGN_CENTER});
 			ui_draw_rend(win);
 			ui_wait_event(&win->event);
 			ui_update_ui(win);

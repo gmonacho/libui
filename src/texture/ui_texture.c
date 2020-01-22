@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_texture.c                                     .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 17:36:27 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 17:36:29 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "ui_texture.h"
 #include "SDL.h"
 #include "SDL_image.h"
@@ -29,16 +42,6 @@ t_simple_set		ui_create_simple_set(SDL_Texture *normal,
 	return (simple_set);
 }
 
-void				ui_free_simple_set(t_simple_set	simple_set)
-{
-	if (simple_set.normal)
-		SDL_DestroyTexture(simple_set.normal);
-	if (simple_set.clicked)
-		SDL_DestroyTexture(simple_set.clicked);
-	if (simple_set.on_mouse)
-		SDL_DestroyTexture(simple_set.on_mouse);
-}
-
 t_text_entry_set	ui_create_text_entry_set(SDL_Texture *name_side_texture,
 											SDL_Texture *normal_box_texture,
 											SDL_Texture *writting_box_texture)
@@ -50,16 +53,6 @@ t_text_entry_set	ui_create_text_entry_set(SDL_Texture *name_side_texture,
 	text_entry_set.writting_box_texture = writting_box_texture;
 	text_entry_set.current_box_texture = NULL;
 	return (text_entry_set);
-}
-
-void				ui_free_text_entry_set(t_text_entry_set text_entry_set)
-{
-	if (text_entry_set.name_side_texture)
-		SDL_DestroyTexture(text_entry_set.name_side_texture);
-	if (text_entry_set.normal_box_texture)
-		SDL_DestroyTexture(text_entry_set.normal_box_texture);
-	if (text_entry_set.writting_box_texture)
-		SDL_DestroyTexture(text_entry_set.writting_box_texture);
 }
 
 void				ui_draw_texture(SDL_Renderer *rend,

@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_button.c                                      .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 17:33:09 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 17:33:11 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "ui_button.h"
 #include "libft.h"
 #include "ui_error.h"
@@ -51,6 +64,8 @@ void		ui_free_button(t_button **button)
 				ui_free_simple_button((t_simple_button**)&b->data);
 			else if (b->type == UI_BUTTON_TEXT_ENTRY)
 				ui_free_text_entry_button((t_text_entry_button**)&b->data);
+			else if (b->type == UI_BUTTON_TEXT_AREA)
+				ui_free_text_area((t_text_area**)&b->data);
 		}
 		b->next = NULL;
 		free(b);

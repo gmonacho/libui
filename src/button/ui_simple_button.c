@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_simple_button.c                               .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 17:33:14 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 17:33:17 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "ui_button.h"
 #include "libft.h"
 #include "ui_error.h"
@@ -16,7 +29,6 @@ t_simple_button		*ui_new_simple_button(t_mouse_button clicked_condition,
 									"new_simple allocation_failed",
 									NULL));
 	}
-	new_simple->id = -1;
 	new_simple->textures = textures;
 	new_simple->clicked_condition = clicked_condition;
 	new_simple->f = f;

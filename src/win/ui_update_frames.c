@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_update_frames.c                               .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 17:37:25 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 17:37:26 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "ui_win.h"
 #include "ui_frame.h"
 
@@ -12,10 +25,8 @@ void		ui_update_frames_rect(t_win *win, SDL_bool force_update)
 	{
 		if (!(f->resize_type & UI_RESIZE_LOCK_RATIO) || force_update)
 		{
-			// printf("la\n");
 			if (f->resize_type & UI_RESIZE_W || force_update)
 			{
-				// printf("la1\n");
 				f->rect.w = f->ratio.w * win_size.x;
 			}
 			if (f->resize_type & UI_RESIZE_H || force_update)
@@ -25,7 +36,6 @@ void		ui_update_frames_rect(t_win *win, SDL_bool force_update)
 			if (f->resize_type & UI_RESIZE_Y || force_update)
 				f->rect.y = f->ratio.y * win_size.y;
 		}
-		// printf("win->x = %d, f->ratio.w = %f, f->w = %d\n", win_size.x, f->ratio.w, f->rect.w);
 		f = f->next;
 	}
 }
@@ -34,5 +44,6 @@ void		ui_update_frames(t_win *win)
 {
 	ui_update_frames_rect(win, SDL_FALSE);
 	ui_update_buttons_rect(win, SDL_FALSE);
-	ui_update_buttons_textures(win, win->ui.on_mouse_button, win->ui.clicked_button);
+	ui_update_buttons_textures(win, win->ui.on_mouse_button,
+								win->ui.clicked_button);
 }

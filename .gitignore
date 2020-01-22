@@ -53,4 +53,7 @@ dkms.conf
 
 .vscode/
 .DS_Store
+
+# CMake
 CMakeFiles/
+CMakeCache.txt
