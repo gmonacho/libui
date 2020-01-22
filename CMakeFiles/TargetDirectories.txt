@@ -1,3 +1,0 @@
-/home/gael/Documents/libui/CMakeFiles/rebuild_cache.dir
-/home/gael/Documents/libui/CMakeFiles/e_libui.dir
-/home/gael/Documents/libui/CMakeFiles/edit_cache.dir

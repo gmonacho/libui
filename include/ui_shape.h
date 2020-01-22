@@ -1,5 +1,18 @@
-#ifndef SHAPE_H
-# define SHAPE_H
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_shape.h                                       .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 18:19:45 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 18:20:24 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
+#ifndef UI_SHAPE_H
+# define UI_SHAPE_H
 
 typedef struct	s_dot
 {
@@ -34,7 +47,6 @@ typedef struct	s_frect
 	double		w;
 	double		h;
 }				t_frect;
-
 
 int				ui_is_dot_in_rect(t_dot dot, t_rect rect);
 

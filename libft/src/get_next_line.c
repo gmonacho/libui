@@ -3,13 +3,14 @@
 /*                                                              /             */
 /*   get_next_line.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: gmonacho <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/26 21:57:26 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/07 16:08:19 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/21 16:14:04 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
+
 #include "../includes/get_next_line.h"
 
 static int		ft_findn(char *str)

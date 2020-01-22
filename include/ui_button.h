@@ -1,6 +1,21 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ui_button.h                                      .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/21 18:13:24 by gmonacho     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/21 18:16:58 by gmonacho    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #ifndef UI_BUTTON_H
 # define UI_BUTTON_H
-
+# define UI_RESIZE_POS_LINEAR 3
+# define UI_RESIZE_SIZE_LINEAR 12
+# define UI_RESIZE_ALL_LINEAR 15
 # include "ui_event.h"
 # include "ui_shape.h"
 # include "ui_texture.h"
@@ -14,7 +29,6 @@ typedef enum			e_simple_state
 
 typedef struct			s_simple_button
 {
-	int					id;
 	char				*text;
 	t_simple_set		textures;
 	t_mouse_button		clicked_condition;
@@ -22,11 +36,11 @@ typedef struct			s_simple_button
 	void				*argurment;
 }						t_simple_button;
 
-t_simple_button		*ui_new_simple_button(t_mouse_button clicked_condition,
+t_simple_button			*ui_new_simple_button(t_mouse_button clicked_condition,
 												void (*f)(void *argument),
 												void *argument,
 												t_simple_set textures);
-void				ui_free_simple_button(t_simple_button **simple_button);
+void					ui_free_simple_button(t_simple_button **simple_button);
 
 typedef enum			e_text_side
 {
@@ -58,12 +72,13 @@ typedef struct			s_text_entry_button
 	void				*argument;
 }						t_text_entry_button;
 
-t_text_entry_button	*ui_new_text_entry_button(char *name,
+t_text_entry_button		*ui_new_text_entry_button(char *name,
 													void (*f)(void *argument,
 													char *button_output),
 													void *argument,
 													int max_text_size);
-void		ui_free_text_entry_button(t_text_entry_button **text_entry);
+void					ui_free_text_entry_button(
+						t_text_entry_button **text_entry);
 
 typedef enum			e_resize_text
 {
@@ -80,12 +95,12 @@ typedef struct			s_text_area
 	SDL_Color			text_color;
 }						t_text_area;
 
-t_text_area		*ui_new_text_area(const char *text,
+t_text_area				*ui_new_text_area(const char *text,
 									float text_height,
 									t_text_align text_align,
 									t_resize_text resize_text);
 
-void			ui_free_text_area(t_text_area **text_area);
+void					ui_free_text_area(t_text_area **text_area);
 
 typedef enum			e_button_type
 {
@@ -94,10 +109,6 @@ typedef enum			e_button_type
 	UI_BUTTON_TEXT_ENTRY = 2,
 	UI_BUTTON_TEXT_AREA = 3
 }						t_button_type;
-
-# define UI_RESIZE_POS_LINEAR 3
-# define UI_RESIZE_SIZE_LINEAR 12
-# define UI_RESIZE_ALL_LINEAR 15
 
 typedef enum			e_resize_type
 {

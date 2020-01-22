@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                           LE - /             #
 #                                                               /              #
-#    Makefile                                         .::    .:/ .      .::    #
+#    makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: gmonacho <marvin@le-101.fr>                +:+   +:    +:    +:+      #
+#    By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/02 16:01:28 by gmonacho     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/07 17:11:26 by gmonacho    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/22 12:49:01 by gmonacho    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -92,9 +92,8 @@ SRCS = ./src/ft_atoi.c\
 	./src/ft_2dputendl.c \
 	./src/ft_2dstrpushback.c \
 	./src/ft_2dstrlen.c \
-	./src/ft_strrev.c
-
-HEADER = ./includes/libft.h
+	./src/ft_strrev.c \
+	./src/ft_count_words.c
 
 OBJ = $(SRCS:.c=.o)
 
@@ -108,8 +107,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 		@printf "#"
-		@ar rcs $(NAME) $(OBJ)
-		@echo "\nlib compiled"
+		@ar rc $(NAME) $(OBJ)
+		@echo "\nlibft compiled"
 
 clean:
 	@rm -rf $(OBJ)
