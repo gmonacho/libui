@@ -22,7 +22,7 @@ int ui_load(const char *path, t_winui *win);
 Create a frame :
 
 Template :
-```
+```C
 frame
 {
     type : <t_frame_type> // ui_frame.h
@@ -36,7 +36,7 @@ frame
 ```
 
 Example :
-```
+```C
 frame
 {
     type : UI_FRAME_SIMPLE
