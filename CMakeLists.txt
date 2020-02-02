@@ -12,9 +12,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_D
 
 set(LIBRARIES ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} -L${CMAKE_CURRENT_SOURCE_DIR}/libft/ -lft)
 
-execute_process(COMMAND bash "make_libft.sh")
-
-add_library(${PROJECT_NAME} src/button/ui_button.c
+add_executable(${PROJECT_NAME} src/button/ui_button.c
 src/button/ui_simple_button.c
 src/button/ui_text_area.c
 src/button/ui_text_entry_button.c

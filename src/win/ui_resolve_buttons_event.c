@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:37:08 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:37:10 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/27 20:05:42 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #include "ui_win.h"
 #include "libft.h"
 
-static void	ui_mouse_releasing(t_win *win)
+static void	ui_mouse_releasing(t_winui *win)
 {
 	if (win->mouse.releasing)
 	{
@@ -29,7 +29,7 @@ static void	ui_mouse_releasing(t_win *win)
 	}
 }
 
-static void	ui_check_text_entry_button(t_win *win)
+static void	ui_check_text_entry_button(t_winui *win)
 {
 	if (win->ui.clicked_button
 	&& win->ui.clicked_button->type == UI_BUTTON_TEXT_ENTRY)
@@ -38,16 +38,23 @@ static void	ui_check_text_entry_button(t_win *win)
 			&& win->ui.on_mouse_button != win->ui.clicked_button)
 			|| win->event.key.keysym.scancode == SDL_SCANCODE_RETURN)
 		{
-			SDL_StopTextInput();
-			ft_strcpy(((t_text_entry_button*)
-					win->ui.clicked_button->data)->text,
-					((t_text_entry_button*)
-					win->ui.clicked_button->data)->new_text);
-			ft_bzero(((t_text_entry_button*)
-					win->ui.clicked_button->data)->new_text,
-					((t_text_entry_button*)
-					win->ui.clicked_button->data)->max_text_size);
-			ui_call_text_entry_function(win->ui.clicked_button->data);
+			if (((t_text_entry_button*)
+					win->ui.clicked_button->data)->text_type != UI_TEXT_TYPE_DIGITAL ||
+				ft_atoi(((t_text_entry_button*)
+					win->ui.clicked_button->data)->new_text) >= ((t_text_entry_button*)
+						win->ui.clicked_button->data)->min_int)
+			{
+				SDL_StopTextInput();
+				ft_strcpy(((t_text_entry_button*)
+						win->ui.clicked_button->data)->text,
+						((t_text_entry_button*)
+						win->ui.clicked_button->data)->new_text);
+				ft_bzero(((t_text_entry_button*)
+						win->ui.clicked_button->data)->new_text,
+						((t_text_entry_button*)
+						win->ui.clicked_button->data)->max_text_size);
+				ui_call_text_entry_function(win->ui.clicked_button->data);
+			}
 			win->ui.clicked_button = NULL;
 			win->ui.cursor_position = 0;
 		}
@@ -56,7 +63,7 @@ static void	ui_check_text_entry_button(t_win *win)
 	}
 }
 
-static void	ui_start_text_input(t_win *win)
+static void	ui_start_text_input(t_winui *win)
 {
 	SDL_StartTextInput();
 	ft_strcpy(((t_text_entry_button*)
@@ -67,7 +74,7 @@ static void	ui_start_text_input(t_win *win)
 					win->ui.clicked_button->data)->new_text);
 }
 
-static void	ui_set_clicked_on_mouse(t_win *win, t_button *b)
+static void	ui_set_clicked_on_mouse(t_winui *win, t_button *b)
 {
 	if (win->mouse.clicking &&
 		!(win->ui.clicked_button &&
@@ -81,7 +88,7 @@ static void	ui_set_clicked_on_mouse(t_win *win, t_button *b)
 	win->ui.on_mouse_button = b;
 }
 
-void		ui_resolve_buttons_event(t_win *win)
+void		ui_resolve_buttons_event(t_winui *win)
 {
 	t_frame				*f;
 	t_button			*b;

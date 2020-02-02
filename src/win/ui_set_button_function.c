@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:37:16 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:37:18 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/27 21:02:45 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #include "ui_win.h"
 #include "libft.h"
 
-void	ui_set_simple_button_function(t_win *win,
+void	ui_set_simple_button_function(t_winui *win,
 			const char *button_id, void (*fn)(void *argument),
 			void *argument)
 {
@@ -38,7 +38,7 @@ void	ui_set_simple_button_function(t_win *win,
 	}
 }
 
-void	ui_set_text_entry_function(t_win *win,
+void	ui_set_text_entry_function(t_winui *win,
 		const char *button_id, void (*fn)(void *argument, char *button_output),
 		void *argument)
 {
@@ -51,7 +51,7 @@ void	ui_set_text_entry_function(t_win *win,
 		b = f->buttons;
 		while (b)
 		{
-			if (b->type == UI_BUTTON_SIMPLE && ft_strcmp(b->id, button_id) == 0)
+			if (b->type == UI_BUTTON_TEXT_ENTRY && ft_strcmp(b->id, button_id) == 0)
 			{
 				((t_text_entry_button*)b->data)->argument = argument;
 				((t_text_entry_button*)b->data)->f = fn;

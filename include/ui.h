@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 18:16:36 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 18:16:38 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:37 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,8 +53,8 @@ SDL_Texture			*parse_texture(SDL_Renderer *rend, t_texture **textures,
 void				ui_free_texture(t_texture **texture);
 void				ui_free_textures(t_texture **textures);
 
-int					parse_frame(t_win *win, char **text, int *i);
-void				*parse_frame_data(t_win *win,
+int					parse_frame(t_winui *win, char **text, int *i);
+void				*parse_frame_data(t_winui *win,
 									char **str,
 									t_frame_type frame_type,
 									int *i);
@@ -65,15 +65,15 @@ t_simple_frame		*parse_simple_frame(SDL_Renderer *rend,
 
 void				incre_double_int(int *a, int *b, int value);
 
-t_button			*parse_button(t_win *win, char **text, int *i);
-int					parse_buttons(t_win *win, char **text, int *i);
-t_simple_button		*parse_simple_button(t_win *win,
+t_button			*parse_button(t_winui *win, char **text, int *i);
+int					parse_buttons(t_winui *win, char **text, int *i);
+t_simple_button		*parse_simple_button(t_winui *win,
 										char **text,
 										int *i);
-t_text_entry_button	*parse_text_entry_button(t_win *win,
+t_text_entry_button	*parse_text_entry_button(t_winui *win,
 											char **text,
 											int *i);
-int					parse_cut(t_win *win,
+int					parse_cut(t_winui *win,
 						char **text,
 						int *i,
 						t_text_entry_button *b);
@@ -81,6 +81,6 @@ t_text_area			*parse_text_area(char **text,
 								int *i);
 
 int					check_line_name(const char *line, const char *expected);
-int					ui_load(const char *path, t_win *win);
+int					ui_load(const char *path, t_winui *win);
 
 #endif

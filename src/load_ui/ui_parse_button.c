@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:34:39 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:34:41 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ void		incre_double_int(int *a, int *b, int value)
 		(*b) += value;
 }
 
-static void	*parse_button_data(t_win *win,
+static void	*parse_button_data(t_winui *win,
 								char **text,
 								t_button_type button_type,
 								int *i)
@@ -87,7 +87,7 @@ static int	parse_button_first_step(char **text, int *i, t_button *b)
 	return (index);
 }
 
-t_button	*parse_button(t_win *win, char **text, int *i)
+t_button	*parse_button(t_winui *win, char **text, int *i)
 {
 	t_button	*b;
 	int			index;

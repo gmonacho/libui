@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:37:20 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:38:35 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ static void		ui_update_text_entry(t_text_entry_button *text_entry_button,
 	}
 }
 
-void			ui_update_buttons_rect(t_win *win, SDL_bool force_update)
+void			ui_update_buttons_rect(t_winui *win, SDL_bool force_update)
 {
 	t_button	*b;
 	t_frame		*f;
@@ -73,7 +73,7 @@ void			ui_update_buttons_rect(t_win *win, SDL_bool force_update)
 	}
 }
 
-void			ui_update_buttons_textures(t_win *win,
+void			ui_update_buttons_textures(t_winui *win,
 											t_button *on_mouse_button,
 											t_button *clicked_button)
 {
@@ -98,7 +98,7 @@ void			ui_update_buttons_textures(t_win *win,
 	}
 }
 
-void			ui_update_buttons(t_win *win)
+void			ui_update_buttons(t_winui *win)
 {
 	ui_update_buttons_rect(win, SDL_FALSE);
 	ui_update_buttons_textures(win, win->ui.on_mouse_button,

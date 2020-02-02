@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:35:19 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:35:22 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/27 15:10:34 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,7 @@ static int					parse_one(char **text,
 	return (index);
 }
 
-t_text_entry_button			*parse_text_entry_button(t_win *win,
+t_text_entry_button			*parse_text_entry_button(t_winui *win,
 													char **text,
 													int *i)
 {

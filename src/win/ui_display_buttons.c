@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:36:41 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:36:43 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 #include "ui_draw.h"
 #include "ui_error.h"
 
-void			ui_display_buttons(t_win *win, t_button *buttons)
+void			ui_display_buttons(t_winui *win, t_button *buttons)
 {
 	t_button	*b;
 

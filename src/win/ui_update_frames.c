@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:37:25 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:37:26 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #include "ui_win.h"
 #include "ui_frame.h"
 
-void		ui_update_frames_rect(t_win *win, SDL_bool force_update)
+void		ui_update_frames_rect(t_winui *win, SDL_bool force_update)
 {
 	t_frame		*f;
 	t_dot		win_size;
@@ -40,7 +40,7 @@ void		ui_update_frames_rect(t_win *win, SDL_bool force_update)
 	}
 }
 
-void		ui_update_frames(t_win *win)
+void		ui_update_frames(t_winui *win)
 {
 	ui_update_frames_rect(win, SDL_FALSE);
 	ui_update_buttons_rect(win, SDL_FALSE);

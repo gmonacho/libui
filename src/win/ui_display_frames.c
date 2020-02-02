@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:36:44 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:36:46 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 #include "ui_draw.h"
 #include "ui_texture.h"
 
-void			ui_display_frames(t_win *win, t_frame *frames)
+void			ui_display_frames(t_winui *win, t_frame *frames)
 {
 	t_frame	*f;
 
@@ -30,7 +30,7 @@ void			ui_display_frames(t_win *win, t_frame *frames)
 	}
 }
 
-void			ui_display_simple_frame(t_win *win,
+void			ui_display_simple_frame(t_winui *win,
 				t_simple_frame *simple_frame,
 				const t_rect *rect)
 {

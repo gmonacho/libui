@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:36:55 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:36:59 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/02 16:23:07 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 #include "ui_error.h"
 #include "libft.h"
 
-static void		ui_draw_cursor(t_win *win, char *text, const t_rect *rect)
+static void		ui_draw_cursor(t_winui *win, char *text, const t_rect *rect)
 {
 	int		x_pos;
 	int		x_size;
@@ -36,7 +36,7 @@ static void		ui_draw_cursor(t_win *win, char *text, const t_rect *rect)
 		(t_dot){x_pos, rect->y + rect->h}}));
 }
 
-static void		ui_draw_text_side(t_win *win,
+static void		ui_draw_text_side(t_winui *win,
 									const t_rect *rect,
 									t_text_entry_button *text_entry,
 									char *text)
@@ -67,7 +67,7 @@ static void		ui_draw_text_side(t_win *win,
 						&r);
 }
 
-static void		ui_draw_name_side(t_win *win,
+static void		ui_draw_name_side(t_winui *win,
 									t_text_entry_button *text_entry_button,
 									const t_rect *rect)
 {
@@ -96,7 +96,7 @@ static void		ui_draw_name_side(t_win *win,
 	}
 }
 
-static void		ui_draw_text_entry_normally(t_win *win,
+static void		ui_draw_text_entry_normally(t_winui *win,
 									t_text_entry_button *text_entry_button,
 									const t_rect *rect)
 {
@@ -104,8 +104,7 @@ static void		ui_draw_text_entry_normally(t_win *win,
 	char		*text;
 
 	ui_draw_name_side(win, text_entry_button, rect);
-	if (win->ui.clicked_button
-		&& win->ui.clicked_button->type == UI_BUTTON_TEXT_ENTRY)
+	if (win->ui.clicked_button && win->ui.clicked_button->data == text_entry_button)
 		text = text_entry_button->new_text;
 	else
 		text = text_entry_button->text;
@@ -117,7 +116,7 @@ static void		ui_draw_text_entry_normally(t_win *win,
 		ui_draw_text_side(win, rect, text_entry_button, text);
 }
 
-void			ui_display_text_entry(t_win *win,
+void			ui_display_text_entry(t_winui *win,
 										t_text_entry_button *text_entry_button,
 										const t_rect *rect)
 {

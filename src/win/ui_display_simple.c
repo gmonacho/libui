@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:36:48 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:36:49 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 #include "ui_draw.h"
 #include "ui_error.h"
 
-static void		ui_display_simple_draw_text(t_win *win,
+static void		ui_display_simple_draw_text(t_winui *win,
 											t_simple_button *simple_button,
 											const t_rect *rect)
 {
@@ -30,7 +30,7 @@ static void		ui_display_simple_draw_text(t_win *win,
 							TEXT_ALIGN_CENTER | TEXT_ALIGN_V_MIDDLE});
 }
 
-void			ui_display_simple(t_win *win,
+void			ui_display_simple(t_winui *win,
 									t_simple_button *simple_button,
 									const t_rect *rect)
 {

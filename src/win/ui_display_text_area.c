@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:36:51 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:36:52 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/26 18:49:28 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #include "ui_win.h"
 #include "ui_draw.h"
 
-void	ui_display_text_area(t_win *win,
+void	ui_display_text_area(t_winui *win,
 							t_text_area *text_area,
 							const t_rect *rect)
 {

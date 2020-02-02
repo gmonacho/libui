@@ -6,14 +6,14 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:37:01 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:37:03 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ui_win.h"
 
-t_rect	ui_get_name_side_rect(t_win *win,
+t_rect	ui_get_name_side_rect(t_winui *win,
 						t_text_entry_button *text_entry_button,
 						const t_rect *rect)
 {
@@ -39,7 +39,7 @@ t_rect	ui_get_name_side_rect(t_win *win,
 	return (texture_rect);
 }
 
-t_rect	ui_get_text_side_rect(t_win *win,
+t_rect	ui_get_text_side_rect(t_winui *win,
 						t_text_entry_button *text_entry_button,
 						const t_rect *rect)
 {

@@ -21,7 +21,7 @@ void 	assign_char_value(void *dst, char *value)
 
 int		main()
 {
-	t_win		*win;
+	t_winui		*win;
 	int			loop;
 
 	if (ui_init(SDL_INIT_VIDEO) < 0)

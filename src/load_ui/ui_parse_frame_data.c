@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:34:46 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:34:47 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #include "ui.h"
 #include "ui_error.h"
 
-void				*parse_frame_data(t_win *win,
+void				*parse_frame_data(t_winui *win,
 										char **str,
 										t_frame_type frame_type,
 										int *i)

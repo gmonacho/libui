@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 18:19:45 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 18:20:24 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:52:39 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,8 +28,8 @@ typedef struct	s_fdot
 
 typedef struct	s_line
 {
-	t_dot		d1;
-	t_dot		d2;
+	t_dot		p1;
+	t_dot		p2;
 }				t_line;
 
 typedef struct	s_rect

@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:34:49 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:34:51 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,7 +54,7 @@ static int		parse_frame_first_step(char **text, int *i, t_frame *f)
 	return (index);
 }
 
-static char		**parse_frame_second_step(t_win *win,
+static char		**parse_frame_second_step(t_winui *win,
 											char **text,
 											int *i,
 											t_frame *f)
@@ -83,7 +83,7 @@ static char		**parse_frame_second_step(t_win *win,
 	return (skipped_text);
 }
 
-int				parse_frame(t_win *win, char **text, int *i)
+int				parse_frame(t_winui *win, char **text, int *i)
 {
 	t_frame	*f;
 	int		index;

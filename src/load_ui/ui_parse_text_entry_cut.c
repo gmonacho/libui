@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:35:23 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:35:25 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ static int			parse_two(char **text,
 	return (1);
 }
 
-static int			parse_three(t_win *win,
+static int			parse_three(t_winui *win,
 					char **text,
 					int *i,
 					t_text_entry_button *b)
@@ -68,7 +68,7 @@ static int			parse_three(t_win *win,
 	return (1);
 }
 
-static int			parse_four(t_win *win,
+static int			parse_four(t_winui *win,
 					char **text,
 					int *i,
 					t_text_entry_button *b)
@@ -99,7 +99,7 @@ static int			parse_four(t_win *win,
 	return (index);
 }
 
-int					parse_cut(t_win *win,
+int					parse_cut(t_winui *win,
 						char **text,
 						int *i,
 						t_text_entry_button *b)

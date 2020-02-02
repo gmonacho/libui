@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:33:39 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:33:40 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:52:54 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ void	ui_draw_point(SDL_Renderer *rend, const t_dot *dot)
 
 void	ui_draw_line(SDL_Renderer *rend, const t_line *line)
 {
-	SDL_RenderDrawLine(rend, line->d1.x, line->d1.y, line->d2.x, line->d2.y);
+	SDL_RenderDrawLine(rend, line->p1.x, line->p1.y, line->p2.x, line->p2.y);
 }
 
 void	ui_draw_rect(SDL_Renderer *rend, const t_rect *rect)

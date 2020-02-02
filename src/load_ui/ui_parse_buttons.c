@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:34:42 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:34:44 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:51:46 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #include "ui.h"
 #include "ui_error.h"
 
-static int	parse_buttons_loop(t_win *win, char **text, int *i, t_frame *frame)
+static int	parse_buttons_loop(t_winui *win, char **text, int *i, t_frame *frame)
 {
 	t_button	*b;
 	int			index;
@@ -43,7 +43,7 @@ static int	parse_buttons_loop(t_win *win, char **text, int *i, t_frame *frame)
 	return (1);
 }
 
-int			parse_buttons(t_win *win, char **text, int *i)
+int			parse_buttons(t_winui *win, char **text, int *i)
 {
 	int			index;
 	t_frame		*frame;

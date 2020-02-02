@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:34:53 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:34:55 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 15:54:52 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@ static t_simple_button	*ui_ret_null_error_s(t_simple_button **simple_button,
 	return (ui_ret_null_error(function, error_msg, return_value));
 }
 
-static int				parse_simple_button_first_step(t_win *win,
+static int				parse_simple_button_first_step(t_winui *win,
 												char **text,
 												int *i,
 												t_simple_button *simple_button)
@@ -49,7 +49,7 @@ static int				parse_simple_button_first_step(t_win *win,
 	return (index);
 }
 
-static int				parse_simple_button_second_step(t_win *win,
+static int				parse_simple_button_second_step(t_winui *win,
 										char **text,
 										int *i,
 										t_simple_button *simple_button)
@@ -83,9 +83,9 @@ static int				last_step(char **text,
 	int		index;
 
 	index = 0;
-	if (!(check_line_name(text[index], "clicked_condition")
+	if (!check_line_name(text[index], "clicked_condition")
 	|| (simple_button->clicked_condition = get_clicked_condition(
-											text[index]) <= 0)))
+											text[index])) <= 0)
 	{
 		return (ui_ret_error("parse_simple_button",
 		"\"clicked_condition : <t_mouse_button>\" expected", 0));
@@ -94,7 +94,7 @@ static int				last_step(char **text,
 	return (1);
 }
 
-t_simple_button			*parse_simple_button(t_win *win,
+t_simple_button			*parse_simple_button(t_winui *win,
 										char **text,
 										int *i)
 {

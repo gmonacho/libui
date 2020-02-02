@@ -6,16 +6,16 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 17:36:36 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 17:36:37 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/27 15:21:49 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "ui_win.h"
 
-void	ui_call_simple_function(t_win *win, t_simple_button *simple_button)
+void	ui_call_simple_function(t_winui *win, t_simple_button *simple_button)
 {
-	if (simple_button->clicked_condition & win->mouse.releasing)
+	if (simple_button->f && simple_button->clicked_condition & win->mouse.releasing)
 		simple_button->f(simple_button->argurment);
 }
 
