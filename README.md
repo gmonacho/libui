@@ -12,4 +12,8 @@ Libui is a functionnal C interface library based on SDL2 respecting the 42 norm.
 ---
 ## How to use libui
 
-Create your interface without coding and load it using the ```c load_ui``` function.
+Create your interface without coding and load it using the ```ui_load``` function :
+
+```C
+int					ui_load(const char *path, t_winui *win);
+```
