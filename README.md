@@ -35,22 +35,6 @@ frame
 }
 ```
 
-Example :
-```
-frame
-{
-    type : UI_FRAME_SIMPLE
-    resize_type : UI_RESIZE_ALL_LINEAR
-    ratio : 0.1 0.1 0.8 0.8
-    data
-    {
-        texture : "textures/ui_frame.png"
-    }
-}
-```
-
-Result:
-
 Create a button :
 
 Frames contains buttons. Buttons can't be creating without frame.
