@@ -17,3 +17,34 @@ Create your interface without coding and load it using the ```ui_load``` functio
 ```C
 int ui_load(const char *path, t_winui *win);
 ```
+# Txt file
+
+Create a frame :
+
+Template :
+```
+frame
+{
+    type : <t_frame_type> // ui_frame.h
+    resize_type : <t_resize_type> // ui_button.h
+    ratio : x.f y.f w.f h.h // ratio for responsive interface 0 <= n <= 1
+    data
+    {
+        texture : <str> // texture path
+    }
+}
+```
+
+Example :
+```
+frame
+{
+    type : UI_FRAME_SIMPLE
+    resize_type : UI_RESIZE_ALL_LINEAR
+    ratio : 0.1 0.1 0.5 0.8
+    data
+    {
+        texture : "textures/ui_frame.png"
+    }
+}
+```
