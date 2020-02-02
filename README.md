@@ -30,16 +30,21 @@ frame
     ratio : x.f y.f w.f h.h         // ratio for responsive interface 0 <= n <= 1
     data
     {
-        texture : <path>             // texture path
+        // depending on the frame's type
     }
+}
+```
+UI_FRAME_SIMPLE :
+```
+data
+{
+    texture : <path> // texture path
 }
 ```
 
 Create a button :
 
 Frames contains buttons. Buttons can't be creating without frame.
-
-Simple button:
 
 Template:
 ```
@@ -51,15 +56,23 @@ button
     ratio : x.f y.f w.f h.h                     // ratio for responsive interface 0 <= n <= 1
     data
     {
-        text : <str>
-        texture_normal : <str path>             // texture path
-        texture_clicked : <str path>            // texture path
-        texture_on_mouse : <str path>           // texture path
-        clicked_condition : <t_mouse_button>    // ui_event.h
+        // depending on the button's type
     }
 }
 ```
-Example
+UI_SIMPLE_BUTTON :
+```
+data
+{
+    text : <str>                            // button's text (optional)
+    texture_normal : <path>                 // texture path
+    texture_clicked : <path>                // texture path
+    texture_on_mouse : <path>               // texture path
+    clicked_condition : <t_mouse_button>    // ui_event.h
+}
+```
+
+Interface example
 ```
 frame
 {
