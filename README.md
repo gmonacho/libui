@@ -162,4 +162,4 @@ frame
     }
 ```
 Result :
-![Simple UI Example](https://drive.google.com/open?id=1mPxTGsqR_sSy54V8ZuWW1XCYwNWv8-Ch)
+![Simple UI Example](https://zupimages.net/up/20/06/vcq3.png)
