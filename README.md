@@ -105,7 +105,7 @@ frame
 {
     type : UI_FRAME_SIMPLE
     resize_type : UI_RESIZE_ALL_LINEAR
-    ratio : 0.1 0.1 0.5 0.8
+    ratio : 0.025 0.025 0.95 0.95
     data
     {
         texture : "textures/ui_frame.png"
@@ -115,7 +115,7 @@ frame
         id : "id_button"
         type : UI_BUTTON_SIMPLE
         resize_type : UI_RESIZE_ALL_LINEAR
-        ratio : 0.35 0.45 0.3 0.1
+        ratio : 0.35 0.6 0.3 0.1
         data
         {
             text : "text"
@@ -125,6 +125,41 @@ frame
             clicked_condition : UI_MOUSE_LEFT
         }
     }
-}
+    button
+    {
+        id : "text_area"
+        type : UI_BUTTON_TEXT_AREA
+        resize_type : UI_RESIZE_ALL_LINEAR
+        ratio : 0 0.1 1 0.15
+        data
+        {
+            text : "LIBUI"
+            resize_text : UI_RESIZE_TEXT_LINEAR
+            text_height : 1
+            text_align : TEXT_ALIGN_CENTER
+            text_color : 255 255 255 255
+        }
+    }
+    button
+    {
+        id : "button3"
+        type : UI_BUTTON_TEXT_ENTRY
+        resize_type : UI_RESIZE_ALL_LINEAR
+        ratio : 0.35 0.45 0.3 0.1
+        data
+        {
+            name : "puet"
+            text : ""
+            max_text_size : 20
+            min_int : 0
+            max_int : 9000
+            name_side_texture : "textures/ui_text_entry_button_normal.png"
+            normal_box_texture : "textures/ui_text_entry_button_normal.png"
+            writting_box_texture : "textures/ui_text_entry_button_writting.png"
+            text_side : UI_TEXT_SIDE_LEFT
+            text_type : UI_TEXT_TYPE_NONE
+        }
+    }
 ```
-
+Result :
+!(https://octodex.github.com/images/yaktocat.png)
