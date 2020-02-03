@@ -163,3 +163,13 @@ frame
 ```
 Result :
 ![Simple UI Example](https://zupimages.net/up/20/06/vcq3.png)
+
+You can also modify many options using t_winui and t_ui structures.
+Create your t_winui using :
+
+```C
+t_winui					*ui_new_win(const char *title,
+                                    t_rect rect,
+                                    Uint32 sdl_win_flags,
+                                    Uint32 sdl_rend_flags);
+```
