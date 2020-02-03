@@ -162,4 +162,4 @@ frame
     }
 ```
 Result :
-![image](https://octodex.github.com/images/yaktocat.png)
+![Simple UI Example](https://octodex.github.com/images/yaktocat.png)
