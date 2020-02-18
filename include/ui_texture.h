@@ -31,6 +31,7 @@ typedef struct		s_button_texture_set
 	SDL_Texture		*clicked;
 	SDL_Texture		*on_mouse;
 	SDL_Texture		*current;
+	SDL_Texture		*render;
 }					t_simple_set;
 
 SDL_Texture			*ui_load_image(SDL_Renderer *rend, const char *file);
