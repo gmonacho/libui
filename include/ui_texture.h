@@ -6,7 +6,7 @@
 /*   By: gmonacho <gmonacho@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/21 18:20:45 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 18:20:51 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/03 12:13:05 by gmonacho    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,14 +50,6 @@ typedef enum		e_text_align
 	TEXT_ALIGN_V_TOP = 16,
 	TEXT_ALIGN_V_BOT = 32
 }					t_text_align;
-
-typedef enum		e_text_flag
-{
-	UI_DRAW_TEXT_NONE = 0b0,
-	UI_DRAW_TEXT_LINE_BREAK = 1,
-	UI_DRAW_TEXT_HIDE_RIGHT = 2,
-	UI_DRAW_TEXT_HIDE_LEFT = 4
-}					t_draw_text_flag;
 
 typedef struct		s_text_entry_texture_set
 {
