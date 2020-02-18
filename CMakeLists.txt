@@ -42,6 +42,7 @@ src/load_ui/ui_parse_text_entry_button.c
 src/load_ui/ui_parse_text_entry_cut.c
 src/load_ui/ui_parse_texture.c
 src/load_ui/ui_parse_type.c
+src/shape
 src/shape/ui_rect.c
 src/texture
 src/texture/ui_draw_one_line_return.c
@@ -53,12 +54,14 @@ src/texture/ui_renderer.c
 src/texture/ui_text.c
 src/texture/ui_texture_list.c
 src/texture/ui_texture.c
+src/win
 src/win/ui_call_button_function.c
 src/win/ui_display_buttons.c
 src/win/ui_display_frames.c
 src/win/ui_display_simple.c
 src/win/ui_display_text_area.c
 src/win/ui_display_text_entry.c
+src/win/ui_get_button_by_id.c
 src/win/ui_get_side_rect.c
 src/win/ui_mouse.c
 src/win/ui_resolve_buttons_event.c
