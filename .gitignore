@@ -56,3 +56,6 @@ dkms.conf
 
 # CMake
 CMakeCache.txt
+CMakeFiles
+cmake_files
+

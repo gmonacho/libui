@@ -1,3 +1,0 @@
-/Users/gmonacho/Documents/101/libui/CMakeFiles/rebuild_cache.dir
-/Users/gmonacho/Documents/101/libui/CMakeFiles/edit_cache.dir
-/Users/gmonacho/Documents/101/libui/CMakeFiles/ui.dir
