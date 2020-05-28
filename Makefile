@@ -6,7 +6,7 @@
 #    By: gal <gal@student.42lyon.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/02 16:01:28 by gmonacho          #+#    #+#              #
-#    Updated: 2020/05/29 00:33:26 by gal              ###   ########lyon.fr    #
+#    Updated: 2020/05/29 00:59:20 by gal              ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ all: $(NAME)
 
 
 $(NAME): $(OBJS)
-	@ar rc $@ $^ 
+	@ar rc $@ $^
 	@ranlib $@
 	@echo "\nlibui compiled"
 
@@ -99,7 +99,7 @@ clean:
 	@echo "objects deleted"
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 	@echo "$(NAME) is deleted"
 
 re: fclean all
