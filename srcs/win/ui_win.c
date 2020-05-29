@@ -6,7 +6,7 @@
 /*   By: gal <gal@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 14:18:51 by gal               #+#    #+#             */
-/*   Updated: 2020/05/06 14:18:51 by gal              ###   ########lyon.fr   */
+/*   Updated: 2020/05/29 23:25:42 by gal              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ t_winui		*ui_new_win(const char *title,
 	if (!(win->ptr = SDL_CreateWindow(title, rect.x, rect.y,
 									rect.w, rect.h, sdl_win_flags)))
 		return (ui_ret_null_error("ui_create_win", SDL_GetError(), NULL));
-	if (!(win->rend = SDL_CreateRenderer(win->ptr, -1, sdl_rend_flags)))
+	if (sdl_rend_flags == -1)
+		win->rend = 0;
+	else if (!(win->rend = SDL_CreateRenderer(win->ptr, -1, sdl_rend_flags)))
 		return (ui_ret_null_error("ui_create_win", SDL_GetError(), NULL));
 	SDL_PollEvent(&win->event);
 	ui_event_update_mouse(&win->mouse);
